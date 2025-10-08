@@ -1,13 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
+
+import AppNavigator from './route';
 
 const App = () => {
 
-  return (
-    <View>
-
-    </View>
-  )
+  return <AppNavigator />;
 
 }
 
