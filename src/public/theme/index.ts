@@ -1,4 +1,4 @@
-import { Dimensions, StatusBar } from 'react-native';
+import { Dimensions, StatusBar, TextStyle } from 'react-native';
 import { hasNotch, hasDynamicIsland } from 'react-native-device-info';
 
 import { isIOS } from '@app-util/app';
@@ -16,4 +16,10 @@ export const headerHeight = 52;
 export const footerHeight = !!isIphoneX ? 24 : 16;
 export const styleProps = { flex: 1, backgroundColor: '#FFFFFF' };
 
-export const fonts = { default: { normal700: { fontWeight: '700' }, normal500: { fontWeight: '500' }, normal400: { fontWeight: '400' } } };
+export const fonts = {
+  default: {
+    normal700: { fontWeight: '700' } as TextStyle,
+    normal500: { fontWeight: '500' } as TextStyle,
+    normal400: { fontWeight: '400' } as TextStyle
+  }
+};
