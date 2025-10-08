@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { RefreshControl } from 'react-native';
 
 import { runAfterInteractions } from '@app-util/app';
-
-type TRefreshControl = {
-  onRefresh?: () => Promise<void> | void;
-}
+import { TRefreshControl } from '@app-component/ScrollRefresh/types';
 
 const ScrollRefresh = ({ onRefresh, ...props }: TRefreshControl) => {
   const [isRefreshing, setRefreshing] = useState(false);
