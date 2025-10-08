@@ -1,1 +1,1 @@
-export type TRefreshControl = { onRefresh?: () => Promise<void> | void; }
+export type TScrollRefreshProps = { onRefresh?: () => Promise<void> | void; }
