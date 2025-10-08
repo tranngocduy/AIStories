@@ -1,5 +1,7 @@
-import * as React from 'react';
+import React, { useMemo } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { RootSiblingParent } from 'react-native-root-siblings';
+import { QueryClientProvider, QueryClient, QUERY_OPTIONS } from '@app-useHook/query/constants';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
 import Dashboard from '@app-screen/Tab.Dashboard';
@@ -17,10 +19,17 @@ const AppStack = () => {
 }
 
 const AppNavigator = () => {
+
+  const queryClient = useMemo(() => new QueryClient(QUERY_OPTIONS), []);
+
   return (
-    <NavigationContainer>
-      <AppStack />
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <RootSiblingParent>
+        <NavigationContainer>
+          <AppStack />
+        </NavigationContainer>
+      </RootSiblingParent>
+    </QueryClientProvider>
   )
 }
 

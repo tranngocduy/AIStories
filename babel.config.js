@@ -14,6 +14,7 @@ module.exports = function (api) {
           '@app-builder': './src/builder',
           '@app-util': './src/public/util',
           '@app-theme': './src/public/theme',
+          '@app-useHook': './src/public/useHook',
           '@app-component': './src/public/component'
         }
       }
