@@ -11,6 +11,7 @@
       "@app-screen/*": ["./src/screen/*"],
       "@app-theme": ["./src/public/theme"],
       "@app-util/*": ["./src/public/util/*"],
+      "@app-model": ["./src/public/model"],
       "@app-useHook/*": ["./src/public/useHook/*"],
       "@app-component/*": ["./src/public/component/*"]
     }
