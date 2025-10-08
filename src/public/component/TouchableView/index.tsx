@@ -1,7 +1,14 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, ViewStyle } from 'react-native';
 
-import { TTouchableViewProps } from '@app-component/TouchableView/types';
+type TTouchableViewProps = {
+  children?: React.JSX.Element | React.JSX.Element[],
+  activeOpacity?: number,
+  disabled?: boolean,
+  hitSlop?: number,
+  style?: ViewStyle,
+  onPress?: Function
+}
 
 const TouchableView = ({ children, activeOpacity, ...props }: TTouchableViewProps) => {
 
