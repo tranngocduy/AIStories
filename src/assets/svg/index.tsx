@@ -1,7 +1,13 @@
 import { SvgProps } from 'react-native-svg';
 
-import IDashboard_SVG from './resource/iDashboard.svg';
-export const IDashboardSVG = (props: SvgProps) => <IDashboard_SVG {...props} />;
+import ITabDashboard_SVG from './resource/iTabDashboard.svg';
+export const ITabDashboardSVG = (props: SvgProps) => <ITabDashboard_SVG {...props} />;
 
-import IUserProfile_SVG from './resource/iUserProfile.svg';
-export const IUserProfileSVG = (props: SvgProps) => <IUserProfile_SVG {...props} />;
+import ITabDashboardActive_SVG from './resource/iTabDashboardActive.svg';
+export const ITabDashboardActiveSVG = (props: SvgProps) => <ITabDashboardActive_SVG {...props} />;
+
+import ITabUserProfile_SVG from './resource/iTabUserProfile.svg';
+export const ITabUserProfileSVG = (props: SvgProps) => <ITabUserProfile_SVG {...props} />;
+
+import ITabUserProfileActive_SVG from './resource/iTabUserProfileActive.svg';
+export const ITabUserProfileActiveSVG = (props: SvgProps) => <ITabUserProfileActive_SVG {...props} />;
