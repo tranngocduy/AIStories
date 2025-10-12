@@ -6,7 +6,7 @@ import { runAfterInteractions } from '@/utils/app';
 
 import { TStateData } from './types';
 
-import styles from './styles';
+import styles from './Dashboard.styles';
 
 const Dashboard: React.FC<{}> = () => {
 
