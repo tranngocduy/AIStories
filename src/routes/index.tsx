@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
-import Dashboard from '@/screens/Dashboard';
+import Dashboard from '@/screens/Tab.Dashboard';
 
 const Stack = createNativeStackNavigator();
 
