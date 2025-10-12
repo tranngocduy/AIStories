@@ -4,7 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator, BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
+import Library from '@/screens/Tab.Library/Library';
 import Dashboard from '@/screens/Tab.Dashboard/Dashboard';
+import SavedStory from '@/screens/Tab.SavedStory/SavedStory';
+import UserProfile from '@/screens/Tab.UserProfile/UserProfile';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -16,6 +19,9 @@ const AppTab = () => {
   return (
     <Tab.Navigator screenOptions={tabOptions}>
       <Tab.Screen name='Dashboard' component={Dashboard} />
+      <Tab.Screen name='Library' component={Library} />
+      <Tab.Screen name='SavedStory' component={SavedStory} />
+      <Tab.Screen name='UserProfile' component={UserProfile} />
     </Tab.Navigator>
   )
 }
