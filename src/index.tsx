@@ -1,13 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
 
-const App = () => {
+import AppNavigator from '@/routes';
 
-  return (
-    <View>
+const App: React.FC<{}> = () => {
 
-    </View>
-  )
+  return <AppNavigator />
 
 }
 
