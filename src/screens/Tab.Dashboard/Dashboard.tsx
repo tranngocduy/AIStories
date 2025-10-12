@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 
-import { ServiceAPI } from '@/api';
+import { ServiceAPI } from '@/apis';
 import { runAfterInteractions } from '@/utils/app';
 
 import { TStateData } from './types';
