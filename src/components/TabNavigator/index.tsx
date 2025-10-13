@@ -2,9 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { ITabDashboardSVG, ITabDashboardActiveSVG, ITabUserProfileSVG, ITabUserProfileActiveSVG } from '@/assets/svg';
+import { ITabDashboardSVG, ITabDashboardActiveSVG, ITabLibrarySVG, ITabLibraryActiveSVG, ITabSavedStoriesSVG, ITabSavedStoriesActiveSVG, ITabUserProfileSVG, ITabUserProfileActiveSVG } from '@/assets/svg';
 
 import styles from './styles';
 
@@ -12,16 +11,14 @@ type TTabItem = { label: string, page: string, blur: React.FC<SvgProps>, focus: 
 
 const TabNavigator: React.FC<BottomTabBarProps> = ({ ...props }) => {
 
-  const items: TTabItem[] = [
+  const TAB_ITEMS: TTabItem[] = [
     { label: 'Trang chủ', page: 'Dashboard', blur: ITabDashboardSVG, focus: ITabDashboardActiveSVG },
-    { label: 'Tài khoản', page: 'Dashboard', blur: ITabUserProfileSVG, focus: ITabUserProfileActiveSVG }
+    { label: 'Thư viện', page: 'Library', blur: ITabLibrarySVG, focus: ITabLibraryActiveSVG },
+    { label: 'Truyện đã lưu', page: 'SavedStories', blur: ITabSavedStoriesSVG, focus: ITabSavedStoriesActiveSVG },
+    { label: 'Tài khoản', page: 'UserProfile', blur: ITabUserProfileSVG, focus: ITabUserProfileActiveSVG }
   ];
 
-  const { bottom } = useSafeAreaInsets()
-
-  const _onPress = () => {
-
-  }
+  const _onPress = () => { }
 
   const _renderItem = (item: TTabItem, index: number) => {
     return (
@@ -35,8 +32,7 @@ const TabNavigator: React.FC<BottomTabBarProps> = ({ ...props }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.view}>{items?.map?.(_renderItem)}</View>
-      <View style={{ height: bottom, backgroundColor: '#FFFFFF' }} />
+      <View style={styles.view}>{TAB_ITEMS?.map?.(_renderItem)}</View>
     </View>
   )
 

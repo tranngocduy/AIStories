@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { fonts } from '@/theme';
+import { fonts, footerHeight } from '@/theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   view: {
     flexDirection: 'row',
     paddingTop: 16,
-    paddingBottom: 16
+    paddingBottom: footerHeight
   },
   itemView: {
     flex: 1,
@@ -33,6 +33,9 @@ const styles = StyleSheet.create({
   },
   active: {
     color: '#000000'
+  },
+  bottom: {
+    
   }
 });
 
