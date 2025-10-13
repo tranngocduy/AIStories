@@ -1,8 +1,10 @@
 import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator, BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import { createBottomTabNavigator, BottomTabNavigationOptions, BottomTabBarProps } from '@react-navigation/bottom-tabs';
+
+import TabNavigator from '@/components/TabNavigator';
 
 import Library from '@/screens/Tab.Library/Library';
 import Dashboard from '@/screens/Tab.Dashboard/Dashboard';
@@ -17,7 +19,7 @@ const stackOptions: NativeStackNavigationOptions = { headerShown: false, animati
 
 const AppTab = () => {
   return (
-    <Tab.Navigator screenOptions={tabOptions}>
+    <Tab.Navigator screenOptions={tabOptions} tabBar={(props: BottomTabBarProps) => <TabNavigator {...props} />}>
       <Tab.Screen name='Dashboard' component={Dashboard} />
       <Tab.Screen name='Library' component={Library} />
       <Tab.Screen name='SavedStory' component={SavedStory} />
