@@ -1,0 +1,3 @@
+export const STORAGE = {
+  DASHBOARD_STORIES: 'DASHBOARD_STORIES'
+}

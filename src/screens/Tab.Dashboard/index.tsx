@@ -2,7 +2,9 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { View, ScrollView } from 'react-native';
 
 import { ServiceAPI } from '@/apis';
+import { STORAGE } from '@/constants';
 import { runAfterInteractions } from '@/utils/app';
+import { getDataStorage, setDataStorage } from '@/database/storage';
 
 import { ScrollRefresh } from '@/components/ScrollRefresh';
 
@@ -12,7 +14,9 @@ import { TDataState } from './types';
 
 export const Dashboard: React.FC<{}> = () => {
 
-  const [data, setData] = useState<TDataState>(null);
+  const _data = getDataStorage({ key: STORAGE.DASHBOARD_STORIES });
+
+  const [data, setData] = useState<TDataState>((_data || null));
 
   const _onRefresh = async () => await _loadData();
 
@@ -26,6 +30,10 @@ export const Dashboard: React.FC<{}> = () => {
     const recommendedStories = result?.data?.recommended_stories || [];
 
     setData({ hotStories, newestStories, recommendedStories });
+
+    if (!!result?.msgError) return null;
+
+    setDataStorage({ key: STORAGE.DASHBOARD_STORIES, data: { hotStories, newestStories, recommendedStories } });
   }
 
   useEffect(() => { runAfterInteractions(_loadData); }, []);
