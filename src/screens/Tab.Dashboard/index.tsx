@@ -1,10 +1,7 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { View, ScrollView } from 'react-native';
 
-import { ServiceAPI } from '@/apis';
-import { KEYS_STORAGE } from '@/constants';
-import { runAfterInteractions } from '@/utils/app';
-import { getDataStorage, setDataStorage } from '@/database/storage';
+import { useGetStoriesDashboard } from '@/useQuery/useGetStoriesDashboard';
 
 import { ScrollRefresh } from '@/components/ScrollRefresh';
 
@@ -14,29 +11,11 @@ import { TDataState } from './types';
 
 export const Dashboard: React.FC<{}> = () => {
 
-  const _data = getDataStorage({ key: KEYS_STORAGE.DASHBOARD_STORIES });
+  const queryStoriesDashboard = useGetStoriesDashboard();
 
-  const [data, setData] = useState<TDataState>((_data || null));
+  const data: TDataState = queryStoriesDashboard.data;
 
-  const _onRefresh = async () => await _loadData();
-
-  const _loadData = async () => {
-    const result = await ServiceAPI.storiesDashboard();
-
-    const hotStories = result?.data?.hot_stories || [];
-
-    const newestStories = result?.data?.newest_stories || [];
-
-    const recommendedStories = result?.data?.recommended_stories || [];
-
-    setData({ hotStories, newestStories, recommendedStories });
-
-    if (!!result?.msgError) return null;
-
-    setDataStorage({ key: KEYS_STORAGE.DASHBOARD_STORIES, data: { hotStories, newestStories, recommendedStories } });
-  }
-
-  useEffect(() => { runAfterInteractions(_loadData); }, []);
+  const _onRefresh = async () => await queryStoriesDashboard.refetch?.();
 
   const memoGroupHotStories = useMemo(() => <Group data={data?.hotStories} label='Truyện hot' />, [data?.hotStories]);
 
