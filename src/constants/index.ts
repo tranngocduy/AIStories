@@ -1,3 +1,3 @@
-export const STORAGE = {
+export const KEYS_STORAGE = {
   DASHBOARD_STORIES: 'DASHBOARD_STORIES'
 }
