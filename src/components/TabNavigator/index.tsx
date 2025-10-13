@@ -1,15 +1,18 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 import { ITabDashboardSVG, ITabDashboardActiveSVG, ITabLibrarySVG, ITabLibraryActiveSVG, ITabSavedStoriesSVG, ITabSavedStoriesActiveSVG, ITabUserProfileSVG, ITabUserProfileActiveSVG } from '@/assets/svg';
 
+import TextBase from '@/components/TextBase';
+import TouchableView from '@/components/TouchableView';
+
 import styles from './styles';
 
 type TTabItem = { label: string, page: string, blur: React.FC<SvgProps>, focus: React.FC<SvgProps> };
 
-const TabNavigator: React.FC<BottomTabBarProps> = ({ ...props }) => {
+const TabNavigator: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
 
   const TAB_ITEMS: TTabItem[] = [
     { label: 'Trang chủ', page: 'Dashboard', blur: ITabDashboardSVG, focus: ITabDashboardActiveSVG },
@@ -18,23 +21,24 @@ const TabNavigator: React.FC<BottomTabBarProps> = ({ ...props }) => {
     { label: 'Tài khoản', page: 'UserProfile', blur: ITabUserProfileSVG, focus: ITabUserProfileActiveSVG }
   ];
 
-  const _onPress = () => { }
+  const _onPress = (item: TTabItem) => navigation?.navigate?.(item.page);
 
   const _renderItem = (item: TTabItem, index: number) => {
+    const activeIndex = state.index;
+    const isActive = (activeIndex === index);
+    const Icon = !isActive ? item.blur : item.focus;
+    const labelStyle = [styles.label, !!isActive && styles.active];
+
     return (
       <View style={styles.itemView} key={index}>
-        <View style={styles.item} hitSlop={16}>
-          <item.blur /><Text style={styles.label}>{item?.label}</Text>
-        </View>
+        <TouchableView style={styles.item} hitSlop={16} onPress={_onPress.bind(this, item)}>
+          <Icon /><TextBase style={labelStyle}>{item?.label}</TextBase>
+        </TouchableView>
       </View>
     )
   }
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.view}>{TAB_ITEMS?.map?.(_renderItem)}</View>
-    </View>
-  )
+  return <View style={styles.container}><View style={styles.view}>{TAB_ITEMS?.map?.(_renderItem)}</View></View>;
 
 }
 
