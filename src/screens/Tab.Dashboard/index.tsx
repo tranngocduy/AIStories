@@ -7,13 +7,13 @@ import { ScrollRefresh } from '@/components/ScrollRefresh';
 
 import { Group } from './Group';
 import { styles } from './styles';
-import { TDataState } from './types';
+import { TDataStories } from './types';
 
 export const Dashboard: React.FC<{}> = () => {
 
   const queryStoriesDashboard = useGetStoriesDashboard();
 
-  const data: TDataState = queryStoriesDashboard.data;
+  const data: TDataStories = queryStoriesDashboard?.data;
 
   const _onRefresh = async () => await queryStoriesDashboard.refetch?.();
 
