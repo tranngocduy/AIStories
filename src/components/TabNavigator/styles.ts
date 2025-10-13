@@ -33,9 +33,6 @@ const styles = StyleSheet.create({
   },
   active: {
     color: '#000000'
-  },
-  bottom: {
-    
   }
 });
 
