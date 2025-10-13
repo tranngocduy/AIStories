@@ -7,6 +7,7 @@ import { TextBase } from '@/components/TextBase';
 import { StoryItem } from '@/components/StoryItem';
 import { EmptyList } from '@/components/EmptyList';
 import { TouchableView } from '@/components/TouchableView';
+import { StorySkeleton } from '@/components/StorySkeleton';
 
 import { styles } from './styles';
 import { TGroupProps } from '../types';
@@ -21,7 +22,7 @@ export const Group: React.FC<TGroupProps> = ({ label, data }) => {
 
   const _keyExtractor = (item: TStory, index: number) => `${item?.id || index}`;
 
-  const _renderItem = ({ item }: { item: TStory }) => <StoryItem item={item} isHorizon={true} />;
+  const _renderItem = ({ item }: { item: TStory }) => !!item ? <StoryItem item={item} isHorizon={true} /> : <StorySkeleton isHorizon={true} />;
 
   return (
     <View style={styles.container}>
