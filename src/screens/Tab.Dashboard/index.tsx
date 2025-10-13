@@ -4,6 +4,8 @@ import { View, ScrollView } from 'react-native';
 import { ServiceAPI } from '@/apis';
 import { runAfterInteractions } from '@/utils/app';
 
+import { ScrollRefresh } from '@/components/ScrollRefresh';
+
 import { Group } from './Group';
 import { styles } from './styles';
 import { TDataState } from './types';
@@ -11,6 +13,8 @@ import { TDataState } from './types';
 export const Dashboard: React.FC<{}> = () => {
 
   const [data, setData] = useState<TDataState>(null);
+
+  const _onRefresh = async () => await _loadData();
 
   const _loadData = async () => {
     const result = await ServiceAPI.storiesDashboard();
@@ -35,7 +39,7 @@ export const Dashboard: React.FC<{}> = () => {
   return (
     <View style={styles.container}>
       <View style={styles.view}>
-        <ScrollView contentContainerStyle={styles.scroll}>
+        <ScrollView contentContainerStyle={styles.scroll} refreshControl={<ScrollRefresh onRefresh={_onRefresh} />}>
 
           {memoGroupHotStories}
 
