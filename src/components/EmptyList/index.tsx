@@ -5,7 +5,7 @@ import { IEmptySVG } from '@/assets/svg';
 
 import { TextBase } from '@/components/TextBase';
 
-import styles from './styles';
+import { styles } from './styles';
 
 export const EmptyList: React.FC<{}> = memo(() => {
 

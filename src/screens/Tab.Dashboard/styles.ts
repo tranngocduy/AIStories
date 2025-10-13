@@ -4,8 +4,7 @@ import { statusHeight } from '@/theme';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: statusHeight,
-    backgroundColor: '#FFFFFF'
+    paddingTop: statusHeight
   },
   view: {
     flex: 1
