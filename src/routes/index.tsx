@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { createBottomTabNavigator, BottomTabNavigationOptions, BottomTabBarProps } from '@react-navigation/bottom-tabs';
+
+import { QueryClientProvider, QueryClient, QUERY_OPTIONS } from '@/useQuery/constants';
 
 import { TabNavigator } from '@/components/TabNavigator';
 
@@ -38,10 +40,14 @@ const AppStack = () => {
 
 const AppNavigator = () => {
 
+  const queryClient = useMemo(() => new QueryClient(QUERY_OPTIONS), []);
+
   return (
-    <NavigationContainer>
-      <AppStack />
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <AppStack />
+      </NavigationContainer>
+    </QueryClientProvider>
   )
 
 }
