@@ -29,3 +29,6 @@ export const ITotalViewSVG = (props: SvgProps) => <ITotalView_SVG {...props} />;
 
 import ITotalChapter_SVG from './resource/iTotalChapter.svg';
 export const ITotalChapterSVG = (props: SvgProps) => <ITotalChapter_SVG {...props} />;
+
+import IStar_SVG from './resource/iStar.svg';
+export const IStarSVG = (props: SvgProps) => <IStar_SVG {...props} />;

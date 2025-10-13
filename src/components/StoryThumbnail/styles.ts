@@ -49,6 +49,11 @@ export const styles = StyleSheet.create({
     right: 0,
     left: 0,
     bottom: 0,
+    justifyContent: 'flex-end',
     height: '50%'
+  },
+  rate: {
+    marginLeft: 6,
+    marginBottom: 8
   }
 });
