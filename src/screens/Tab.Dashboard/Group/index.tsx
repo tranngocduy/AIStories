@@ -5,6 +5,7 @@ import { TStory } from '@/models/types';
 
 import { TextBase } from '@/components/TextBase';
 import { StoryItem } from '@/components/StoryItem';
+import { EmptyList } from '@/components/EmptyList';
 import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
@@ -15,6 +16,8 @@ export const Group: React.FC<TGroupProps> = ({ label, data }) => {
   const items = data || new Array(10).fill('');
 
   const _onPressSeeAll = () => { }
+
+  const _viewsEmpty = <View style={styles.emptyView}><EmptyList /></View>;
 
   const _keyExtractor = (item: TStory, index: number) => `${item?.id || index}`;
 
@@ -32,6 +35,7 @@ export const Group: React.FC<TGroupProps> = ({ label, data }) => {
         horizontal={true}
         renderItem={_renderItem}
         keyExtractor={_keyExtractor}
+        ListEmptyComponent={_viewsEmpty}
         contentContainerStyle={styles.scroll}
         showsHorizontalScrollIndicator={false}
       />
