@@ -4,12 +4,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { createBottomTabNavigator, BottomTabNavigationOptions, BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
-import TabNavigator from '@/components/TabNavigator';
+import { TabNavigator } from '@/components/TabNavigator';
 
-import Library from '@/screens/Tab.Library';
-import Dashboard from '@/screens/Tab.Dashboard';
-import SavedStory from '@/screens/Tab.SavedStory';
-import UserProfile from '@/screens/Tab.UserProfile';
+import { Library } from '@/screens/Tab.Library';
+import { Dashboard } from '@/screens/Tab.Dashboard';
+import { SavedStory } from '@/screens/Tab.SavedStory';
+import { UserProfile } from '@/screens/Tab.UserProfile';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();

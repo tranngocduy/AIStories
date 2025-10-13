@@ -5,14 +5,14 @@ import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 import { ITabDashboardSVG, ITabDashboardActiveSVG, ITabLibrarySVG, ITabLibraryActiveSVG, ITabSavedStorySVG, ITabSavedStoryActiveSVG, ITabUserProfileSVG, ITabUserProfileActiveSVG } from '@/assets/svg';
 
-import TextBase from '@/components/TextBase';
-import TouchableView from '@/components/TouchableView';
+import { TextBase } from '@/components/TextBase';
+import { TouchableView } from '@/components/TouchableView';
 
 import styles from './styles';
 
 type TTabItem = { label: string, page: string, blur: React.FC<SvgProps>, focus: React.FC<SvgProps> };
 
-const TabNavigator: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
+export const TabNavigator: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
 
   const TAB_ITEMS: TTabItem[] = [
     { label: 'Trang chủ', page: 'Dashboard', blur: ITabDashboardSVG, focus: ITabDashboardActiveSVG },
@@ -41,5 +41,3 @@ const TabNavigator: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
   return <View style={styles.container}><View style={styles.view}>{TAB_ITEMS?.map?.(_renderItem)}</View></View>;
 
 }
-
-export default TabNavigator;

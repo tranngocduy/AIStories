@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-const Library : React.FC<{}> = () => {
+export const Library : React.FC<{}> = () => {
 
   return (
     <View>
@@ -10,5 +10,3 @@ const Library : React.FC<{}> = () => {
   )
 
 }
-
-export default Library;

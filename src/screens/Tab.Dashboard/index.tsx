@@ -4,11 +4,10 @@ import { View, Text } from 'react-native';
 import { ServiceAPI } from '@/apis';
 import { runAfterInteractions } from '@/utils/app';
 
+import { styles } from './styles';
 import { TStateData } from './types';
 
-import styles from './styles';
-
-const Dashboard: React.FC<{}> = () => {
+export const Dashboard: React.FC<{}> = () => {
 
   const [data, setData] = useState<TStateData>(null);
 
@@ -33,5 +32,3 @@ const Dashboard: React.FC<{}> = () => {
   )
 
 }
-
-export default Dashboard;

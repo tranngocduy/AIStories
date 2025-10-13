@@ -16,7 +16,7 @@ import ITabSavedStory_SVG from './resource/iTabSavedStory.svg';
 export const ITabSavedStorySVG = (props: SvgProps) => <ITabSavedStory_SVG {...props} />;
 
 import ITabSavedStoryActive_SVG from './resource/iTabSavedStoryActive.svg';
-export const ITabSSavedStoryActiveSVG = (props: SvgProps) => <ITabSavedStoryActive_SVG {...props} />;
+export const ITabSavedStoryActiveSVG = (props: SvgProps) => <ITabSavedStoryActive_SVG {...props} />;
 
 import ITabUserProfile_SVG from './resource/iTabUserProfile.svg';
 export const ITabUserProfileSVG = (props: SvgProps) => <ITabUserProfile_SVG {...props} />;

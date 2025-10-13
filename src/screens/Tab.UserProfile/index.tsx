@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-const UserProfile : React.FC<{}> = () => {
+export const UserProfile : React.FC<{}> = () => {
 
   return (
     <View>
@@ -10,5 +10,3 @@ const UserProfile : React.FC<{}> = () => {
   )
 
 }
-
-export default UserProfile;

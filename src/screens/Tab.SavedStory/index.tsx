@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-const SavedStory : React.FC<{}> = () => {
+export const SavedStory : React.FC<{}> = () => {
 
   return (
     <View>
@@ -10,5 +10,3 @@ const SavedStory : React.FC<{}> = () => {
   )
 
 }
-
-export default SavedStory;

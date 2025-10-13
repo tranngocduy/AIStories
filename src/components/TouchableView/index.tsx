@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, TouchableOpacityProps, GestureResponderEvent } from 'react-native';
 
-const TouchableView: React.FC<TouchableOpacityProps> = ({ children, activeOpacity, onPress, ...props }) => {
+export const TouchableView: React.FC<TouchableOpacityProps> = ({ children, activeOpacity, onPress, ...props }) => {
 
   const _onPress = (event: GestureResponderEvent) => onPress?.(event);
 
@@ -12,5 +12,3 @@ const TouchableView: React.FC<TouchableOpacityProps> = ({ children, activeOpacit
   )
 
 }
-
-export default TouchableView;
