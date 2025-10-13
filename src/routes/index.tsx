@@ -6,10 +6,10 @@ import { createBottomTabNavigator, BottomTabNavigationOptions, BottomTabBarProps
 
 import TabNavigator from '@/components/TabNavigator';
 
-import Library from '@/screens/Tab.Library/Library';
-import Dashboard from '@/screens/Tab.Dashboard/Dashboard';
-import SavedStory from '@/screens/Tab.SavedStory/SavedStory';
-import UserProfile from '@/screens/Tab.UserProfile/UserProfile';
+import Library from '@/screens/Tab.Library';
+import Dashboard from '@/screens/Tab.Dashboard';
+import SavedStory from '@/screens/Tab.SavedStory';
+import UserProfile from '@/screens/Tab.UserProfile';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();

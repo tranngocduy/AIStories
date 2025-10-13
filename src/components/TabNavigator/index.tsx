@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
-import { ITabDashboardSVG, ITabDashboardActiveSVG, ITabLibrarySVG, ITabLibraryActiveSVG, ITabSavedStoriesSVG, ITabSavedStoriesActiveSVG, ITabUserProfileSVG, ITabUserProfileActiveSVG } from '@/assets/svg';
+import { ITabDashboardSVG, ITabDashboardActiveSVG, ITabLibrarySVG, ITabLibraryActiveSVG, ITabSavedStorySVG, ITabSavedStoryActiveSVG, ITabUserProfileSVG, ITabUserProfileActiveSVG } from '@/assets/svg';
 
 import TextBase from '@/components/TextBase';
 import TouchableView from '@/components/TouchableView';
@@ -17,7 +17,7 @@ const TabNavigator: React.FC<BottomTabBarProps> = ({ navigation, state }) => {
   const TAB_ITEMS: TTabItem[] = [
     { label: 'Trang chủ', page: 'Dashboard', blur: ITabDashboardSVG, focus: ITabDashboardActiveSVG },
     { label: 'Thư viện', page: 'Library', blur: ITabLibrarySVG, focus: ITabLibraryActiveSVG },
-    { label: 'Truyện đã lưu', page: 'SavedStories', blur: ITabSavedStoriesSVG, focus: ITabSavedStoriesActiveSVG },
+    { label: 'Truyện đã lưu', page: 'SavedStory', blur: ITabSavedStorySVG, focus: ITabSavedStoryActiveSVG },
     { label: 'Tài khoản', page: 'UserProfile', blur: ITabUserProfileSVG, focus: ITabUserProfileActiveSVG }
   ];
 
