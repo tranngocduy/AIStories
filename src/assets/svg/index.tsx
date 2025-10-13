@@ -23,3 +23,9 @@ export const ITabUserProfileSVG = (props: SvgProps) => <ITabUserProfile_SVG {...
 
 import ITabUserProfileActive_SVG from './resource/iTabUserProfileActive.svg';
 export const ITabUserProfileActiveSVG = (props: SvgProps) => <ITabUserProfileActive_SVG {...props} />;
+
+import ITotalView_SVG from './resource/iTotalView.svg';
+export const ITotalViewSVG = (props: SvgProps) => <ITotalView_SVG {...props} />;
+
+import ITotalChapter_SVG from './resource/iTotalChapter.svg';
+export const ITotalChapterSVG = (props: SvgProps) => <ITotalChapter_SVG {...props} />;

@@ -1,0 +1,42 @@
+import React from 'react';
+import { View, ImageBackground } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+
+import { TStory } from '@/models/types';
+
+import { TextBase } from '@/components/TextBase';
+
+import { styles } from './styles';
+
+type TStoryThumbnailProps = { item: TStory, thumbSize: number };
+
+export const StoryThumbnail: React.FC<TStoryThumbnailProps> = ({ item, thumbSize }) => {
+
+  const end = { x: 0.5, y: 1 };
+
+  const start = { x: 0.5, y: 0 };
+
+  const imageUrl = item?.cover_image_url;
+
+  const category = item?.categories?.[0]?.name || '';
+
+  return (
+    <View style={[styles.container, { height: thumbSize }]}>
+      {!!imageUrl ?
+        <ImageBackground source={{ uri: imageUrl }} style={styles.thumbnail} resizeMode='stretch' />
+        :
+        <View style={styles.emptyView}><TextBase style={styles.emptyLabel}>No Cover</TextBase></View>
+      }
+
+      <View style={styles.categoryView}>
+        <LinearGradient style={styles.categoryTag} start={start} end={end} colors={['#333333', '#1A1A1A', '#000000', '#0D0D0D']} />
+        <View style={styles.categoryLabelView}><TextBase style={styles.categoryLabel}>{category}</TextBase></View>
+      </View>
+
+      <LinearGradient style={styles.rateView} start={start} end={end} colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.6)']}>
+
+      </LinearGradient>
+    </View>
+  )
+
+}
