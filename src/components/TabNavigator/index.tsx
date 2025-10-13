@@ -8,7 +8,7 @@ import { ITabDashboardSVG, ITabDashboardActiveSVG, ITabLibrarySVG, ITabLibraryAc
 import { TextBase } from '@/components/TextBase';
 import { TouchableView } from '@/components/TouchableView';
 
-import styles from './styles';
+import { styles } from './styles';
 
 type TTabItem = { label: string, page: string, blur: React.FC<SvgProps>, focus: React.FC<SvgProps> };
 

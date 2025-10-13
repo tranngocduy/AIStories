@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { fonts, footerHeight } from '@/theme';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     borderTopRightRadius: 24,
     borderTopLeftRadius: 24,
@@ -35,5 +35,3 @@ const styles = StyleSheet.create({
     color: '#000000'
   }
 });
-
-export default styles;
