@@ -11,7 +11,7 @@ const _loadData = async ({ page }: { page: number }) => {
 
   const metadata = result?.data?.metadata;
 
-  const hasNextPage = metadata?.total_items < metadata?.limit;
+  const hasNextPage = ((metadata?.current_page || 0) < (metadata?.total_pages || 0));
 
   return { data, page: nextPage, hasNextPage };
 }
@@ -20,7 +20,7 @@ export const useSearchStoriesByQuery = ({ enabled = true } = {}) => {
   const query = useInfiniteQuery({
     queryKey: [QUERY_KEYS.SEARCH_STORIES_BY_QUERY],
     queryFn: async ({ pageParam: { page } }) => await _loadData({ page }),
-    getNextPageParam: lastPage => ({ page: lastPage.page, hasNextPage: lastPage.hasNextPage }),
+    getNextPageParam: lastPage => !!lastPage.hasNextPage ? ({ page: lastPage.page, hasNextPage: lastPage.hasNextPage }) : null,
     select: data => flatten(data.pages.map((page) => page.data)),
     initialPageParam: { page: 0, hasNextPage: false },
     enabled
