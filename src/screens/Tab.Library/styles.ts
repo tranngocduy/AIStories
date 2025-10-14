@@ -6,6 +6,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingTop: statusHeight
   },
+  view: {
+    flex: 1
+  },
   titleView: {
     paddingTop: 24,
     paddingLeft: 16,
@@ -21,6 +24,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingRight: 16,
     paddingLeft: 16,
+    paddingBottom: 12,
     columnGap: 8
   },
   searchButton: {
@@ -39,5 +43,12 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 21,
     color: '#000000'
+  },
+  scroll: {
+    flexGrow: 1,
+    paddingTop: 4,
+    paddingRight: 16,
+    paddingLeft: 16,
+    paddingBottom: 16
   }
 });
