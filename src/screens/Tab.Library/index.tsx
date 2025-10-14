@@ -1,6 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 
+import { IFilterSVG } from '@/assets/svg';
+
 import { TextBase } from '@/components/TextBase';
 import { TouchableView } from '@/components/TouchableView';
 import { TextInputSearch } from '@/components/TextInputSearch';
@@ -15,7 +17,7 @@ export const Library: React.FC<{}> = () => {
 
       <View style={styles.searchView}>
         <TextInputSearch />
-        <TouchableView style={styles.searchButton}></TouchableView>
+        <TouchableView style={styles.searchButton}><IFilterSVG /><TextBase style={styles.filterLabel}>Lọc</TextBase></TouchableView>
       </View>
     </View>
   )

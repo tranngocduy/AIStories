@@ -33,5 +33,11 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F2F2F2',
     overflow: 'hidden',
     columnGap: 8
+  },
+  filterLabel: {
+    ...fonts.default.normal500,
+    fontSize: 14,
+    lineHeight: 21,
+    color: '#000000'
   }
 });

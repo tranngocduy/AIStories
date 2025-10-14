@@ -13,7 +13,7 @@ export const Dashboard: React.FC<{}> = () => {
 
   const queryStoriesDashboard = useGetStoriesDashboard();
 
-  const data: TDataStories = queryStoriesDashboard?.data;
+  const data: TDataStories = queryStoriesDashboard?.data || null;
 
   const _onRefresh = async () => await queryStoriesDashboard.refetch?.();
 

@@ -35,3 +35,9 @@ export const IStarSVG = (props: SvgProps) => <IStar_SVG {...props} />;
 
 import IEmpty_SVG from './resource/iEmpty.svg';
 export const IEmptySVG = (props: SvgProps) => <IEmpty_SVG {...props} />;
+
+import ISearch_SVG from './resource/iSearch.svg';
+export const ISearchSVG = (props: SvgProps) => <ISearch_SVG {...props} />;
+
+import IFilter_SVG from './resource/iFilter.svg';
+export const IFilterSVG = (props: SvgProps) => <IFilter_SVG {...props} />;
