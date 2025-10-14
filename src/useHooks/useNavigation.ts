@@ -1,8 +1,10 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation, useIsFocused, useRoute, RouteProp } from '@react-navigation/native';
 
-type RootStackParamList = {
+import { TStory } from '@/models/types';
 
+type RootStackParamList = {
+  StoryDetail: { story: TStory }
 }
 
 export const useStackIsFocused = () => {

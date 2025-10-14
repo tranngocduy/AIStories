@@ -23,7 +23,7 @@ export const StoryItem: React.FC<TStoryItemProps> = ({ item, isHorizon = false }
 
   const _onPressStoryItem = () => {
     const stackState = navigation.getState();
-    if (stackState.type !== 'stack') { }
+    if (stackState.type !== 'stack') navigation.navigate('StoryDetail', { story: item });
     if (stackState.type === 'stack') { }
   }
 
