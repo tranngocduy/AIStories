@@ -17,7 +17,7 @@ export const useStackNavigation = () => {
   return navigation;
 }
 
-export const useRoteNavigation = <T extends keyof RootStackParamList>(routeName: T) => {
+export const useRouteNavigation = <T extends keyof RootStackParamList>(routeName: T) => {
   const route = useRoute<RouteProp<RootStackParamList, typeof routeName>>();
   return route;
 }

@@ -8,8 +8,14 @@ export const storiesDashboard = async () => {
   return result;
 }
 
-export const searchStoriesByQueryString = async (page: number, body: API_TStoriesSearch) => {
+export const searchStoriesByQueryString = async (page?: number, body?: API_TStoriesSearch) => {
   const method = 'POST';
   const result = await api(`${process.env.$app.BASE_API}/stories/search?page=${page}&limit=9`, method, body);
+  return result;
+}
+
+export const getStoryDetail = async (storyId?: number) => {
+  const method = 'GET';
+  const result = await api(`${process.env.$app.BASE_API}/stories/${storyId}`, method);
   return result;
 }
