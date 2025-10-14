@@ -49,6 +49,11 @@ export const styles = StyleSheet.create({
     paddingTop: 4,
     paddingRight: 16,
     paddingLeft: 16,
-    paddingBottom: 16
+    paddingBottom: 16,
+    rowGap: 10
+  },
+  wrapperStyle: {
+    flex: 1,
+    columnGap: 10
   }
 });
