@@ -19,3 +19,9 @@ export const getStoryDetail = async (storyId?: number) => {
   const result = await api(`${process.env.$app.BASE_API}/stories/${storyId}`, method);
   return result;
 }
+
+export const getTranslateVersions = async (storyId?: number) => {
+  const method = 'GET';
+  const result = await api(`${process.env.$app.BASE_API}/stories/${storyId}/translate-versions`, method);
+  return result;
+}

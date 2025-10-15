@@ -4,6 +4,7 @@ import Animated, { FadeInDown } from 'react-native-reanimated';
 
 import { useStoryDetail } from '@/useQuery/useStoryDetail';
 import { useRouteNavigation } from '@/useHooks/useNavigation';
+import { useTranslateVersions } from '@/useQuery/useTranslateVersions';
 
 import { HeaderStack } from '@/components/HeaderStack';
 
@@ -20,6 +21,10 @@ export const StoryDetail: React.FC<{}> = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const queryStoryDetail = useStoryDetail({ storyId: params?.story?.id });
+
+  const queryTranslateVersion = useTranslateVersions({ storyId: params?.story?.id });
+
+  const translateVersionId = (queryTranslateVersion?.data?.[0]?.id || null);
 
   const chaptersRef = useRef(null);
 
