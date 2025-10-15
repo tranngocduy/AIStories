@@ -18,6 +18,12 @@ export type TStory = {
   total_views?: number;
 }
 
+export type TTagDetail = {
+  name?: string;
+  slug?: string;
+  id?: number;
+}
+
 export type TStoryDetail = {
   title?: string;
   chinese_title?: string;
@@ -36,11 +42,7 @@ export type TStoryDetail = {
     slug?: string;
     id?: number;
   }>;
-  tags?: Array<{
-    name?: string;
-    slug?: string;
-    id?: number;
-  }>;
+  tags?: Array<TTag>;
   total_chapters?: number;
   total_views?: number;
   rating_score?: number;
