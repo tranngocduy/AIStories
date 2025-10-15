@@ -9,6 +9,7 @@ import { useTranslateVersions } from '@/useQuery/useTranslateVersions';
 import { HeaderStack } from '@/components/HeaderStack';
 
 import { Overview } from './Overview';
+import { Chapters } from './Chapters';
 import { StoryInfo } from './StoryInfo';
 import { TabStoryPages } from './TabStoryPages';
 
@@ -45,6 +46,8 @@ export const StoryDetail: React.FC<{}> = () => {
 
   const memoOverview = useMemo(() => <Overview detail={queryStoryDetail?.data} />, [JSON.stringify(queryStoryDetail?.data)]);
 
+  const memoChapters = useMemo(() => <Chapters translateVersionId={translateVersionId} ref={chaptersRef} />, [translateVersionId]);
+
   const memoStoryInfo = useMemo(() => <StoryInfo story={params?.story} detail={queryStoryDetail?.data} />, [JSON.stringify(queryStoryDetail?.data)]);
 
   const memoTabStoryPages = useMemo(() => <TabStoryPages onChangeTab={_onChangeTab} ref={tabStoryPagesRef} />, []);
@@ -57,6 +60,7 @@ export const StoryDetail: React.FC<{}> = () => {
           {memoStoryInfo}
           {memoTabStoryPages}
           {(activeIndex === 0) && <Animated.View style={styles.view} entering={FadeInDown}>{memoOverview}</Animated.View>}
+          {(activeIndex === 1) && <Animated.View style={styles.view} entering={FadeInDown}>{memoChapters}</Animated.View>}
         </ScrollView>
       </View>
     </View>
