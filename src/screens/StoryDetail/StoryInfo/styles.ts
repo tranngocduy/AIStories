@@ -6,11 +6,13 @@ export const styles = StyleSheet.create({
     padding: 16
   },
   view: {
-    flexDirection: 'row',
     padding: 16,
     borderRadius: 8,
     backgroundColor: '#FFFFFF',
     boxShadow: '0px 4px 24px 0px rgba(0, 0, 0, 0.1)',
+  },
+  overView: {
+    flexDirection: 'row',
     columnGap: 16
   },
   detail: {
@@ -72,4 +74,25 @@ export const styles = StyleSheet.create({
     lineHeight: 16,
     color: '#A3A3A3'
   },
+  bottom: {
+    flexDirection: 'row',
+    marginTop: 24,
+    columnGap: 16
+  },
+  button: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 40,
+    borderRadius: 4,
+    backgroundColor: '#000000',
+    columnGap: 8
+  },
+  buttonLabel: {
+    ...fonts.default.normal500,
+    fontSize: 14,
+    lineHeight: 21,
+    color: '#FFFFFF'
+  }
 });

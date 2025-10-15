@@ -53,3 +53,9 @@ export const IUserAvatarSVG = (props: SvgProps) => <IUserAvatar_SVG {...props} /
 
 import IStoryMark_SVG from './resource/iStoryMark.svg';
 export const IStoryMarkSVG = (props: SvgProps) => <IStoryMark_SVG {...props} />;
+
+import IStoryStatus_SVG from './resource/iStoryStatus.svg';
+export const IStoryStatusSVG = (props: SvgProps) => <IStoryStatus_SVG {...props} />;
+
+import IStoryDetail_SVG from './resource/iStoryDetail.svg';
+export const IStoryDetailSVG = (props: SvgProps) => <IStoryDetail_SVG {...props} />;

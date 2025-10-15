@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 import { TStory, TStoryDetail } from '@/models/types';
 import { STORY_STATUS_LABEL_MAPPING } from '@/constants';
-import { IUserAvatarSVG, ITotalChapterSVG, ITotalViewSVG } from '@/assets/svg';
+import { IUserAvatarSVG, IStoryStatusSVG, ITotalChapterSVG, ITotalViewSVG, IStoryDetailSVG } from '@/assets/svg';
 
 import { TextBase } from '@/components/TextBase';
 import { StoryMark } from '@/components/StoryMark';
@@ -34,44 +34,53 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
 
   const _onPressAuthor = () => { }
 
+  const _onPressStoryDetail = () => { }
+
   return (
     <View style={styles.container}>
       <View style={styles.view}>
-        <View style={styles.thumbnail}><StoryThumbnail item={story} thumbSize={110} /></View>
+        <View style={styles.overView}>
+          <View style={styles.thumbnail}><StoryThumbnail item={story} thumbSize={110} /></View>
 
-        <View style={styles.detail}>
-          <View style={styles.statusVote}>
-            <StoryScore score={score} backgroundColor='transparent' color='#555555' />
-            <StoryMark storyId={storyId} />
-          </View>
-
-          <TextBase style={styles.title}>{title}</TextBase>
-
-          <View style={styles.authorView}>
-            {!author ?
-              <ProgressSkeleton width={80} height={24} radius={4} />
-              :
-              <TouchableView style={styles.authorContent} onPress={_onPressAuthor}>
-                <IUserAvatarSVG />
-                <TextBase style={styles.authorLabel}>{author}</TextBase>
-              </TouchableView>
-            }
-          </View>
-
-          <View style={styles.statusView}>
-            <View style={styles.statusItem}>
-              <View /><TextBase style={styles.statusLabel}>{status}</TextBase>
+          <View style={styles.detail}>
+            <View style={styles.statusVote}>
+              <StoryScore score={score} backgroundColor='transparent' color='#555555' />
+              <StoryMark storyId={storyId} />
             </View>
 
-            <View style={styles.statusItem}>
-              <ITotalChapterSVG /><TextBase style={styles.statusLabel}>{totalChapters}</TextBase>
+            <TextBase style={styles.title}>{title}</TextBase>
+
+            <View style={styles.authorView}>
+              {!author ?
+                <ProgressSkeleton width={80} height={24} radius={4} />
+                :
+                <TouchableView style={styles.authorContent} onPress={_onPressAuthor}>
+                  <IUserAvatarSVG />
+                  <TextBase style={styles.authorLabel}>{author}</TextBase>
+                </TouchableView>
+              }
             </View>
 
-            <View style={styles.statusItem}>
-              <ITotalViewSVG /><TextBase style={styles.statusLabel}>{totalViews}</TextBase>
+            <View style={styles.statusView}>
+              <View style={styles.statusItem}>
+                <IStoryStatusSVG /><TextBase style={styles.statusLabel}>{status}</TextBase>
+              </View>
+
+              <View style={styles.statusItem}>
+                <ITotalChapterSVG /><TextBase style={styles.statusLabel}>{totalChapters}</TextBase>
+              </View>
+
+              <View style={styles.statusItem}>
+                <ITotalViewSVG /><TextBase style={styles.statusLabel}>{totalViews}</TextBase>
+              </View>
             </View>
           </View>
+        </View>
 
+        <View style={styles.bottom}>
+          <TouchableView style={styles.button} onPress={_onPressStoryDetail}>
+            <IStoryDetailSVG /><TextBase style={styles.buttonLabel}>Đọc ngay</TextBase>
+          </TouchableView>
         </View>
       </View>
     </View>
