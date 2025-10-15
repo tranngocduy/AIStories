@@ -29,7 +29,7 @@ export const StoryItem: React.FC<TStoryItemProps> = ({ item, isHorizon = false }
 
   return (
     <TouchableView style={itemStyle} onPress={_onPressStoryItem}>
-      <StoryThumbnail item={item} thumbSize={thumbSize} />
+      <StoryThumbnail item={item} thumbSize={thumbSize} isOverview={true} />
       <View style={styles.view}>
         <TextBase style={styles.label} numberOfLines={2}>{item?.title}</TextBase>
         <View style={styles.summary}>

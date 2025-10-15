@@ -44,3 +44,6 @@ export const IFilterSVG = (props: SvgProps) => <IFilter_SVG {...props} />;
 
 import IBackStack_SVG from './resource/iBackStack.svg';
 export const IBackStackSVG = (props: SvgProps) => <IBackStack_SVG {...props} />;
+
+import IUserAvatar_SVG from './resource/iUserAvatar.svg';
+export const IUserAvatarSVG = (props: SvgProps) => <IUserAvatar_SVG {...props} />;

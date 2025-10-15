@@ -9,9 +9,9 @@ import { StoryRating } from '@/components/StoryRating';
 
 import { styles } from './styles';
 
-type TStoryThumbnailProps = { item: TStory, thumbSize: number };
+type TStoryThumbnailProps = { item?: TStory, thumbSize?: number, isOverview?: boolean };
 
-export const StoryThumbnail: React.FC<TStoryThumbnailProps> = ({ item, thumbSize }) => {
+export const StoryThumbnail: React.FC<TStoryThumbnailProps> = ({ item, thumbSize, isOverview }) => {
 
   const end = { x: 0.5, y: 1 };
 
@@ -34,9 +34,11 @@ export const StoryThumbnail: React.FC<TStoryThumbnailProps> = ({ item, thumbSize
         <View style={styles.categoryLabelView}><TextBase style={styles.categoryLabel}>{category}</TextBase></View>
       </View>
 
-      <LinearGradient style={styles.rateView} start={start} end={end} colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.6)']}>
-        <StoryRating score={item?.rating_score} style={styles.rate} />
-      </LinearGradient>
+      {!!isOverview &&
+        <LinearGradient style={styles.rateView} start={start} end={end} colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.6)']}>
+          <StoryRating score={item?.rating_score} style={styles.rate} />
+        </LinearGradient>
+      }
     </View>
   )
 
