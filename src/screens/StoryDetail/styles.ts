@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { } from '@/theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,5 +6,8 @@ export const styles = StyleSheet.create({
   },
   view: {
     flex: 1
+  },
+  scroll: {
+    flexGrow: 1
   }
 });

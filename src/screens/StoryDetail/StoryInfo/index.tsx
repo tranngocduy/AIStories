@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { TStory, TStoryDetail } from '@/models/types';
 import { STORY_STATUS_LABEL_MAPPING } from '@/constants';
 import { IUserAvatarSVG, IStoryStatusSVG, ITotalChapterSVG, ITotalViewSVG, IStoryDetailSVG } from '@/assets/svg';
 
@@ -13,8 +12,7 @@ import { StoryThumbnail } from '@/components/StoryThumbnail';
 import { ProgressSkeleton } from '@/components/ProgressSkeleton';
 
 import { styles } from './styles';
-
-type TStoryInfoProps = { story?: TStory, detail?: TStoryDetail };
+import { TStoryInfoProps } from '../types';
 
 export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
 
