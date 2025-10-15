@@ -25,3 +25,9 @@ export const getTranslateVersions = async (storyId?: number) => {
   const result = await api(`${process.env.$app.BASE_API}/stories/${storyId}/translate-versions`, method);
   return result;
 }
+
+export const getStoryChapters = async (translateVersionId?: number, page?: number, limit?: number) => {
+  const method = 'GET';
+  const result = await api(`${process.env.$app.BASE_API}/chapters/${translateVersionId}?page=${page}&limit=${limit}`, method);
+  return result;
+}

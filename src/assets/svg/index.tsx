@@ -59,3 +59,6 @@ export const IStoryStatusSVG = (props: SvgProps) => <IStoryStatus_SVG {...props}
 
 import IStoryDetail_SVG from './resource/iStoryDetail.svg';
 export const IStoryDetailSVG = (props: SvgProps) => <IStoryDetail_SVG {...props} />;
+
+import IPlayCircle_SVG from './resource/iPlayCircle.svg';
+export const IPlayCircleSVG = (props: SvgProps) => <IPlayCircle_SVG {...props} />;
