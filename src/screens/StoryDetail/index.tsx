@@ -1,11 +1,13 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { View, ScrollView, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 
 import { useStoryDetail } from '@/useQuery/useStoryDetail';
 import { useRouteNavigation } from '@/useHooks/useNavigation';
 
 import { HeaderStack } from '@/components/HeaderStack';
 
+import { Overview } from './Overview';
 import { StoryInfo } from './StoryInfo';
 import { TabStoryPages } from './TabStoryPages';
 
@@ -36,6 +38,8 @@ export const StoryDetail: React.FC<{}> = () => {
     tabStoryPagesRef.current?.onScroll?.(tabPageIndex);
   }
 
+  const memoOverview = useMemo(() => <Overview detail={queryStoryDetail?.data} />, [JSON.stringify(queryStoryDetail?.data)]);
+
   const memoStoryInfo = useMemo(() => <StoryInfo story={params?.story} detail={queryStoryDetail?.data} />, [JSON.stringify(queryStoryDetail?.data)]);
 
   const memoTabStoryPages = useMemo(() => <TabStoryPages onChangeTab={_onChangeTab} ref={tabStoryPagesRef} />, []);
@@ -47,6 +51,7 @@ export const StoryDetail: React.FC<{}> = () => {
         <ScrollView contentContainerStyle={styles.scroll} scrollEventThrottle={16} onScroll={_onScroll}>
           {memoStoryInfo}
           {memoTabStoryPages}
+          {(activeIndex === 0) && <Animated.View style={styles.view} entering={FadeInDown}>{memoOverview}</Animated.View>}
         </ScrollView>
       </View>
     </View>
