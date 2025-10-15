@@ -33,6 +33,9 @@ export const ITotalChapterSVG = (props: SvgProps) => <ITotalChapter_SVG {...prop
 import IStar_SVG from './resource/iStar.svg';
 export const IStarSVG = (props: SvgProps) => <IStar_SVG {...props} />;
 
+import IStarGray_SVG from './resource/iStarGray.svg';
+export const IStarGraySVG = (props: SvgProps) => <IStarGray_SVG {...props} />;
+
 import IEmpty_SVG from './resource/iEmpty.svg';
 export const IEmptySVG = (props: SvgProps) => <IEmpty_SVG {...props} />;
 

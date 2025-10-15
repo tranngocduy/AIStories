@@ -5,7 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { TStory } from '@/models/types';
 
 import { TextBase } from '@/components/TextBase';
-import { StoryRating } from '@/components/StoryRating';
+import { StoryScore } from '@/components/StoryScore';
 
 import { styles } from './styles';
 
@@ -36,7 +36,7 @@ export const StoryThumbnail: React.FC<TStoryThumbnailProps> = ({ item, thumbSize
 
       {!!isOverview &&
         <LinearGradient style={styles.rateView} start={start} end={end} colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.6)']}>
-          <StoryRating score={item?.rating_score} style={styles.rate} />
+          <View style={styles.rate}><StoryScore score={item?.rating_score} /></View>
         </LinearGradient>
       }
     </View>
