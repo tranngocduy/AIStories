@@ -50,3 +50,6 @@ export const IBackStackSVG = (props: SvgProps) => <IBackStack_SVG {...props} />;
 
 import IUserAvatar_SVG from './resource/iUserAvatar.svg';
 export const IUserAvatarSVG = (props: SvgProps) => <IUserAvatar_SVG {...props} />;
+
+import IStoryMark_SVG from './resource/iStoryMark.svg';
+export const IStoryMarkSVG = (props: SvgProps) => <IStoryMark_SVG {...props} />;
