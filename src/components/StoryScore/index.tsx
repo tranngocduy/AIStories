@@ -5,7 +5,7 @@ import { IStarSVG, IStarGraySVG } from '@/assets/svg';
 
 import { TextBase } from '@/components/TextBase';
 
-import styles from './styles';
+import { styles } from './styles';
 
 type TStoryScoreProps = { score?: number, isHideScore?: boolean, backgroundColor?: string, color?: string }
 
