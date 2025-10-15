@@ -41,3 +41,6 @@ export const ISearchSVG = (props: SvgProps) => <ISearch_SVG {...props} />;
 
 import IFilter_SVG from './resource/iFilter.svg';
 export const IFilterSVG = (props: SvgProps) => <IFilter_SVG {...props} />;
+
+import IBackStack_SVG from './resource/iBackStack.svg';
+export const IBackStackSVG = (props: SvgProps) => <IBackStack_SVG {...props} />;

@@ -4,6 +4,10 @@ import { View } from 'react-native';
 import { useStoryDetail } from '@/useQuery/useStoryDetail';
 import { useRouteNavigation } from '@/useHooks/useNavigation';
 
+import { HeaderStack } from '@/components/HeaderStack';
+
+import { styles } from './styles';
+
 export const StoryDetail: React.FC<{}> = () => {
   const { params } = useRouteNavigation('StoryDetail');
 
@@ -12,8 +16,8 @@ export const StoryDetail: React.FC<{}> = () => {
   const queryStoryDetail = useStoryDetail({ storyId: story?.id });
 
   return (
-    <View>
-
+    <View style={styles.container}>
+      <HeaderStack />
     </View>
   )
 
