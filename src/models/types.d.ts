@@ -1,3 +1,5 @@
+import { STORY_STATUS_VALUE } from '@/constants';
+
 export type TCategory = {
   name?: string;
   description?: string | null;
@@ -28,7 +30,7 @@ export type TStoryDetail = {
     slug?: string;
     id?: number;
   };
-  status?: string;
+  status?: typeof STORY_STATUS_VALUE[keyof typeof STORY_STATUS_VALUE];
   categories?: Array<{
     name?: string;
     slug?: string;

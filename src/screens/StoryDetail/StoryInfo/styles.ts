@@ -55,4 +55,21 @@ export const styles = StyleSheet.create({
     lineHeight: 16,
     color: '#FFFFFF'
   },
+  statusView: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    columnGap: 16
+  },
+  statusItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: 4
+  },
+  statusLabel: {
+    ...fonts.default.normal500,
+    fontSize: 12,
+    lineHeight: 16,
+    color: '#A3A3A3'
+  },
 });

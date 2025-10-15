@@ -1,8 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { IUserAvatarSVG } from '@/assets/svg';
 import { TStory, TStoryDetail } from '@/models/types';
+import { STORY_STATUS_LABEL_MAPPING } from '@/constants';
+import { IUserAvatarSVG, ITotalChapterSVG, ITotalViewSVG } from '@/assets/svg';
 
 import { TextBase } from '@/components/TextBase';
 import { StoryMark } from '@/components/StoryMark';
@@ -24,6 +25,12 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
   const score = story?.rating_score;
 
   const author = detail?.author?.name;
+
+  const totalViews = story?.total_views;
+
+  const totalChapters = story?.total_chapters;
+
+  const status = !!detail?.status ? (STORY_STATUS_LABEL_MAPPING?.[detail?.status] || '-') : '-';
 
   const _onPressAuthor = () => { }
 
@@ -49,6 +56,20 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
                 <TextBase style={styles.authorLabel}>{author}</TextBase>
               </TouchableView>
             }
+          </View>
+
+          <View style={styles.statusView}>
+            <View style={styles.statusItem}>
+              <View /><TextBase style={styles.statusLabel}>{status}</TextBase>
+            </View>
+
+            <View style={styles.statusItem}>
+              <ITotalChapterSVG /><TextBase style={styles.statusLabel}>{totalChapters}</TextBase>
+            </View>
+
+            <View style={styles.statusItem}>
+              <ITotalViewSVG /><TextBase style={styles.statusLabel}>{totalViews}</TextBase>
+            </View>
           </View>
 
         </View>
