@@ -32,6 +32,10 @@ export const StoryReview: React.FC<TStoryReviewProps> = ({ item }) => {
 
   const createAt = !!item?.created_at ? dayjs(item?.created_at).format('DD/MM/YYYY') : '';
 
+  const _onPressLike = async () => {
+
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -52,7 +56,7 @@ export const StoryReview: React.FC<TStoryReviewProps> = ({ item }) => {
         </View>
 
         <View style={styles.review}>
-          <TouchableView style={styles.button} hitSlop={12}>
+          <TouchableView style={styles.button} hitSlop={12} onPress={_onPressLike}>
             <IReviewLikeSVG />
             <TextBase style={styles.labelButton}>Ưa thích</TextBase>
             <View style={styles.countView}><TextBase style={styles.countText}>{likesCount}</TextBase></View>

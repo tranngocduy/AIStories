@@ -1,6 +1,6 @@
 import { api } from './api';
 
-import { API_TStoriesSearch } from '@/models/types';
+import { API_TStoriesSearch, API_TRatingLike } from '@/models/types';
 
 export const storiesDashboard = async () => {
   const method = 'GET';
@@ -35,5 +35,11 @@ export const getStoryChapters = async (translateVersionId?: number, page?: numbe
 export const getStoryRateVotes = async (storyId?: number, page?: number, limit?: number) => {
   const method = 'GET';
   const result = await api(`${process.env.$app.BASE_API}/rating/get-all-ratings/${storyId}?page=${page}&limit=${limit}`, method);
+  return result;
+}
+
+export const likePostRating = async (body: API_TRatingLike) => {
+  const method = 'POST';
+  const result = await api(`${process.env.$app.BASE_API}/rating/like`, method, body);
   return result;
 }

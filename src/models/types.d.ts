@@ -106,3 +106,8 @@ export type API_TStoriesSearch = {
   category_ids?: number[],
   tag_ids?: number[]
 }
+
+export type API_TRatingLike = {
+  rating_id: number,
+  user_id: number
+}
