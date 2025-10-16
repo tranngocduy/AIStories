@@ -9,9 +9,10 @@ import { useTranslateVersions } from '@/useQuery/useTranslateVersions';
 import { HeaderStack } from '@/components/HeaderStack';
 
 import { Overview } from './Overview';
-import { Chapters } from './Chapters';
-import { StoryInfo } from './StoryInfo';
 import { TabStory } from './TabStory';
+import { Chapters } from './Chapters';
+import { RateVote } from './RateVote';
+import { StoryInfo } from './StoryInfo';
 
 import { styles } from './styles';
 import { TTabStoryRef } from './types';
@@ -48,6 +49,8 @@ export const StoryDetail: React.FC<{}> = () => {
 
   const memoChapters = useMemo(() => <Chapters translateVersionId={translateVersionId} ref={chaptersRef} />, [translateVersionId]);
 
+  const memoRateVote = useMemo(() => <RateVote />, []);
+
   const memoStoryInfo = useMemo(() => <StoryInfo story={params?.story} detail={queryStoryDetail?.data} />, [JSON.stringify(queryStoryDetail?.data)]);
 
   const memoTabStory = useMemo(() => <TabStory onChangeTab={_onChangeTab} ref={tabStoryRef} />, []);
@@ -62,6 +65,7 @@ export const StoryDetail: React.FC<{}> = () => {
           <View style={styles.page}>
             {(activeIndex === 0) && <Animated.View style={styles.view} entering={FadeInDown}>{memoOverview}</Animated.View>}
             {(activeIndex === 1) && <Animated.View style={styles.view} entering={FadeInDown}>{memoChapters}</Animated.View>}
+            {(activeIndex === 2) && <Animated.View style={styles.view} entering={FadeInDown}>{memoRateVote}</Animated.View>}
           </View>
         </ScrollView>
       </View>
