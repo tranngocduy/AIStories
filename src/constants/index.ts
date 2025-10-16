@@ -15,3 +15,11 @@ export const STORY_STATUS_LABEL_MAPPING = {
   [STORY_STATUS_VALUE.COMPLETED]: 'Hoàn thành',
   [STORY_STATUS_VALUE.HIATUS]: 'Tạm ngưng',
 } as const;
+
+export const LABEL_REVIEW = [
+  'Như mứt',
+  'Hơi chán',
+  'Tàm tạm',
+  'Khá hay',
+  'Tuyệt vời'
+] as const;
