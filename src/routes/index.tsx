@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
+import { RootSiblingParent } from 'react-native-root-siblings';
+
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { createBottomTabNavigator, BottomTabNavigationOptions, BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
@@ -48,9 +50,11 @@ const AppNavigator = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <NavigationContainer>
-        <AppStack />
-      </NavigationContainer>
+      <RootSiblingParent>
+        <NavigationContainer>
+          <AppStack />
+        </NavigationContainer>
+      </RootSiblingParent>
     </QueryClientProvider>
   )
 
