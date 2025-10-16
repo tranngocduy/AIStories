@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { StatusBar } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { RootSiblingParent } from 'react-native-root-siblings';
@@ -6,6 +7,7 @@ import { RootSiblingParent } from 'react-native-root-siblings';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { createBottomTabNavigator, BottomTabNavigationOptions, BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
+import { runAfterInteractions } from '@/utils/app';
 import { QueryClientProvider, QueryClient, QUERY_OPTIONS } from '@/useQuery/constants';
 
 import { TabNavigator } from '@/components/TabNavigator';
@@ -47,6 +49,8 @@ const AppStack = () => {
 const AppNavigator = () => {
 
   const queryClient = useMemo(() => new QueryClient(QUERY_OPTIONS), []);
+
+  useEffect(() => { runAfterInteractions(() => StatusBar.setBarStyle('dark-content')); }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
