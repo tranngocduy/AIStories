@@ -46,6 +46,8 @@ export const Library: React.FC<{}> = () => {
     if (!!isFocused) runAfterInteractions(querySearchStoriesByQuery.refetch, 350);
   }, [isFocused]);
 
+  const _keyExtractor = (item: TStory, index: number) => `${item?.id || index}`;
+
   const _renderItem = ({ item }: { item: TStory }) => {
     if (!item && !!data?.[0]) return <StorySkeleton isEmpty={true} />;
 
@@ -68,8 +70,12 @@ export const Library: React.FC<{}> = () => {
           data={items}
           numColumns={3}
           renderItem={_renderItem}
+          keyExtractor={_keyExtractor}
+
+          removeClippedSubviews={true}
           contentContainerStyle={styles.scroll}
           columnWrapperStyle={styles.wrapperStyle}
+
           refreshControl={<ScrollRefresh onRefresh={_onRefresh} />}
 
           onEndReached={_onLoadMore}
