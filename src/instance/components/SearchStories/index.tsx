@@ -23,9 +23,13 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
 
   const _onGenerateQuery = () => { };
 
+  const _onPressFilter = (type: string) => {
+
+  }
+
   const memoFilterHeader = useMemo(() => <FilterHeader onGenerateQuery={_onGenerateQuery} onBack={_onBack} onClose={_onClose} />, []);
 
-  const memoFilterQuery = useMemo(() => <FilterQuery />, []);
+  const memoFilterQuery = useMemo(() => <FilterQuery onPressFilter={_onPressFilter} />, []);
 
   return (
     <InstanceModal onHide={onHide} ref={instanceModalRef}>

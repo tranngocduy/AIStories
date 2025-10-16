@@ -8,12 +8,16 @@ import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
 
-export const FilterQuery: React.FC<{}> = () => {
+type TFilterQueryProps = { onPressFilter: (type: string) => void };
+
+export const FilterQuery: React.FC<TFilterQueryProps> = ({ onPressFilter }) => {
+
+  const _onPressAuthor = () => onPressFilter?.('author');
 
   return (
     <View>
       <View>
-        <TouchableView style={styles.item}>
+        <TouchableView style={styles.item} onPress={_onPressAuthor}>
           <TextBase style={styles.label}>Tác giả</TextBase>
           <View style={styles.selectView}>
             <TextBase style={styles.selectLabel} numberOfLines={1}>Tất cả</TextBase>
