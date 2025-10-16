@@ -6,4 +6,4 @@ export type TTypeFilterProps = { onGenerateQuery: Function, onBack: Function, on
 
 export type TSearchStoriesProps = { resolve?: Function, onHide?: Function };
 
-export type TFilterQueryProps = { onPressFilter: (type: string) => void };
+export type TFilterQueryProps = { onPressFilter: (type: TTypeFilterState) => void };
