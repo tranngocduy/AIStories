@@ -5,7 +5,7 @@ import { ScrollAvoidingView } from '@/components/ScrollAvoidingView';
 import { InstanceModal, TInstanceModalRefs } from '@/components/InstanceModal';
 
 import { FilterHeader } from './FilterHeader';
-import { PageFilter } from './PageFilter';
+import { FilterQuery } from './FilterQuery';
 
 import { styles } from './styles';
 
@@ -25,7 +25,7 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
 
   const memoFilterHeader = useMemo(() => <FilterHeader onGenerateQuery={_onGenerateQuery} onBack={_onBack} onClose={_onClose} />, []);
 
-  const memoPageFilter = useMemo(() => <PageFilter />, []);
+  const memoFilterQuery = useMemo(() => <FilterQuery />, []);
 
   return (
     <InstanceModal onHide={onHide} ref={instanceModalRef}>
@@ -36,7 +36,7 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
 
             <View style={styles.detail}>
               <ScrollView horizontal={true} pagingEnabled={true} scrollEnabled={false} showsHorizontalScrollIndicator={false} ref={scrollViewRef}>
-                <View style={styles.pageMain}>{memoPageFilter}</View>
+                <View style={styles.pageMain}>{memoFilterQuery}</View>
                 <View style={styles.pageSub} pointerEvents='none'></View>
               </ScrollView>
             </View>
