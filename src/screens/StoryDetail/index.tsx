@@ -56,11 +56,13 @@ export const StoryDetail: React.FC<{}> = () => {
     <View style={styles.container}>
       <HeaderStack />
       <View style={styles.view}>
-        <ScrollView contentContainerStyle={styles.scroll} scrollEventThrottle={16} onScroll={_onScroll}>
+        <ScrollView contentContainerStyle={styles.scroll} scrollEventThrottle={16} stickyHeaderIndices={[1]} onScroll={_onScroll}>
           {memoStoryInfo}
           {memoTabStoryPages}
-          {(activeIndex === 0) && <Animated.View style={styles.view} entering={FadeInDown}>{memoOverview}</Animated.View>}
-          {(activeIndex === 1) && <Animated.View style={styles.view} entering={FadeInDown}>{memoChapters}</Animated.View>}
+          <View style={styles.page}>
+            {(activeIndex === 0) && <Animated.View style={styles.view} entering={FadeInDown}>{memoOverview}</Animated.View>}
+            {(activeIndex === 1) && <Animated.View style={styles.view} entering={FadeInDown}>{memoChapters}</Animated.View>}
+          </View>
         </ScrollView>
       </View>
     </View>

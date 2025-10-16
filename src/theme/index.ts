@@ -11,7 +11,7 @@ export const wWidth = width;
 export const wHeight = height;
 
 export const isHasUIEdgeToEdge = ((!!isIOS && hasNotch()) || !!isDynamicIsland) || (!isIOS && (androidVersion >= 35));
-export const statusHeight = !isIOS ? ((StatusBar?.currentHeight || 32) + 8) : !!isDynamicIsland ? 54 : !!isHasUIEdgeToEdge ? 48 : 22;
+export const statusHeight = !isIOS ? ((StatusBar?.currentHeight || 32)) : !!isDynamicIsland ? 54 : !!isHasUIEdgeToEdge ? 48 : 22;
 
 export const headerHeight = 52;
 export const footerHeight = !!isHasUIEdgeToEdge ? 24 : 16;

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { wHeight, statusHeight } from '@/theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,5 +10,8 @@ export const styles = StyleSheet.create({
   },
   scroll: {
     flexGrow: 1
+  },
+  page: {
+    height: wHeight + statusHeight - 190
   }
 });
