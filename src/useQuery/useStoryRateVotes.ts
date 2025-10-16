@@ -5,7 +5,7 @@ import { useInfiniteQuery, QUERY_KEYS } from '@/useQuery/constants';
 const _loadData = async ({ storyId, page }: { storyId?: number, page: number }) => {
   const LIMIT = 10;
 
-  const result = await ServiceAPI.getStoryRating(storyId, page, LIMIT);
+  const result = await ServiceAPI.getStoryRateVotes(storyId, page, LIMIT);
 
   const metadata = result?.data?.metadata;
 

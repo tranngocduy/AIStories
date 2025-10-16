@@ -32,7 +32,7 @@ export const getStoryChapters = async (translateVersionId?: number, page?: numbe
   return result;
 }
 
-export const getStoryRating = async (storyId?: number, page?: number, limit?: number) => {
+export const getStoryRateVotes = async (storyId?: number, page?: number, limit?: number) => {
   const method = 'GET';
   const result = await api(`${process.env.$app.BASE_API}/rating/get-all-ratings/${storyId}?page=${page}&limit=${limit}`, method);
   return result;
