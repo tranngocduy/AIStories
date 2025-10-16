@@ -66,6 +66,32 @@ export type TChapter = {
   audio_duration: number | null;
 }
 
+export type TUser = {
+  email: string;
+  username: string;
+  id: number;
+  created_at: string;
+}
+
+export type TLikeStory = {
+  rating_id: number;
+  user_id: number;
+}
+
+export type TStoryRateVotes = {
+  story_id: number;
+  score: number;
+  content: string;
+  id: number;
+  user_id: number;
+  likes_count: number;
+  comments_count: number;
+  created_at: string;
+  user: TUser;
+  likes: TLikeStory[];
+  is_liked: boolean;
+}
+
 export type API_TStoriesSearch = {
   keyword?: string,
   author_id?: number,
