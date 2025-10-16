@@ -49,7 +49,7 @@ export const TextInputSearch = forwardRef<TTextInputSearchRef, TextInputProps>((
         returnKeyType='search'
         cursorColor='#000000'
         selectionColor='#000000'
-        placeholder='Tìm kiếm truyện...'
+        placeholder={props?.placeholder}
         placeholderTextColor='#A3A3A3'
 
         onBlur={_onBlur}

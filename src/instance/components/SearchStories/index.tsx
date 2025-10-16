@@ -58,7 +58,7 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
 
   return (
     <InstanceModal onHide={onHide} ref={instanceModalRef}>
-      <ScrollAvoidingView>
+      <ScrollAvoidingView offset={-200}>
         <View style={styles.container}>
           <View style={styles.view}>
             {memoFilterHeader}
