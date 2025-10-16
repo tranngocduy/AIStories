@@ -11,10 +11,10 @@ import { HeaderStack } from '@/components/HeaderStack';
 import { Overview } from './Overview';
 import { Chapters } from './Chapters';
 import { StoryInfo } from './StoryInfo';
-import { TabStoryPages } from './TabStoryPages';
+import { TabStory } from './TabStory';
 
 import { styles } from './styles';
-import { TTabStoryPagesRef } from './types';
+import { TTabStoryRef } from './types';
 
 export const StoryDetail: React.FC<{}> = () => {
   const { params } = useRouteNavigation('StoryDetail');
@@ -29,7 +29,7 @@ export const StoryDetail: React.FC<{}> = () => {
 
   const chaptersRef = useRef(null);
 
-  const tabStoryPagesRef = useRef<TTabStoryPagesRef>(null);
+  const tabStoryRef = useRef<TTabStoryRef>(null);
 
   const _onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const paddingBottom = 20;
@@ -41,7 +41,7 @@ export const StoryDetail: React.FC<{}> = () => {
 
   const _onChangeTab = (tabPageIndex: number) => {
     setActiveIndex(tabPageIndex);
-    tabStoryPagesRef.current?.onScroll?.(tabPageIndex);
+    tabStoryRef.current?.onScroll?.(tabPageIndex);
   }
 
   const memoOverview = useMemo(() => <Overview detail={queryStoryDetail?.data} />, [JSON.stringify(queryStoryDetail?.data)]);
@@ -50,7 +50,7 @@ export const StoryDetail: React.FC<{}> = () => {
 
   const memoStoryInfo = useMemo(() => <StoryInfo story={params?.story} detail={queryStoryDetail?.data} />, [JSON.stringify(queryStoryDetail?.data)]);
 
-  const memoTabStoryPages = useMemo(() => <TabStoryPages onChangeTab={_onChangeTab} ref={tabStoryPagesRef} />, []);
+  const memoTabStory = useMemo(() => <TabStory onChangeTab={_onChangeTab} ref={tabStoryRef} />, []);
 
   return (
     <View style={styles.container}>
@@ -58,7 +58,7 @@ export const StoryDetail: React.FC<{}> = () => {
       <View style={styles.view}>
         <ScrollView contentContainerStyle={styles.scroll} scrollEventThrottle={16} stickyHeaderIndices={[1]} onScroll={_onScroll}>
           {memoStoryInfo}
-          {memoTabStoryPages}
+          {memoTabStory}
           <View style={styles.page}>
             {(activeIndex === 0) && <Animated.View style={styles.view} entering={FadeInDown}>{memoOverview}</Animated.View>}
             {(activeIndex === 1) && <Animated.View style={styles.view} entering={FadeInDown}>{memoChapters}</Animated.View>}

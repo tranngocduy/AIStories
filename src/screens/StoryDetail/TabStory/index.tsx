@@ -6,9 +6,9 @@ import { TextBase } from '@/components/TextBase';
 import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
-import { TTabStoryPagesProps, TTabStoryPagesRef } from '../types';
+import { TTabStoryProps, TTabStoryRef } from '../types';
 
-export const TabStoryPages = forwardRef<TTabStoryPagesRef, TTabStoryPagesProps>(({ onChangeTab }, ref) => {
+export const TabStory = forwardRef<TTabStoryRef, TTabStoryProps>(({ onChangeTab }, ref) => {
 
   const sharedValue = useSharedValue(0);
 
