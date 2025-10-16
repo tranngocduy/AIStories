@@ -1,16 +1,16 @@
 import React, { useEffect, forwardRef, useImperativeHandle } from 'react';
-import { View, Modal } from 'react-native';
+import { View } from 'react-native';
 import Animated, { withTiming, useSharedValue, useAnimatedStyle, interpolate, runOnJS } from 'react-native-reanimated';
 
 import { runAfterInteractions } from '@/utils/app';
 
 import { styles } from './styles';
 
-type TInstanceModalProps = { children: React.ReactNode, onHide?: Function };
+type TInstanceModalProps = { children: React.ReactNode, isHideBG?: boolean, onHide?: Function };
 
 export type TInstanceModalRefs = { onFocus: Function, onBackground: Function, onClose: Function };
 
-export const InstanceModal = forwardRef<TInstanceModalRefs, TInstanceModalProps>(({ children, onHide }, ref) => {
+export const InstanceModal = forwardRef<TInstanceModalRefs, TInstanceModalProps>(({ children, isHideBG, onHide }, ref) => {
 
   const duration = 350;
 
@@ -42,17 +42,20 @@ export const InstanceModal = forwardRef<TInstanceModalRefs, TInstanceModalProps>
 
   useEffect(() => { sharedValue.value = withTiming(1, { duration }); }, []);
 
+  const bgView = useAnimatedStyle(() => {
+    return { opacity: sharedValue.value }
+  });
+
   const viewStyle = useAnimatedStyle(() => {
     const toValue = interpolate(sharedValue.value, [0, 1], [styles.page.height, 0]);
     return { transform: [{ translateY: toValue }] };
   });
 
   return (
-    <Modal visible={true} transparent={true} animationType='fade'>
-      <View style={styles.container}><Animated.View style={[styles.view, viewStyle]}>
-        <View style={styles.view}>{children}</View></Animated.View>
-      </View>
-    </Modal>
+    <View style={styles.container}>
+      {!isHideBG && <Animated.View style={[styles.bg, bgView]} />}
+      <Animated.View style={[styles.view, viewStyle]}><View style={styles.view}>{children}</View></Animated.View>
+    </View>
   )
 
 });
