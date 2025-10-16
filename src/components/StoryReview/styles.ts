@@ -39,4 +39,52 @@ export const styles = StyleSheet.create({
     lineHeight: 16,
     color: '#A3A3A3'
   },
+  content: {
+    ...fonts.default.normal400,
+    fontSize: 14,
+    lineHeight: 24,
+    color: '#000000'
+  },
+  review: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 8
+  },
+  button: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    columnGap: 8
+  },
+  labelButton: {
+    ...fonts.default.normal400,
+    fontSize: 12,
+    lineHeight: 16,
+    color: '#000000'
+  },
+  countView: {
+    justifyContent: 'center',
+    height: 16,
+    paddingRight: 8,
+    paddingLeft: 8,
+    borderRadius: 100,
+    backgroundColor: 'rgba(65, 117, 132, 0.2)'
+  },
+  countText: {
+    ...fonts.default.normal400,
+    fontSize: 10,
+    color: '#417584'
+  },
+  separator: {
+    height: 1,
+    marginTop: 8,
+    marginBottom: 8,
+    backgroundColor: '#F2F2F2'
+  },
+  line: {
+    width: 1,
+    height: 16,
+    backgroundColor: '#D9D9D9'
+  }
 });

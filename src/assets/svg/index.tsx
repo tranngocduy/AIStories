@@ -62,3 +62,9 @@ export const IStoryDetailSVG = (props: SvgProps) => <IStoryDetail_SVG {...props}
 
 import IPlayCircle_SVG from './resource/iPlayCircle.svg';
 export const IPlayCircleSVG = (props: SvgProps) => <IPlayCircle_SVG {...props} />;
+
+import IReviewLike_SVG from './resource/iReviewLike.svg';
+export const IReviewLikeSVG = (props: SvgProps) => <IReviewLike_SVG {...props} />;
+
+import IReviewRelay_SVG from './resource/iReviewRelay.svg';
+export const IReviewRelaySVG = (props: SvgProps) => <IReviewRelay_SVG {...props} />;

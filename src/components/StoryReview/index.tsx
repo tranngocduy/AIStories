@@ -4,9 +4,11 @@ import { View } from 'react-native';
 import { dayjs } from '@/utils/timeTz';
 import { LABEL_REVIEW } from '@/constants';
 import { TStoryRateVotes } from '@/models/types';
+import { IReviewLikeSVG, IReviewRelaySVG } from '@/assets/svg';
 
 import { TextBase } from '@/components/TextBase';
 import { StoryScore } from '@/components/StoryScore';
+import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
 
@@ -26,6 +28,8 @@ export const StoryReview: React.FC<TStoryReviewProps> = ({ item }) => {
 
   const statusReview = LABEL_REVIEW?.[(score - 1)] || '';
 
+  const content = item?.content?.replace(/<(.|\n)*?>/g, '')?.trim?.();
+
   const createAt = !!item?.created_at ? dayjs(item?.created_at).format('DD/MM/YYYY') : '';
 
   return (
@@ -40,7 +44,28 @@ export const StoryReview: React.FC<TStoryReviewProps> = ({ item }) => {
       </View>
 
       <View>
+        <View style={styles.separator} />
 
+        <View>
+          <TextBase style={styles.content}>{content}</TextBase>
+          <View style={styles.separator} />
+        </View>
+
+        <View style={styles.review}>
+          <TouchableView style={styles.button} hitSlop={12}>
+            <IReviewLikeSVG />
+            <TextBase style={styles.labelButton}>Ưa thích</TextBase>
+            <View style={styles.countView}><TextBase style={styles.countText}>{likesCount}</TextBase></View>
+          </TouchableView>
+
+          <View style={styles.line} />
+
+          <TouchableView style={styles.button} hitSlop={12}>
+            <IReviewRelaySVG />
+            <TextBase style={styles.labelButton}>Phản hồi</TextBase>
+            <View style={styles.countView}><TextBase style={styles.countText}>{commentsCount}</TextBase></View>
+          </TouchableView>
+        </View>
       </View>
     </View>
   )
