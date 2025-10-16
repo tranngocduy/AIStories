@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { footerHeight } from '@/theme';
+import { wWidth, footerHeight } from '@/theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,5 +12,16 @@ export const styles = StyleSheet.create({
     paddingBottom: footerHeight,
     backgroundColor: '#FFFFFF',
     overflow: 'hidden'
+  },
+  detail: {
+    height: 440
+  },
+  pageMain: {
+    width: wWidth
+  },
+  pageSub: {
+    position: 'absolute',
+    width: wWidth,
+    opacity: 0
   }
 });
