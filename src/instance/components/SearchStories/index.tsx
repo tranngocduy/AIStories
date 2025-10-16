@@ -8,8 +8,7 @@ import { FilterHeader } from './FilterHeader';
 import { FilterQuery } from './FilterQuery';
 
 import { styles } from './styles';
-
-type TSearchStoriesProps = { resolve?: Function, onHide?: Function };
+import { TSearchStoriesProps } from './types';
 
 export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }) => {
 

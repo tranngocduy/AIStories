@@ -7,8 +7,7 @@ import { TextBase } from '@/components/TextBase';
 import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
-
-type TFilterQueryProps = { onPressFilter: (type: string) => void };
+import { TFilterQueryProps } from '../types';
 
 export const FilterQuery: React.FC<TFilterQueryProps> = ({ onPressFilter }) => {
 
