@@ -1,7 +1,15 @@
 import React from 'react';
 import { View } from 'react-native';
 
-export const RateVote : React.FC<{}> = () => {
+import { useStoryRateVotes } from '@/useQuery/useStoryRateVotes';
+
+import { TRateVotesProps } from '../types';
+
+export const RateVote: React.FC<TRateVotesProps> = ({ story }) => {
+
+  const queryStoryRateVotes = useStoryRateVotes({ storyId: story.id });
+
+  const data = queryStoryRateVotes.data || [];
 
   return (
     <View>

@@ -11,3 +11,5 @@ export type TTabStoryRef = { onScroll: (tabPageIndex: number) => void };
 export type TChaptersProps = { translateVersionId?: number };
 
 export type TChaptersRef = { loadMore: Function };
+
+export type TRateVotesProps = { story: TStory };

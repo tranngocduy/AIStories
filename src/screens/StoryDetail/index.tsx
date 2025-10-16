@@ -49,7 +49,7 @@ export const StoryDetail: React.FC<{}> = () => {
 
   const memoChapters = useMemo(() => <Chapters translateVersionId={translateVersionId} ref={chaptersRef} />, [translateVersionId]);
 
-  const memoRateVote = useMemo(() => <RateVote />, []);
+  const memoRateVote = useMemo(() => <RateVote story={params?.story} />, []);
 
   const memoStoryInfo = useMemo(() => <StoryInfo story={params?.story} detail={queryStoryDetail?.data} />, [JSON.stringify(queryStoryDetail?.data)]);
 
