@@ -71,3 +71,6 @@ export const IReviewLikeSVG = (props: SvgProps) => <IReviewLike_SVG {...props} /
 
 import IReviewRelay_SVG from './resource/iReviewRelay.svg';
 export const IReviewRelaySVG = (props: SvgProps) => <IReviewRelay_SVG {...props} />;
+
+import ICloseModal_SVG from './resource/iCloseModal.svg';
+export const ICloseModalSVG = (props: SvgProps) => <ICloseModal_SVG {...props} />;
