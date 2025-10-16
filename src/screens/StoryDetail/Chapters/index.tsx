@@ -1,6 +1,7 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react';
 import { View } from 'react-native';
 
+import { TChapter } from '@/models/types';
 import { useStackNavigation } from '@/useHooks/useNavigation';
 import { useStoryChapters } from '@/useQuery/useStoryChapters';
 
@@ -35,7 +36,7 @@ export const Chapters = forwardRef<TChaptersRef, TChaptersProps>(({ translateVer
 
   useImperativeHandle(ref, () => ({ loadMore: _loadMore }));
 
-  const _renderItem = (item, chapterIndex) => {
+  const _renderItem = (item: TChapter, chapterIndex: number) => {
     return <ChapterItem item={item} chapterIndex={chapterIndex} onPressChapter={_onPressChapter} key={`${item?.id}`} />
   };
 

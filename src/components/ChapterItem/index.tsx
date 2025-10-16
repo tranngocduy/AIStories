@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { View } from 'react-native';
 
+import { TChapter } from '@/models/types';
 import { IPlayCircleSVG } from '@/assets/svg';
 
 import { TextBase } from '@/components/TextBase';
@@ -8,7 +9,7 @@ import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
 
-type TChapterItemProps = { item?: any, chapterIndex?: number, onPressChapter?: Function }
+type TChapterItemProps = { item: TChapter, chapterIndex: number, onPressChapter: Function }
 
 export const ChapterItem: React.FC<TChapterItemProps> = memo(({ item, chapterIndex, onPressChapter }) => {
 

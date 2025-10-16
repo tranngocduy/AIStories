@@ -53,6 +53,19 @@ export type TStoryDetail = {
   is_rated?: boolean;
 };
 
+export type TChapter = {
+  id: number;
+  chapter_number: number;
+  title: string;
+  content: string;
+  views: number;
+  is_paid: number;
+  price: number | null;
+  slug: string;
+  audio_url: string | null;
+  audio_duration: number | null;
+}
+
 export type API_TStoriesSearch = {
   keyword?: string,
   author_id?: number,
