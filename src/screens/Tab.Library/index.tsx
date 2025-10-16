@@ -16,6 +16,8 @@ import { TouchableView } from '@/components/TouchableView';
 import { StorySkeleton } from '@/components/StorySkeleton';
 import { TextInputSearch } from '@/components/TextInputSearch';
 
+import { SearchStoriesInstance } from '@/instance';
+
 import { styles } from './styles';
 
 export const Library: React.FC<{}> = () => {
@@ -31,6 +33,10 @@ export const Library: React.FC<{}> = () => {
   const items = !querySearchStoriesByQuery?.isSuccess ? new Array(9).fill('') : [...data, ...(new Array(NUM_COLUMNS - totalFill).fill(''))];
 
   const isLoadMoreRef = useRef(true);
+
+  const _onPressFilter = async () => {
+    const result = await new Promise(resolve => SearchStoriesInstance.show({ resolve }));
+  }
 
   const _onRefresh = async () => await querySearchStoriesByQuery.refetch?.();
 
@@ -62,7 +68,7 @@ export const Library: React.FC<{}> = () => {
 
       <View style={styles.searchView}>
         <TextInputSearch />
-        <TouchableView style={styles.searchButton}><IFilterSVG /><TextBase style={styles.filterLabel}>Lọc</TextBase></TouchableView>
+        <TouchableView style={styles.searchButton} onPress={_onPressFilter}><IFilterSVG /><TextBase style={styles.filterLabel}>Lọc</TextBase></TouchableView>
       </View>
 
       <View style={styles.view}>

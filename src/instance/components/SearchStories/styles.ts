@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { fonts } from '@/theme';
+import { footerHeight } from '@/theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
   view: {
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
+    paddingBottom: footerHeight,
     backgroundColor: '#FFFFFF',
     overflow: 'hidden'
   }
