@@ -23,6 +23,10 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
 
   const instanceModalRef = useRef<TInstanceModalRefs>(null);
 
+  const _loadSettingPage = (isActive: boolean) => {
+    return { position: !!isActive ? 'relative' : 'absolute', opacity: !!isActive ? 1 : 0, pointerEvents: !!isActive ? 'auto' : 'none' };
+  }
+
   const _onClose = () => instanceModalRef.current?.onClose?.();
 
   const _onBack = () => {
@@ -36,10 +40,6 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
   };
 
   const _onGenerateQuery = () => { };
-
-  const _loadSettingPage = (isActive: boolean) => {
-    return { position: !!isActive ? 'relative' : 'absolute', opacity: !!isActive ? 1 : 0, pointerEvents: !!isActive ? 'auto' : 'none' };
-  }
 
   const _onPressFilter = (type: TTypeFilterState) => {
     pageAuthorRef.current?.setNativeProps?.({ ..._loadSettingPage((type === 'author')) });
