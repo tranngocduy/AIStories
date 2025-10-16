@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { fonts } from '@/theme';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -42,12 +42,10 @@ const styles = StyleSheet.create({
     ...fonts.default.normal500,
     fontSize: 14,
     lineHeight: 21,
-    color: '#417584'
+    color: '#000000'
   },
   separator: {
     height: 1,
     backgroundColor: '#F2F2F2'
   }
 });
-
-export default styles;
