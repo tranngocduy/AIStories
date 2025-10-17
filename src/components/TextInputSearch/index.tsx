@@ -19,10 +19,9 @@ export const TextInputSearch = forwardRef<TTextInputSearchRef, TextInputProps>((
 
   const _onFocus = () => borderViewRef.current?.setNativeProps?.({ borderColor: '#000000' });
 
-  const _onChangeText = (value: string) => searchRef.current = value;
-
-  const _onPressSearch = () => {
-
+  const _onChangeText = (value: string) => {
+    searchRef.current = value;
+    props?.onChangeText?.(searchRef.current);
   }
 
   const _onClear = () => {
@@ -46,7 +45,7 @@ export const TextInputSearch = forwardRef<TTextInputSearchRef, TextInputProps>((
       <TextInput
         style={styles.input}
 
-        returnKeyType='search'
+        autoCapitalize='none'
         cursorColor='#000000'
         selectionColor='#000000'
         placeholder={props?.placeholder}
@@ -55,7 +54,6 @@ export const TextInputSearch = forwardRef<TTextInputSearchRef, TextInputProps>((
         onBlur={_onBlur}
         onFocus={_onFocus}
         onChangeText={_onChangeText}
-        onSubmitEditing={_onPressSearch}
 
         ref={textInputRef}
       />
