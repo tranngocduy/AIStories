@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { View, ScrollView } from 'react-native';
 
 import { TStoryAuthor } from '@/models/types';
@@ -35,7 +35,7 @@ export const PageAuthor: React.FC<{}> = () => {
     return () => { if (!!timeoutRef.current) clearTimeout(timeoutRef.current); };
   }, []);
 
-  const items = [{ name: 'Tất cả', id: 0 }, ...(data || [])];
+  const items = useMemo(() => ([{ name: 'Tất cả', id: 0 }, ...(data || [])]), [JSON.stringify(data)]);
 
   const _renderItem = (item: TStoryAuthor, index: number) => {
     const isActive = (item.id === activeValue);
