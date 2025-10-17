@@ -13,7 +13,7 @@ export const PageAuthor: React.FC<{}> = () => {
 
   const [search, setSearch] = useState('');
 
-  const [activeValue, setActiveValue] = useState(null);
+  const [activeValue, setActiveValue] = useState(0);
 
   const timeoutRef = useRef<NodeJS.Timeout>(null);
 
@@ -35,6 +35,8 @@ export const PageAuthor: React.FC<{}> = () => {
     return () => { if (!!timeoutRef.current) clearTimeout(timeoutRef.current); };
   }, []);
 
+  const items = [{ name: 'Tất cả', id: 0 }, ...(data || [])];
+
   const _renderItem = (item: TStoryAuthor, index: number) => {
     const isActive = (item.id === activeValue);
     const option = { label: item?.name, value: item?.id };
@@ -45,7 +47,7 @@ export const PageAuthor: React.FC<{}> = () => {
     <View style={styles.container}>
       <View style={styles.searchView}><TextInputSearch placeholder='Tìm kiếm tác giả...' onChangeText={_onSearch} /></View>
 
-      <ScrollView contentContainerStyle={styles.scroll}>{data?.map?.(_renderItem)}</ScrollView>
+      <ScrollView contentContainerStyle={styles.scroll}>{items?.map?.(_renderItem)}</ScrollView>
     </View>
   )
 
