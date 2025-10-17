@@ -24,6 +24,12 @@ export type TTagDetail = {
   id?: number;
 }
 
+export type TStoryAuthor = {
+  name: string;
+  slug: string;
+  id: number;
+}
+
 export type TStoryDetail = {
   title?: string;
   chinese_title?: string;
@@ -31,11 +37,7 @@ export type TStoryDetail = {
   id?: number;
   slug?: string;
   cover_image_url?: string;
-  author?: {
-    name?: string;
-    slug?: string;
-    id?: number;
-  };
+  author?: TStoryAuthor;
   status?: typeof STORY_STATUS_VALUE[keyof typeof STORY_STATUS_VALUE];
   categories?: Array<{
     name?: string;

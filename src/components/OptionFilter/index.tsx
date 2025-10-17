@@ -12,12 +12,12 @@ type TOptionFilterProps = { option: TOption, isActive: boolean, onSelect: Functi
 
 export const OptionFilter: React.FC<TOptionFilterProps> = ({ option, isActive, onSelect }) => {
 
-  const _onSelect = () => onSelect(option);
+  const _onSelect = () => onSelect(option.value);
 
   return (
     <View style={styles.container}>
       {!!isActive && <View style={styles.viewBG} />}
-      <TouchableView style={styles.view} onPress={_onSelect}>
+      <TouchableView style={styles.view} activeOpacity={1} onPress={_onSelect}>
         <TextBase style={[styles.label, !!isActive && styles.active]}>{option?.label}</TextBase>
       </TouchableView>
     </View>
