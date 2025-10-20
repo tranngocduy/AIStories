@@ -37,5 +37,5 @@ export const styles = StyleSheet.create({
     lineHeight: 21,
     color: '#000000',
     textDecorationLine: 'underline'
-  },
+  }
 });
