@@ -14,7 +14,7 @@ export type TOptionFilterState = {
 
 export type TFilterHeaderRefs = { setTypeFilter: (type: TTypeFilterState) => void };
 
-export type TTypeFilterProps = { onGenerateQuery: Function, onBack: Function, onClose: Function };
+export type TFilterHeaderProps = { onGenerateQuery: Function, onBack: Function, onClose: Function };
 
 export type TSearchStoriesProps = { resolve?: Function, onHide?: Function };
 
