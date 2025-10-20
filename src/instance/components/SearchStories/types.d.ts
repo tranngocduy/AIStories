@@ -12,7 +12,7 @@ export type TOptionFilterState = {
   category: TOptionFilter | null
 };
 
-export type TTypeFilterRefs = { setTypeFilter: (type: TTypeFilterState) => void };
+export type TFilterHeaderRefs = { setTypeFilter: (type: TTypeFilterState) => void };
 
 export type TTypeFilterProps = { onGenerateQuery: Function, onBack: Function, onClose: Function };
 

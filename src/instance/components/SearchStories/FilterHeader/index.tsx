@@ -8,9 +8,9 @@ import { TextBase } from '@/components/TextBase';
 import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
-import { TTypeFilterProps, TTypeFilterRefs, TTypeFilterState } from '../types';
+import { TFilterHeaderProps, TFilterHeaderRefs, TTypeFilterState } from '../types';
 
-export const FilterHeader = forwardRef<TTypeFilterRefs, TTypeFilterProps>(({ onGenerateQuery, onBack, onClose }, ref) => {
+export const FilterHeader = forwardRef<TFilterHeaderRefs, TFilterHeaderProps>(({ onGenerateQuery, onBack, onClose }, ref) => {
 
   const [typeFilter, setTypeFilter] = useState<TTypeFilterState>('');
 

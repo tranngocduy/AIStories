@@ -11,7 +11,7 @@ import { FilterQuery } from './FilterQuery';
 import { PageAuthor } from './PageAuthor';
 
 import { styles } from './styles';
-import { TSearchStoriesProps, TTypeFilterRefs, TTypeFilterState } from './types';
+import { TSearchStoriesProps, TFilterHeaderRefs, TTypeFilterState } from './types';
 
 export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }) => {
 
@@ -19,7 +19,7 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
 
   const scrollViewRef = useRef<ScrollView>(null);
 
-  const filterHeaderRef = useRef<TTypeFilterRefs>(null);
+  const filterHeaderRef = useRef<TFilterHeaderRefs>(null);
 
   const instanceModalRef = useRef<TInstanceModalRefs>(null);
 
