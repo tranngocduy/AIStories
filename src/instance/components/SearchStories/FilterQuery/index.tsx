@@ -12,7 +12,15 @@ import { TFilterQueryProps, TOptionFilter, TOptionFilterState } from '../types';
 
 export const FilterQuery: React.FC<TFilterQueryProps> = ({ onPressFilter }) => {
 
-  const query = { author: null, sort: null, votes: null, chapters: null, rating: null, status: null, category: null };
+  const query = {
+    author: null,
+    sort: null,
+    votes: null,
+    chapters: null,
+    rating: null,
+    status: null,
+    category: null
+  };
 
   const [optionFilter, setOptionFilter] = useState<TOptionFilterState>({
     author: query?.author || FILTER_OPTION_AUTHOR[0],
