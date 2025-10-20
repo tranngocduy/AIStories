@@ -46,9 +46,11 @@ export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ on
 
   const _onPressCategory = () => onPressFilter?.('category');
 
+  const _onGenerateQuery = () => optionFilter;
+
   const _onChangeFilter = (option: TOptionQuery) => setOptionFilter(prevState => ({ ...prevState, [option.type]: { label: option.label, value: option.value } }));
 
-  useImperativeHandle(ref, () => ({ onChangeFilter: _onChangeFilter }));
+  useImperativeHandle(ref, () => ({ onGenerateQuery: _onGenerateQuery, onChangeFilter: _onChangeFilter }));
 
   const authorLabel = optionFilter?.author?.label;
 

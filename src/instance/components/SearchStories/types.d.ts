@@ -24,4 +24,4 @@ export type TPageFilterProps = { onChangeFilter: (option: TOptionQuery) => void 
 
 export type TFilterQueryProps = { onPressFilter: (type: TTypeFilterState) => void };
 
-export type TFilterQueryRefs = { onChangeFilter: (type: TOptionQuery) => void };
+export type TFilterQueryRefs = { onGenerateQuery: () => TOptionFilterState, onChangeFilter: (type: TOptionQuery) => void };
