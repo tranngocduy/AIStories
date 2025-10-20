@@ -3,7 +3,7 @@ import { flatten } from '@/utils/lodash';
 import { useInfiniteQuery, QUERY_KEYS } from '@/useQuery/constants';
 
 const _loadData = async ({ page }: { page?: number }) => {
-  const LIMIT = 20;
+  const LIMIT = 999;
 
   const result = await ServiceAPI.getAllCategory(page, LIMIT);
 
