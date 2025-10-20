@@ -23,6 +23,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: 8
   },
+  statusView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: 12
+  },
+  status: {
+    display: 'none'
+  },
   borderView: {
     ...StyleSheet.absoluteFillObject,
     borderWidth: 1,

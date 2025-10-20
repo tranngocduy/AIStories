@@ -1,11 +1,14 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react';
 import { View, TextInput, TextInputProps } from 'react-native';
 
-import { ISearchSVG } from '@/assets/svg';
+import { ISearchSVG, ICloseModalSVG } from '@/assets/svg';
+
+import { ProgressIcon } from '@/components/ProgressIcon';
+import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
 
-export type TTextInputSearchRef = { clear: Function, setValue: Function };
+export type TTextInputSearchRef = { clear: Function, setValue: Function, setLoading: Function };
 
 export const TextInputSearch = forwardRef<TTextInputSearchRef, TextInputProps>(({ ...props }, ref) => {
 
@@ -15,6 +18,10 @@ export const TextInputSearch = forwardRef<TTextInputSearchRef, TextInputProps>((
 
   const textInputRef = useRef<TextInput>(null);
 
+  const viewInputClearRef = useRef<View>(null);
+
+  const viewInputLoadingRef = useRef<View>(null);
+
   const _onBlur = () => borderViewRef.current?.setNativeProps?.({ borderColor: '#F2F2F2' });
 
   const _onFocus = () => borderViewRef.current?.setNativeProps?.({ borderColor: '#000000' });
@@ -22,6 +29,14 @@ export const TextInputSearch = forwardRef<TTextInputSearchRef, TextInputProps>((
   const _onChangeText = (value: string) => {
     searchRef.current = value;
     props?.onChangeText?.(searchRef.current);
+
+    if (!value) viewInputClearRef.current?.setNativeProps?.({ style: { display: 'none' } });
+    if (!!value) viewInputClearRef.current?.setNativeProps?.({ style: { display: 'flex' } });
+  }
+
+  const _onClean = () => {
+    _onChangeText('');
+    textInputRef?.current?.clear?.();
   }
 
   const _onClear = () => {
@@ -34,7 +49,12 @@ export const TextInputSearch = forwardRef<TTextInputSearchRef, TextInputProps>((
     textInputRef.current?.setNativeProps?.({ text: value });
   }
 
-  useImperativeHandle(ref, () => ({ clear: _onClear, setValue: _onSetValue }));
+  const _onLoading = (isLoading: boolean) => {
+    if (!isLoading) viewInputLoadingRef.current?.setNativeProps?.({ style: { display: 'none' } });
+    if (!!isLoading) viewInputLoadingRef.current?.setNativeProps?.({ style: { display: 'flex' } });
+  }
+
+  useImperativeHandle(ref, () => ({ clear: _onClear, setValue: _onSetValue, setLoading: _onLoading }));
 
   return (
     <View style={styles.container}>
@@ -57,6 +77,11 @@ export const TextInputSearch = forwardRef<TTextInputSearchRef, TextInputProps>((
 
         ref={textInputRef}
       />
+
+      <View style={styles.statusView}>
+        <View style={styles.status} ref={viewInputLoadingRef}><ProgressIcon size='small' /></View>
+        <View style={styles.status} ref={viewInputClearRef}><TouchableView hitSlop={12} onPress={_onClean}><ICloseModalSVG /></TouchableView></View>
+      </View>
     </View>
   )
 

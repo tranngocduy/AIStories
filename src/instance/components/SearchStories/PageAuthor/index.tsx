@@ -2,10 +2,11 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { View, ScrollView } from 'react-native';
 
 import { TStoryAuthor } from '@/models/types';
+import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 import { useSearchAuthorByName } from '@/useQuery/useSearchAuthorByName';
 
 import { OptionFilter } from '@/components/OptionFilter';
-import { TextInputSearch } from '@/components/TextInputSearch';
+import { TextInputSearch, TTextInputSearchRef } from '@/components/TextInputSearch';
 
 import { styles } from './styles';
 
@@ -17,6 +18,8 @@ export const PageAuthor: React.FC<{}> = () => {
 
   const timeoutRef = useRef<NodeJS.Timeout>(null);
 
+  const textInputSearchRef = useRef<TTextInputSearchRef>(null);
+
   const querySearchAuthorByName = useSearchAuthorByName({ search });
 
   const data = querySearchAuthorByName?.data || [];
@@ -26,14 +29,16 @@ export const PageAuthor: React.FC<{}> = () => {
 
     if (!value && !!search) setSearch('');
 
-    if (!!value) timeoutRef.current = setTimeout(() => { setSearch(value); }, 700);
+    if (!!value) timeoutRef.current = setTimeout(() => { setSearch(value); }, 500);
   }
 
   const _onSelect = (value: any) => setActiveValue(value);
 
-  useEffect(() => {
-    return () => { if (!!timeoutRef.current) clearTimeout(timeoutRef.current); };
-  }, []);
+  const _onLoading = () => textInputSearchRef.current?.setLoading?.(querySearchAuthorByName?.isLoading);
+
+  useEffectAfterMount(() => { _onLoading(); }, [querySearchAuthorByName?.isLoading]);
+
+  useEffect(() => { return () => { if (!!timeoutRef.current) clearTimeout(timeoutRef.current); }; }, []);
 
   const items = useMemo(() => ([{ name: 'Tất cả', id: 0 }, ...(data || [])]), [JSON.stringify(data)]);
 
@@ -45,7 +50,7 @@ export const PageAuthor: React.FC<{}> = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.searchView}><TextInputSearch placeholder='Tìm kiếm tác giả...' onChangeText={_onSearch} /></View>
+      <View style={styles.searchView}><TextInputSearch placeholder='Tìm kiếm tác giả...' onChangeText={_onSearch} ref={textInputSearchRef} /></View>
 
       <ScrollView contentContainerStyle={styles.scroll}>{items?.map?.(_renderItem)}</ScrollView>
     </View>
