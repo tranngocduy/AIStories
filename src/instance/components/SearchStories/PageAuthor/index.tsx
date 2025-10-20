@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { View, ScrollView } from 'react-native';
 
 import { TStoryAuthor } from '@/models/types';
+import { FILTER_OPTION_AUTHOR } from '@/constants';
 import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 import { useSearchAuthorByName } from '@/useQuery/useSearchAuthorByName';
 
@@ -9,12 +10,15 @@ import { OptionFilter } from '@/components/OptionFilter';
 import { TextInputSearch, TTextInputSearchRef } from '@/components/TextInputSearch';
 
 import { styles } from './styles';
+import { TOptionFilter } from '../types';
 
 export const PageAuthor: React.FC<{}> = () => {
 
+  const ITEM = {...FILTER_OPTION_AUTHOR[0]};
+
   const [search, setSearch] = useState('');
 
-  const [activeValue, setActiveValue] = useState(0);
+  const [selected, setSelected] = useState<TOptionFilter>(ITEM);
 
   const timeoutRef = useRef<NodeJS.Timeout>(null);
 
@@ -29,10 +33,12 @@ export const PageAuthor: React.FC<{}> = () => {
 
     if (!value && !!search) setSearch('');
 
+    if (!value && !!search) setSelected(ITEM);
+
     if (!!value) timeoutRef.current = setTimeout(() => { setSearch(value); }, 500);
   }
 
-  const _onSelect = (value: any) => setActiveValue(value);
+  const _onSelect = (value: TOptionFilter) => setSelected(value);
 
   const _onLoading = () => textInputSearchRef.current?.setLoading?.(querySearchAuthorByName?.isLoading);
 
@@ -40,11 +46,13 @@ export const PageAuthor: React.FC<{}> = () => {
 
   useEffect(() => { return () => { if (!!timeoutRef.current) clearTimeout(timeoutRef.current); }; }, []);
 
-  const items = useMemo(() => ([{ name: 'Tất cả', id: 0 }, ...(data || [])]), [JSON.stringify(data)]);
+  const items = useMemo(() => ([{ name: ITEM.label, id: ITEM.value }, ...(data || [])]), [JSON.stringify(data)]);
 
   const _renderItem = (item: TStoryAuthor, index: number) => {
-    const isActive = (item.id === activeValue);
+    const isActive = (item.id === selected.value);
+
     const option = { label: item?.name, value: item?.id };
+
     return <OptionFilter option={option} isActive={isActive} onSelect={_onSelect} key={index} />;
   }
 
