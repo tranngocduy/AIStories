@@ -90,7 +90,7 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ query, resolve, o
     if (!queryParams) return null;
 
     instanceModalRef.current?.onClose?.(() => resolve?.(queryParams));
-  };
+  }
 
   const _onChangeFilter = (option: TOptionQuery) => _onBack(() => filterQueryRef.current?.onChangeFilter?.(option));
 
