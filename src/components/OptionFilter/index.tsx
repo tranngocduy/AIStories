@@ -12,7 +12,7 @@ type TOptionFilterProps = { option: TOption, isActive: boolean, onSelect: Functi
 
 export const OptionFilter: React.FC<TOptionFilterProps> = ({ option, isActive, onSelect }) => {
 
-  const _onSelect = () => onSelect(option.value);
+  const _onSelect = () => onSelect(option);
 
   return (
     <View style={styles.container}>
