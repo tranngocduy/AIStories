@@ -28,6 +28,18 @@ export const FilterHeader = forwardRef<TFilterHeaderRefs, TFilterHeaderProps>(({
 
   if (typeFilter === 'author') label = 'Tác giả';
 
+  if (typeFilter === 'sort') label = 'Sắp xếp';
+
+  if (typeFilter === 'votes') label = 'Lượt vote';
+
+  if (typeFilter === 'chapters') label = 'Số chương';
+
+  if (typeFilter === 'rating') label = 'Cho điểm';
+
+  if (typeFilter === 'status') label = 'Trạng thái';
+
+  if (typeFilter === 'category') label = 'Thể loại';
+
   const backIcon = <IBackStackSVG width={16} height={16} />;
 
   const closeIcon = <ICloseModalSVG width={16} height={16} />;
