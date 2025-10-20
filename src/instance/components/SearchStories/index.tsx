@@ -11,13 +11,15 @@ import { FilterQuery } from './FilterQuery';
 import { PageAuthor } from './PageAuthor';
 
 import { styles } from './styles';
-import { TSearchStoriesProps, TFilterHeaderRefs, TTypeFilterState, TOptionQuery } from './types';
+import { TSearchStoriesProps, TFilterHeaderRefs, TFilterQueryRefs, TTypeFilterState, TOptionQuery } from './types';
 
 export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }) => {
 
   const pageAuthorRef = useRef<View>(null);
 
   const scrollViewRef = useRef<ScrollView>(null);
+
+  const filterQueryRef = useRef<TFilterQueryRefs>(null);
 
   const filterHeaderRef = useRef<TFilterHeaderRefs>(null);
 
@@ -29,10 +31,14 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
     return { position: !!isActive ? 'relative' : 'absolute', opacity: !!isActive ? 1 : 0, pointerEvents: !!isActive ? 'auto' : 'none' };
   }
 
-  const _onBack = () => {
+  const _onBack = (cb?: () => void) => {
     Keyboard.dismiss();
+
     filterHeaderRef.current?.setTypeFilter?.('');
+
     scrollViewRef.current?.scrollTo?.({ x: 0, y: 0 });
+
+    if ((typeof cb) === 'function') cb();
 
     runAfterInteractions(() => {
       pageAuthorRef.current?.setNativeProps?.({ ..._loadSettingPage(false) });
@@ -48,15 +54,13 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
     }, 50);
   }
 
-  const _onChangeFilter = (option: TOptionQuery) => {
-    _onBack();
-  }
+  const _onChangeFilter = (option: TOptionQuery) => _onBack(() => filterQueryRef.current?.onChangeFilter?.(option));
 
   const _onGenerateQuery = () => { };
 
   const memoFilterHeader = useMemo(() => <FilterHeader onGenerateQuery={_onGenerateQuery} onBack={_onBack} onClose={_onClose} ref={filterHeaderRef} />, []);
 
-  const memoFilterQuery = useMemo(() => <FilterQuery onPressFilter={_onPressFilter} />, []);
+  const memoFilterQuery = useMemo(() => <FilterQuery onPressFilter={_onPressFilter} ref={filterQueryRef} />, []);
 
   const memoPageAuthor = useMemo(() => <PageAuthor onChangeFilter={_onChangeFilter} />, []);
 

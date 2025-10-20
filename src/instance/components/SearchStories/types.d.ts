@@ -20,6 +20,8 @@ export type TFilterHeaderProps = { onGenerateQuery: Function, onBack: Function, 
 
 export type TSearchStoriesProps = { resolve?: Function, onHide?: Function };
 
+export type TPageFilterProps = { onChangeFilter: (option: TOptionQuery) => void };
+
 export type TFilterQueryProps = { onPressFilter: (type: TTypeFilterState) => void };
 
-export type TPageFilterProps = { onChangeFilter: (option: TOptionQuery) => void };
+export type TFilterQueryRefs = { onChangeFilter: (type: TOptionQuery) => void };

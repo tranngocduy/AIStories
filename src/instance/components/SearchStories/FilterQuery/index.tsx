@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef, useImperativeHandle } from 'react';
 import { View } from 'react-native';
 
 import { IArrowFullSVG } from '@/assets/svg';
@@ -8,9 +8,9 @@ import { TextBase } from '@/components/TextBase';
 import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
-import { TFilterQueryProps, TOptionFilter, TOptionFilterState } from '../types';
+import { TFilterQueryProps, TFilterQueryRefs, TOptionFilterState, TOptionQuery } from '../types';
 
-export const FilterQuery: React.FC<TFilterQueryProps> = ({ onPressFilter }) => {
+export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ onPressFilter }, ref) => {
 
   const query = {
     author: null,
@@ -33,6 +33,10 @@ export const FilterQuery: React.FC<TFilterQueryProps> = ({ onPressFilter }) => {
   });
 
   const _onPressAuthor = () => onPressFilter?.('author');
+
+  const _onChangeFilter = (option: TOptionQuery) => setOptionFilter(prevState => ({ ...prevState, [option.type]: { label: option.label, value: option.value } }));
+
+  useImperativeHandle(ref, () => ({ onChangeFilter: _onChangeFilter }));
 
   const authorLabel = optionFilter?.author?.label;
 
@@ -126,4 +130,4 @@ export const FilterQuery: React.FC<TFilterQueryProps> = ({ onPressFilter }) => {
     </View>
   )
 
-}
+});
