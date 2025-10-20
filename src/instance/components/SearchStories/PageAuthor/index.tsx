@@ -6,7 +6,9 @@ import { FILTER_OPTION_AUTHOR } from '@/constants';
 import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 import { useSearchAuthorByName } from '@/useQuery/useSearchAuthorByName';
 
+import { TextBase } from '@/components/TextBase';
 import { OptionFilter } from '@/components/OptionFilter';
+import { TouchableView } from '@/components/TouchableView';
 import { TextInputSearch, TTextInputSearchRef } from '@/components/TextInputSearch';
 
 import { styles } from './styles';
@@ -14,7 +16,7 @@ import { TOptionFilter } from '../types';
 
 export const PageAuthor: React.FC<{}> = () => {
 
-  const ITEM = {...FILTER_OPTION_AUTHOR[0]};
+  const ITEM = { ...FILTER_OPTION_AUTHOR[0] };
 
   const [search, setSearch] = useState('');
 
@@ -40,6 +42,10 @@ export const PageAuthor: React.FC<{}> = () => {
 
   const _onSelect = (value: TOptionFilter) => setSelected(value);
 
+  const _onPressApply = () => {
+
+  }
+
   const _onLoading = () => textInputSearchRef.current?.setLoading?.(querySearchAuthorByName?.isLoading);
 
   useEffectAfterMount(() => { _onLoading(); }, [querySearchAuthorByName?.isLoading]);
@@ -60,7 +66,9 @@ export const PageAuthor: React.FC<{}> = () => {
     <View style={styles.container}>
       <View style={styles.searchView}><TextInputSearch placeholder='Tìm kiếm tác giả...' onChangeText={_onSearch} ref={textInputSearchRef} /></View>
 
-      <ScrollView contentContainerStyle={styles.scroll}>{items?.map?.(_renderItem)}</ScrollView>
+      <View style={styles.view}><ScrollView contentContainerStyle={styles.scroll}>{items?.map?.(_renderItem)}</ScrollView></View>
+
+      <View style={styles.bottom}><TouchableView hitSlop={12} onPress={_onPressApply}><TextBase style={styles.bottomText}>Áp dụng điều kiện lọc</TextBase></TouchableView></View>
     </View>
   )
 

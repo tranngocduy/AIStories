@@ -33,16 +33,19 @@ export const styles = StyleSheet.create({
   selectIcon: {
     transform: [{ rotate: '270deg' }]
   },
-  reset: {
+  bottom: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 54
+    height: 54,
+    backgroundColor: '#FFFFFF',
+    boxShadow: '0px -2px 4px rgba(0, 0, 0, 0.05)'
   },
-  resetText: {
+  bottomText: {
     ...fonts.default.normal500,
     fontSize: 14,
     lineHeight: 21,
-    color: '#000000'
+    color: '#000000',
+    textDecorationLine: 'underline'
   },
   separator: {
     height: 1,
