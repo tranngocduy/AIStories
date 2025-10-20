@@ -12,9 +12,9 @@ import { TouchableView } from '@/components/TouchableView';
 import { TextInputSearch, TTextInputSearchRef } from '@/components/TextInputSearch';
 
 import { styles } from './styles';
-import { TOptionFilter } from '../types';
+import { TPageFilterProps, TOptionFilter } from '../types';
 
-export const PageAuthor: React.FC<{}> = () => {
+export const PageAuthor: React.FC<TPageFilterProps> = ({ onChangeFilter }) => {
 
   const ITEM = { ...FILTER_OPTION_AUTHOR[0] };
 
@@ -42,9 +42,7 @@ export const PageAuthor: React.FC<{}> = () => {
 
   const _onSelect = (value: TOptionFilter) => setSelected(value);
 
-  const _onPressApply = () => {
-
-  }
+  const _onPressApply = () => onChangeFilter({ type: 'author', ...selected });
 
   const _onLoading = () => textInputSearchRef.current?.setLoading?.(querySearchAuthorByName?.isLoading);
 

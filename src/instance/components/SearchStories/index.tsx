@@ -11,7 +11,7 @@ import { FilterQuery } from './FilterQuery';
 import { PageAuthor } from './PageAuthor';
 
 import { styles } from './styles';
-import { TSearchStoriesProps, TFilterHeaderRefs, TTypeFilterState } from './types';
+import { TSearchStoriesProps, TFilterHeaderRefs, TTypeFilterState, TOptionQuery } from './types';
 
 export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }) => {
 
@@ -23,11 +23,11 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
 
   const instanceModalRef = useRef<TInstanceModalRefs>(null);
 
+  const _onClose = () => instanceModalRef.current?.onClose?.();
+
   const _loadSettingPage = (isActive: boolean) => {
     return { position: !!isActive ? 'relative' : 'absolute', opacity: !!isActive ? 1 : 0, pointerEvents: !!isActive ? 'auto' : 'none' };
   }
-
-  const _onClose = () => instanceModalRef.current?.onClose?.();
 
   const _onBack = () => {
     Keyboard.dismiss();
@@ -39,8 +39,6 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
     }, 350);
   };
 
-  const _onGenerateQuery = () => { };
-
   const _onPressFilter = (type: TTypeFilterState) => {
     pageAuthorRef.current?.setNativeProps?.({ ..._loadSettingPage((type === 'author')) });
 
@@ -50,11 +48,17 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
     }, 50);
   }
 
+  const _onChangeFilter = (option: TOptionQuery) => {
+    _onBack();
+  }
+
+  const _onGenerateQuery = () => { };
+
   const memoFilterHeader = useMemo(() => <FilterHeader onGenerateQuery={_onGenerateQuery} onBack={_onBack} onClose={_onClose} ref={filterHeaderRef} />, []);
 
   const memoFilterQuery = useMemo(() => <FilterQuery onPressFilter={_onPressFilter} />, []);
 
-  const memoPageAuthor = useMemo(() => <PageAuthor />, []);
+  const memoPageAuthor = useMemo(() => <PageAuthor onChangeFilter={_onChangeFilter} />, []);
 
   return (
     <InstanceModal onHide={onHide} ref={instanceModalRef}>

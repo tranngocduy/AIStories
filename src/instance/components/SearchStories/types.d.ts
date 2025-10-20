@@ -2,6 +2,8 @@ export type TTypeFilterState = 'author' | '';
 
 export type TOptionFilter = { label: string, value: any };
 
+export type TOptionQuery = { type: string, label: string, value: any };
+
 export type TOptionFilterState = {
   author: TOptionFilter | null,
   sort: TOptionFilter | null,
@@ -19,3 +21,5 @@ export type TFilterHeaderProps = { onGenerateQuery: Function, onBack: Function, 
 export type TSearchStoriesProps = { resolve?: Function, onHide?: Function };
 
 export type TFilterQueryProps = { onPressFilter: (type: TTypeFilterState) => void };
+
+export type TPageFilterProps = { onChangeFilter: (option: TOptionQuery) => void };
