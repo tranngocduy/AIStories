@@ -9,6 +9,7 @@ import { InstanceModal, TInstanceModalRefs } from '@/components/InstanceModal';
 import { FilterHeader } from './FilterHeader';
 import { FilterQuery } from './FilterQuery';
 import { PageAuthor } from './PageAuthor';
+import { PageSort } from './PageSort';
 
 import { styles } from './styles';
 import { TSearchStoriesProps, TFilterHeaderRefs, TFilterQueryRefs, TTypeFilterState, TOptionQuery } from './types';
@@ -16,6 +17,8 @@ import { TSearchStoriesProps, TFilterHeaderRefs, TFilterQueryRefs, TTypeFilterSt
 export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }) => {
 
   const pageAuthorRef = useRef<View>(null);
+
+  const pageSortRef = useRef<View>(null);
 
   const scrollViewRef = useRef<ScrollView>(null);
 
@@ -64,6 +67,8 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
 
   const memoPageAuthor = useMemo(() => <PageAuthor onChangeFilter={_onChangeFilter} />, []);
 
+  const memoPageSort = useMemo(() => <PageSort onChangeFilter={_onChangeFilter} />, []);
+
   return (
     <InstanceModal onHide={onHide} ref={instanceModalRef}>
       <ScrollAvoidingView offset={-200}>
@@ -75,6 +80,7 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
               <ScrollView horizontal={true} pagingEnabled={true} scrollEnabled={false} showsHorizontalScrollIndicator={false} ref={scrollViewRef}>
                 <View style={styles.pageMain}>{memoFilterQuery}</View>
                 <View style={styles.pageSub} pointerEvents='none' ref={pageAuthorRef}>{memoPageAuthor}</View>
+                <View style={styles.pageSub} pointerEvents='none' ref={pageSortRef}>{memoPageSort}</View>
               </ScrollView>
             </View>
           </View>
