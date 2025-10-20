@@ -19,7 +19,7 @@ import { PageCategory } from './PageCategory';
 import { styles } from './styles';
 import { TSearchStoriesProps, TFilterHeaderRefs, TFilterQueryRefs, TTypeFilterState, TOptionQuery } from './types';
 
-export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }) => {
+export const SearchStories: React.FC<TSearchStoriesProps> = ({ query, resolve, onHide }) => {
 
   const pageAuthorRef = useRef<View>(null);
 
@@ -84,13 +84,19 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
     }, 50);
   }
 
-  const _onChangeFilter = (option: TOptionQuery) => _onBack(() => filterQueryRef.current?.onChangeFilter?.(option));
+  const _onGenerateQuery = () => {
+    const queryParams = filterQueryRef.current?.onGenerateQuery?.();
 
-  const _onGenerateQuery = () => { };
+    if (!queryParams) return null;
+
+    instanceModalRef.current?.onClose?.(() => resolve?.(queryParams));
+  };
+
+  const _onChangeFilter = (option: TOptionQuery) => _onBack(() => filterQueryRef.current?.onChangeFilter?.(option));
 
   const memoFilterHeader = useMemo(() => <FilterHeader onGenerateQuery={_onGenerateQuery} onBack={_onBack} onClose={_onClose} ref={filterHeaderRef} />, []);
 
-  const memoFilterQuery = useMemo(() => <FilterQuery onPressFilter={_onPressFilter} ref={filterQueryRef} />, []);
+  const memoFilterQuery = useMemo(() => <FilterQuery query={query} onPressFilter={_onPressFilter} ref={filterQueryRef} />, []);
 
   const memoPageAuthor = useMemo(() => <PageAuthor onChangeFilter={_onChangeFilter} />, []);
 

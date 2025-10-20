@@ -10,17 +10,7 @@ import { TouchableView } from '@/components/TouchableView';
 import { styles } from './styles';
 import { TFilterQueryProps, TFilterQueryRefs, TOptionFilterState, TOptionQuery } from '../types';
 
-export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ onPressFilter }, ref) => {
-
-  const query = {
-    author: null,
-    sort: null,
-    votes: null,
-    chapters: null,
-    rating: null,
-    status: null,
-    category: null
-  };
+export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ query, onPressFilter }, ref) => {
 
   const [optionFilter, setOptionFilter] = useState<TOptionFilterState>({
     author: query?.author || FILTER_OPTION_AUTHOR[0],

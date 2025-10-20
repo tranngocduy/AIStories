@@ -18,10 +18,10 @@ export type TFilterHeaderRefs = { setTypeFilter: (type: TTypeFilterState) => voi
 
 export type TFilterHeaderProps = { onGenerateQuery: Function, onBack: Function, onClose: Function };
 
-export type TSearchStoriesProps = { resolve?: Function, onHide?: Function };
+export type TSearchStoriesProps = { query: TOptionFilterState, resolve: Function, onHide: Function };
 
 export type TPageFilterProps = { onChangeFilter: (option: TOptionQuery) => void };
 
-export type TFilterQueryProps = { onPressFilter: (type: TTypeFilterState) => void };
+export type TFilterQueryProps = { query: TOptionFilterState, onPressFilter: (type: TTypeFilterState) => void };
 
 export type TFilterQueryRefs = { onGenerateQuery: () => TOptionFilterState, onChangeFilter: (type: TOptionQuery) => void };
