@@ -11,6 +11,9 @@ import { FilterQuery } from './FilterQuery';
 import { PageAuthor } from './PageAuthor';
 import { PageSort } from './PageSort';
 import { PageVotes } from './PageVotes';
+import { PageChapters } from './PageChapters';
+import { PageRating } from './PageRating';
+import { PageStatus } from './PageStatus';
 
 import { styles } from './styles';
 import { TSearchStoriesProps, TFilterHeaderRefs, TFilterQueryRefs, TTypeFilterState, TOptionQuery } from './types';
@@ -94,6 +97,12 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
 
   const memoPageVotes = useMemo(() => <PageVotes onChangeFilter={_onChangeFilter} />, []);
 
+  const memoPageChapters = useMemo(() => <PageChapters onChangeFilter={_onChangeFilter} />, []);
+
+  const memoPageRating = useMemo(() => <PageRating onChangeFilter={_onChangeFilter} />, []);
+
+  const memoPageStatus = useMemo(() => <PageStatus onChangeFilter={_onChangeFilter} />, []);
+
   return (
     <InstanceModal onHide={onHide} ref={instanceModalRef}>
       <ScrollAvoidingView offset={-200}>
@@ -107,9 +116,9 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
                 <View style={styles.pageSub} pointerEvents='none' ref={pageAuthorRef}>{memoPageAuthor}</View>
                 <View style={styles.pageSub} pointerEvents='none' ref={pageSortRef}>{memoPageSort}</View>
                 <View style={styles.pageSub} pointerEvents='none' ref={pageVotesRef}>{memoPageVotes}</View>
-                <View style={styles.pageSub} pointerEvents='none' ref={pageChaptersRef}></View>
-                <View style={styles.pageSub} pointerEvents='none' ref={pageRatingRef}></View>
-                <View style={styles.pageSub} pointerEvents='none' ref={pageStatusRef}></View>
+                <View style={styles.pageSub} pointerEvents='none' ref={pageChaptersRef}>{memoPageChapters}</View>
+                <View style={styles.pageSub} pointerEvents='none' ref={pageRatingRef}>{memoPageRating}</View>
+                <View style={styles.pageSub} pointerEvents='none' ref={pageStatusRef}>{memoPageStatus}</View>
                 <View style={styles.pageSub} pointerEvents='none' ref={pageCategoryRef}></View>
               </ScrollView>
             </View>
