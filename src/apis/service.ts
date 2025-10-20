@@ -49,3 +49,9 @@ export const searchAuthorByName = async (search: string) => {
   const result = await api(`${process.env.$app.BASE_API}/authors?search=${search}`, method);
   return result;
 }
+
+export const getAllCategory = async (page?: number, limit?: number) => {
+  const method = 'GET';
+  const result = await api(`${process.env.$app.BASE_API}/categories/?page=${page}&limit=${limit}`, method);
+  return result;
+}
