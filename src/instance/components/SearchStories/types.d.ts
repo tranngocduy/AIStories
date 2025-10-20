@@ -1,4 +1,4 @@
-export type TTypeFilterState = 'author' | '';
+export type TTypeFilterState = 'author' | 'sort' | 'votes' | 'chapters' | 'rating' | 'status' | 'category' | '';
 
 export type TOptionFilter = { label: string, value: any };
 

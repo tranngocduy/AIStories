@@ -34,6 +34,18 @@ export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ on
 
   const _onPressAuthor = () => onPressFilter?.('author');
 
+  const _onPressSort = () => onPressFilter?.('sort');
+
+  const _onPressVotes = () => onPressFilter?.('votes');
+
+  const _onPressChapters = () => onPressFilter?.('chapters');
+
+  const _onPressRating = () => onPressFilter?.('rating');
+
+  const _onPressStatus = () => onPressFilter?.('status');
+
+  const _onPressCategory = () => onPressFilter?.('category');
+
   const _onChangeFilter = (option: TOptionQuery) => setOptionFilter(prevState => ({ ...prevState, [option.type]: { label: option.label, value: option.value } }));
 
   useImperativeHandle(ref, () => ({ onChangeFilter: _onChangeFilter }));
@@ -64,8 +76,8 @@ export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ on
 
       <View style={styles.separator} />
 
-      <TouchableView style={styles.item}>
-        <TextBase style={styles.label}>Sắp xếp theo</TextBase>
+      <TouchableView style={styles.item} onPress={_onPressSort}>
+        <TextBase style={styles.label}>Sắp xếp</TextBase>
         <View style={styles.selectView}>
           <TextBase style={styles.selectLabel}>{sortByLabel}</TextBase>
           <View style={styles.selectIcon}><IArrowFullSVG /></View>
@@ -74,7 +86,7 @@ export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ on
 
       <View style={styles.separator} />
 
-      <TouchableView style={styles.item}>
+      <TouchableView style={styles.item} onPress={_onPressVotes}>
         <TextBase style={styles.label}>Lượt vote</TextBase>
         <View style={styles.selectView}>
           <TextBase style={styles.selectLabel}>{voteByLabel}</TextBase>
@@ -84,7 +96,7 @@ export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ on
 
       <View style={styles.separator} />
 
-      <TouchableView style={styles.item}>
+      <TouchableView style={styles.item} onPress={_onPressChapters}>
         <TextBase style={styles.label}>Số chương</TextBase>
         <View style={styles.selectView}>
           <TextBase style={styles.selectLabel}>{chaptersLabel}</TextBase>
@@ -94,7 +106,7 @@ export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ on
 
       <View style={styles.separator} />
 
-      <TouchableView style={styles.item}>
+      <TouchableView style={styles.item} onPress={_onPressRating}>
         <TextBase style={styles.label}>Cho điểm</TextBase>
         <View style={styles.selectView}>
           <TextBase style={styles.selectLabel}>{ratingLabel}</TextBase>
@@ -104,7 +116,7 @@ export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ on
 
       <View style={styles.separator} />
 
-      <TouchableView style={styles.item}>
+      <TouchableView style={styles.item} onPress={_onPressStatus}>
         <TextBase style={styles.label}>Trạng thái</TextBase>
         <View style={styles.selectView}>
           <TextBase style={styles.selectLabel}>{statusLabel}</TextBase>
@@ -114,7 +126,7 @@ export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ on
 
       <View style={styles.separator} />
 
-      <TouchableView style={styles.item}>
+      <TouchableView style={styles.item} onPress={_onPressCategory}>
         <TextBase style={styles.label}>Thể loại</TextBase>
         <View style={styles.selectView}>
           <TextBase style={styles.selectLabel}>{categoryLabel}</TextBase>

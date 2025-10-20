@@ -20,6 +20,16 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
 
   const pageSortRef = useRef<View>(null);
 
+  const pageVotesRef = useRef<View>(null);
+
+  const pageChaptersRef = useRef<View>(null);
+
+  const pageRatingRef = useRef<View>(null);
+
+  const pageStatusRef = useRef<View>(null);
+
+  const pageCategoryRef = useRef<View>(null);
+
   const scrollViewRef = useRef<ScrollView>(null);
 
   const filterQueryRef = useRef<TFilterQueryRefs>(null);
@@ -45,11 +55,23 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
 
     runAfterInteractions(() => {
       pageAuthorRef.current?.setNativeProps?.({ ..._loadSettingPage(false) });
+      pageSortRef.current?.setNativeProps?.({ ..._loadSettingPage(false) });
+      pageVotesRef.current?.setNativeProps?.({ ..._loadSettingPage(false) });
+      pageChaptersRef.current?.setNativeProps?.({ ..._loadSettingPage(false) });
+      pageRatingRef.current?.setNativeProps?.({ ..._loadSettingPage(false) });
+      pageStatusRef.current?.setNativeProps?.({ ..._loadSettingPage(false) });
+      pageCategoryRef.current?.setNativeProps?.({ ..._loadSettingPage(false) });
     }, 350);
   };
 
   const _onPressFilter = (type: TTypeFilterState) => {
     pageAuthorRef.current?.setNativeProps?.({ ..._loadSettingPage((type === 'author')) });
+    pageSortRef.current?.setNativeProps?.({ ..._loadSettingPage((type === 'sort')) });
+    pageVotesRef.current?.setNativeProps?.({ ..._loadSettingPage((type === 'votes')) });
+    pageChaptersRef.current?.setNativeProps?.({ ..._loadSettingPage((type === 'chapters')) });
+    pageRatingRef.current?.setNativeProps?.({ ..._loadSettingPage((type === 'rating')) });
+    pageStatusRef.current?.setNativeProps?.({ ..._loadSettingPage((type === 'status')) });
+    pageCategoryRef.current?.setNativeProps?.({ ..._loadSettingPage((type === 'category')) });
 
     runAfterInteractions(() => {
       filterHeaderRef.current?.setTypeFilter?.(type);
@@ -81,6 +103,11 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
                 <View style={styles.pageMain}>{memoFilterQuery}</View>
                 <View style={styles.pageSub} pointerEvents='none' ref={pageAuthorRef}>{memoPageAuthor}</View>
                 <View style={styles.pageSub} pointerEvents='none' ref={pageSortRef}>{memoPageSort}</View>
+                <View style={styles.pageSub} pointerEvents='none' ref={pageVotesRef}></View>
+                <View style={styles.pageSub} pointerEvents='none' ref={pageChaptersRef}></View>
+                <View style={styles.pageSub} pointerEvents='none' ref={pageRatingRef}></View>
+                <View style={styles.pageSub} pointerEvents='none' ref={pageStatusRef}></View>
+                <View style={styles.pageSub} pointerEvents='none' ref={pageCategoryRef}></View>
               </ScrollView>
             </View>
           </View>
