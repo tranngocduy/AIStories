@@ -10,6 +10,7 @@ import { FilterHeader } from './FilterHeader';
 import { FilterQuery } from './FilterQuery';
 import { PageAuthor } from './PageAuthor';
 import { PageSort } from './PageSort';
+import { PageVotes } from './PageVotes';
 
 import { styles } from './styles';
 import { TSearchStoriesProps, TFilterHeaderRefs, TFilterQueryRefs, TTypeFilterState, TOptionQuery } from './types';
@@ -91,6 +92,8 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
 
   const memoPageSort = useMemo(() => <PageSort onChangeFilter={_onChangeFilter} />, []);
 
+  const memoPageVotes = useMemo(() => <PageVotes onChangeFilter={_onChangeFilter} />, []);
+
   return (
     <InstanceModal onHide={onHide} ref={instanceModalRef}>
       <ScrollAvoidingView offset={-200}>
@@ -103,7 +106,7 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ resolve, onHide }
                 <View style={styles.pageMain}>{memoFilterQuery}</View>
                 <View style={styles.pageSub} pointerEvents='none' ref={pageAuthorRef}>{memoPageAuthor}</View>
                 <View style={styles.pageSub} pointerEvents='none' ref={pageSortRef}>{memoPageSort}</View>
-                <View style={styles.pageSub} pointerEvents='none' ref={pageVotesRef}></View>
+                <View style={styles.pageSub} pointerEvents='none' ref={pageVotesRef}>{memoPageVotes}</View>
                 <View style={styles.pageSub} pointerEvents='none' ref={pageChaptersRef}></View>
                 <View style={styles.pageSub} pointerEvents='none' ref={pageRatingRef}></View>
                 <View style={styles.pageSub} pointerEvents='none' ref={pageStatusRef}></View>
