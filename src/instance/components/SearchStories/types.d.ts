@@ -10,7 +10,7 @@ export type TFilterHeaderProps = { onGenerateQuery: Function, onBack: Function, 
 
 export type TSearchStoriesProps = { query: TOptionFilterState, resolve: Function, onHide?: Function };
 
-export type TPageFilterProps = { query: TOptionFilter, onChangeFilter: (option: TOptionQuery) => void };
+export type TPageFilterProps = { query: TOptionFilter | null, onChangeFilter: (option: TOptionQuery) => void };
 
 export type TFilterQueryProps = { query: TOptionFilterState, onPressFilter: (type: TTypeFilterState) => void };
 

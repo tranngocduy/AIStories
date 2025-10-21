@@ -11,11 +11,11 @@ import { TouchableView } from '@/components/TouchableView';
 import { styles } from './styles';
 import { TPageFilterProps } from '../types';
 
-export const PageChapters: React.FC<TPageFilterProps> = ({ onChangeFilter }) => {
+export const PageChapters: React.FC<TPageFilterProps> = ({ query, onChangeFilter }) => {
 
   const items = [...FILTER_OPTION_CHAPTERS];
 
-  const [selected, setSelected] = useState<TOptionFilter>(items[0]);
+  const [selected, setSelected] = useState<TOptionFilter>(query || items[0]);
 
   const _onSelect = (value: TOptionFilter) => setSelected(value);
 

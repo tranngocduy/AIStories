@@ -100,15 +100,15 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ query, resolve, o
 
   const memoPageAuthor = useMemo(() => <PageAuthor onChangeFilter={_onChangeFilter} />, []);
 
-  const memoPageSort = useMemo(() => <PageSort onChangeFilter={_onChangeFilter} />, []);
+  const memoPageSort = useMemo(() => <PageSort query={query?.sort} onChangeFilter={_onChangeFilter} />, []);
 
-  const memoPageVotes = useMemo(() => <PageVotes onChangeFilter={_onChangeFilter} />, []);
+  const memoPageVotes = useMemo(() => <PageVotes query={query?.votes} onChangeFilter={_onChangeFilter} />, []);
 
-  const memoPageChapters = useMemo(() => <PageChapters onChangeFilter={_onChangeFilter} />, []);
+  const memoPageChapters = useMemo(() => <PageChapters query={query?.chapters} onChangeFilter={_onChangeFilter} />, []);
 
-  const memoPageRating = useMemo(() => <PageRating onChangeFilter={_onChangeFilter} />, []);
+  const memoPageRating = useMemo(() => <PageRating query={query?.rating} onChangeFilter={_onChangeFilter} />, []);
 
-  const memoPageStatus = useMemo(() => <PageStatus onChangeFilter={_onChangeFilter} />, []);
+  const memoPageStatus = useMemo(() => <PageStatus query={query?.status} onChangeFilter={_onChangeFilter} />, []);
 
   const memoPageCategory = useMemo(() => <PageCategory onChangeFilter={_onChangeFilter} />, []);
 
