@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { View, FlatList } from 'react-native';
 
 import { IFilterSVG } from '@/assets/svg';
@@ -12,6 +12,7 @@ import { useSearchStoriesByQuery } from '@/useQuery/useSearchStoriesByQuery';
 
 import { TextBase } from '@/components/TextBase';
 import { StoryItem } from '@/components/StoryItem';
+import { EmptyList } from '@/components/EmptyList';
 import { ScrollRefresh } from '@/components/ScrollRefresh';
 import { TouchableView } from '@/components/TouchableView';
 import { StorySkeleton } from '@/components/StorySkeleton';
@@ -81,9 +82,9 @@ export const Library: React.FC<{}> = () => {
     }
   }
 
-  useEffectAfterMount(() => {
-    if (!!isFocused) runAfterInteractions(querySearchStoriesByQuery.refetch, 350);
-  }, [isFocused]);
+  useEffectAfterMount(() => { if (!!isFocused) runAfterInteractions(querySearchStoriesByQuery.refetch, 350); }, [isFocused]);
+
+  const _viewsEmpty = useMemo(() => <EmptyList />, []);
 
   const _keyExtractor = (item: TStory, index: number) => `${item?.id || index}`;
 
@@ -115,6 +116,7 @@ export const Library: React.FC<{}> = () => {
           contentContainerStyle={styles.scroll}
           columnWrapperStyle={styles.wrapperStyle}
 
+          ListEmptyComponent={_viewsEmpty}
           refreshControl={<ScrollRefresh onRefresh={_onRefresh} />}
 
           onEndReached={_onLoadMore}
