@@ -12,6 +12,4 @@ export type TSearchStoriesProps = { query: TOptionFilterState, resolve: Function
 
 export type TPageFilterProps = { query: TOptionFilter | null, onChangeFilter: (option: TOptionQuery) => void };
 
-export type TFilterQueryProps = { query: TOptionFilterState, onPressFilter: (type: TTypeFilterState) => void };
-
-export type TFilterQueryRefs = { onGenerateQuery: () => TOptionFilterState, onChangeFilter: (type: TOptionQuery) => void };
+export type TFilterQueryProps = { query: TOptionFilterState, onPressFilter: (type: TTypeFilterState) => void, onPressRest: () => void };

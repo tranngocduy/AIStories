@@ -1,7 +1,9 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { View, ScrollView, Keyboard } from 'react-native';
 
 import { runAfterInteractions } from '@/utils/app';
+import { TOptionFilterState } from '@/models/types';
+import { FILTER_OPTION_AUTHOR, FILTER_OPTION_SORT, FILTER_OPTION_VOTES, FILTER_OPTION_CHAPTERS, FILTER_OPTION_RATING, FILTER_OPTION_STATUS, FILTER_OPTION_CATEGORY } from '@/constants';
 
 import { ScrollAvoidingView } from '@/components/ScrollAvoidingView';
 import { InstanceModal, TInstanceModalRefs } from '@/components/InstanceModal';
@@ -17,9 +19,19 @@ import { PageStatus } from './PageStatus';
 import { PageCategory } from './PageCategory';
 
 import { styles } from './styles';
-import { TSearchStoriesProps, TFilterHeaderRefs, TFilterQueryRefs, TTypeFilterState, TOptionQuery } from './types';
+import { TSearchStoriesProps, TFilterHeaderRefs, TTypeFilterState, TOptionQuery } from './types';
 
 export const SearchStories: React.FC<TSearchStoriesProps> = ({ query, resolve, onHide }) => {
+
+  const [optionFilter, setOptionFilter] = useState<TOptionFilterState>({
+    author: query?.author || FILTER_OPTION_AUTHOR[0],
+    sort: query?.sort || FILTER_OPTION_SORT[0],
+    votes: query?.votes || FILTER_OPTION_VOTES[0],
+    chapters: query?.chapters || FILTER_OPTION_CHAPTERS[0],
+    rating: query?.rating || FILTER_OPTION_RATING[0],
+    status: query?.status || FILTER_OPTION_STATUS[0],
+    category: query?.category || FILTER_OPTION_CATEGORY[0]
+  });
 
   const pageAuthorRef = useRef<View>(null);
 
@@ -36,8 +48,6 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ query, resolve, o
   const pageCategoryRef = useRef<View>(null);
 
   const scrollViewRef = useRef<ScrollView>(null);
-
-  const filterQueryRef = useRef<TFilterQueryRefs>(null);
 
   const filterHeaderRef = useRef<TFilterHeaderRefs>(null);
 
@@ -84,33 +94,38 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ query, resolve, o
     }, 50);
   }
 
-  const _onGenerateQuery = () => {
-    const queryParams = filterQueryRef.current?.onGenerateQuery?.();
-
-    if (!queryParams) return null;
-
-    instanceModalRef.current?.onClose?.(() => resolve?.(queryParams));
+  const _onPressRest = () => {
+    const author = FILTER_OPTION_AUTHOR[0];
+    const sort = FILTER_OPTION_SORT[0];
+    const votes = FILTER_OPTION_VOTES[0];
+    const chapters = FILTER_OPTION_CHAPTERS[0];
+    const rating = FILTER_OPTION_RATING[0];
+    const status = FILTER_OPTION_STATUS[0];
+    const category = FILTER_OPTION_CATEGORY[0];
+    setOptionFilter({ author, sort, votes, chapters, rating, status, category });
   }
 
-  const _onChangeFilter = (option: TOptionQuery) => _onBack(() => filterQueryRef.current?.onChangeFilter?.(option));
+  const _onGenerateQuery = () => instanceModalRef.current?.onClose?.(() => resolve?.(optionFilter));
 
-  const memoFilterHeader = useMemo(() => <FilterHeader onGenerateQuery={_onGenerateQuery} onBack={_onBack} onClose={_onClose} ref={filterHeaderRef} />, []);
+  const _onChangeFilter = (option: TOptionQuery) => _onBack(() => setOptionFilter(prevState => ({ ...prevState, [option.type]: { label: option.label, value: option.value } })));
 
-  const memoFilterQuery = useMemo(() => <FilterQuery query={query} onPressFilter={_onPressFilter} ref={filterQueryRef} />, []);
+  const memoFilterHeader = useMemo(() => <FilterHeader onGenerateQuery={_onGenerateQuery} onBack={_onBack} onClose={_onClose} ref={filterHeaderRef} />, [JSON.stringify(optionFilter)]);
 
-  const memoPageAuthor = useMemo(() => <PageAuthor query={query?.author} onChangeFilter={_onChangeFilter} />, []);
+  const memoFilterQuery = useMemo(() => <FilterQuery query={optionFilter} onPressFilter={_onPressFilter} onPressRest={_onPressRest} />, [JSON.stringify(optionFilter)]);
 
-  const memoPageSort = useMemo(() => <PageSort query={query?.sort} onChangeFilter={_onChangeFilter} />, []);
+  const memoPageAuthor = useMemo(() => <PageAuthor query={optionFilter?.author} onChangeFilter={_onChangeFilter} />, [JSON.stringify(optionFilter.author)]);
 
-  const memoPageVotes = useMemo(() => <PageVotes query={query?.votes} onChangeFilter={_onChangeFilter} />, []);
+  const memoPageSort = useMemo(() => <PageSort query={optionFilter?.sort} onChangeFilter={_onChangeFilter} />, [JSON.stringify(optionFilter.sort)]);
 
-  const memoPageChapters = useMemo(() => <PageChapters query={query?.chapters} onChangeFilter={_onChangeFilter} />, []);
+  const memoPageVotes = useMemo(() => <PageVotes query={optionFilter?.votes} onChangeFilter={_onChangeFilter} />, [JSON.stringify(optionFilter.votes)]);
 
-  const memoPageRating = useMemo(() => <PageRating query={query?.rating} onChangeFilter={_onChangeFilter} />, []);
+  const memoPageChapters = useMemo(() => <PageChapters query={optionFilter?.chapters} onChangeFilter={_onChangeFilter} />, [JSON.stringify(optionFilter.chapters)]);
 
-  const memoPageStatus = useMemo(() => <PageStatus query={query?.status} onChangeFilter={_onChangeFilter} />, []);
+  const memoPageRating = useMemo(() => <PageRating query={optionFilter?.rating} onChangeFilter={_onChangeFilter} />, [JSON.stringify(optionFilter.rating)]);
 
-  const memoPageCategory = useMemo(() => <PageCategory query={query?.category} onChangeFilter={_onChangeFilter} />, []);
+  const memoPageStatus = useMemo(() => <PageStatus query={optionFilter?.status} onChangeFilter={_onChangeFilter} />, [JSON.stringify(optionFilter.status)]);
+
+  const memoPageCategory = useMemo(() => <PageCategory query={optionFilter?.category} onChangeFilter={_onChangeFilter} />, [JSON.stringify(optionFilter.category)]);
 
   return (
     <InstanceModal onHide={onHide} ref={instanceModalRef}>

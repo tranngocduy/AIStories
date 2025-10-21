@@ -1,27 +1,15 @@
-import React, { useState, forwardRef, useImperativeHandle } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 
 import { IArrowFullSVG } from '@/assets/svg';
-import { TOptionFilterState } from '@/models/types';
-import { FILTER_OPTION_AUTHOR, FILTER_OPTION_SORT, FILTER_OPTION_VOTES, FILTER_OPTION_CHAPTERS, FILTER_OPTION_RATING, FILTER_OPTION_STATUS, FILTER_OPTION_CATEGORY } from '@/constants';
 
 import { TextBase } from '@/components/TextBase';
 import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
-import { TFilterQueryProps, TFilterQueryRefs, TOptionQuery } from '../types';
+import { TFilterQueryProps } from '../types';
 
-export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ query, onPressFilter }, ref) => {
-
-  const [optionFilter, setOptionFilter] = useState<TOptionFilterState>({
-    author: query?.author || FILTER_OPTION_AUTHOR[0],
-    sort: query?.sort || FILTER_OPTION_SORT[0],
-    votes: query?.votes || FILTER_OPTION_VOTES[0],
-    chapters: query?.chapters || FILTER_OPTION_CHAPTERS[0],
-    rating: query?.rating || FILTER_OPTION_RATING[0],
-    status: query?.status || FILTER_OPTION_STATUS[0],
-    category: query?.category || FILTER_OPTION_CATEGORY[0]
-  });
+export const FilterQuery: React.FC<TFilterQueryProps> = ({ query, onPressFilter, onPressRest }) => {
 
   const _onPressAuthor = () => onPressFilter?.('author');
 
@@ -37,25 +25,21 @@ export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ qu
 
   const _onPressCategory = () => onPressFilter?.('category');
 
-  const _onGenerateQuery = () => optionFilter;
+  const _onPressRest = () => onPressRest?.();
 
-  const _onChangeFilter = (option: TOptionQuery) => setOptionFilter(prevState => ({ ...prevState, [option.type]: { label: option.label, value: option.value } }));
+  const authorLabel = query?.author?.label;
 
-  useImperativeHandle(ref, () => ({ onGenerateQuery: _onGenerateQuery, onChangeFilter: _onChangeFilter }));
+  const sortByLabel = query?.sort?.label;
 
-  const authorLabel = optionFilter?.author?.label;
+  const voteByLabel = query?.votes?.label;
 
-  const sortByLabel = optionFilter?.sort?.label;
+  const chaptersLabel = query?.chapters?.label;
 
-  const voteByLabel = optionFilter?.votes?.label;
+  const ratingLabel = query?.rating?.label;
 
-  const chaptersLabel = optionFilter?.chapters?.label;
+  const statusLabel = query?.status?.label;
 
-  const ratingLabel = optionFilter?.rating?.label;
-
-  const statusLabel = optionFilter?.status?.label;
-
-  const categoryLabel = optionFilter?.category?.label;
+  const categoryLabel = query?.category?.label;
 
   return (
     <View>
@@ -128,11 +112,11 @@ export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ qu
       </TouchableView>
 
       <View>
-        <TouchableView style={styles.bottom}>
+        <TouchableView style={styles.bottom} onPress={_onPressRest}>
           <TextBase style={styles.bottomText}>Đặt lại bộ lọc</TextBase>
         </TouchableView>
       </View>
     </View>
   )
 
-});
+};
