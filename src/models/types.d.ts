@@ -125,3 +125,9 @@ export type TOptionFilterState = {
   status: TOptionFilter | null,
   category: TOptionFilter | null
 };
+
+export type TUserProfile = {
+  access_token?: string,
+  refresh_token?: string,
+  token_type?: string,
+}

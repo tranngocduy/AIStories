@@ -18,6 +18,7 @@ import { SavedStory } from '@/screens/Tab.SavedStory';
 import { UserProfile } from '@/screens/Tab.UserProfile';
 
 import { StoryDetail } from '@/screens/StoryDetail';
+import { UserSignIn } from '@/screens/UserSignIn';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -42,6 +43,8 @@ const AppStack = () => {
       <Stack.Screen name='AppTab' component={AppTab} />
 
       <Stack.Screen name='StoryDetail' component={StoryDetail} />
+
+      <Stack.Screen name='UserSignIn' component={UserSignIn} />
     </Stack.Navigator>
   )
 }
