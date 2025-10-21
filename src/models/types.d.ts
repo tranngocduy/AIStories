@@ -94,6 +94,24 @@ export type TStoryRateVotes = {
   is_liked: boolean;
 }
 
+export type TOptionFilter = { label: string, value: any };
+
+export type TOptionFilterState = {
+  author: TOptionFilter | null,
+  sort: TOptionFilter | null,
+  votes: TOptionFilter | null,
+  chapters: TOptionFilter | null,
+  rating: TOptionFilter | null,
+  status: TOptionFilter | null,
+  category: TOptionFilter | null
+};
+
+export type TUserProfile = {
+  access_token?: string,
+  refresh_token?: string,
+  token_type?: string,
+}
+
 export type API_TStoriesSearch = {
   keyword?: string,
   author_id?: number,
@@ -114,20 +132,8 @@ export type API_TRatingLike = {
   user_id: number
 }
 
-export type TOptionFilter = { label: string, value: any };
-
-export type TOptionFilterState = {
-  author: TOptionFilter | null,
-  sort: TOptionFilter | null,
-  votes: TOptionFilter | null,
-  chapters: TOptionFilter | null,
-  rating: TOptionFilter | null,
-  status: TOptionFilter | null,
-  category: TOptionFilter | null
-};
-
-export type TUserProfile = {
-  access_token?: string,
-  refresh_token?: string,
-  token_type?: string,
+export type API_TRegister = {
+  email: string,
+  username: string,
+  password: string
 }
