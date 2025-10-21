@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { View, FlatList } from 'react-native';
 
 import { TStory } from '@/models/types';
 import { IFilterSVG } from '@/assets/svg';
 import { NUM_COLUMNS } from '@/constants';
 import { runAfterInteractions } from '@/utils/app';
+import { TOptionFilterState } from '@/models/types';
 import { useStackIsFocused } from '@/useHooks/useNavigation';
 import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 import { useSearchStoriesByQuery } from '@/useQuery/useSearchStoriesByQuery';
@@ -24,9 +25,13 @@ export const Library: React.FC<{}> = () => {
 
   const { isFocused } = useStackIsFocused();
 
+  const [searchOptions, setSearchOptions] = useState('');
+
   const querySearchStoriesByQuery = useSearchStoriesByQuery({ enabled: false });
 
-  const data: TStory[] = querySearchStoriesByQuery?.data || [];
+  const queryRef = useRef<TOptionFilterState>({ author: null, sort: null, votes: null, chapters: null, rating: null, status: null, category: null });
+
+  const data = querySearchStoriesByQuery?.data || [];
 
   const totalFill = !(data?.length % NUM_COLUMNS) ? NUM_COLUMNS : (data?.length % NUM_COLUMNS);
 
@@ -35,7 +40,33 @@ export const Library: React.FC<{}> = () => {
   const isLoadMoreRef = useRef(true);
 
   const _onPressFilter = async () => {
-    const result = await new Promise(resolve => SearchStoriesInstance.show({ resolve }));
+    const query: typeof queryRef.current = await new Promise(resolve => SearchStoriesInstance.show({ query: queryRef.current, resolve }));
+
+    if (!query) return null;
+
+    queryRef.current = query;
+
+    const options = JSON.parse(searchOptions);
+
+    const keyword = options?.keyword;
+
+    const author_id = query?.author?.value;
+
+    const sort_by = query?.sort?.value;
+
+    const min_votes = query?.votes?.value;
+
+    const min_chapters = query?.chapters?.value?.[0];
+
+    const max_chapters = query?.chapters?.value?.[1];
+
+    const min_rating = query?.rating?.value;
+
+    const status = query?.status?.value;
+
+    const category_ids = [query?.category?.value];
+
+    const params = { keyword, author_id, sort_by, min_votes, min_chapters, max_chapters, min_rating, status, category_ids, rank_by: null, time_range: 'all', tag_ids: [0] }
   }
 
   const _onRefresh = async () => await querySearchStoriesByQuery.refetch?.();

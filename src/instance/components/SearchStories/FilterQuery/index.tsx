@@ -2,13 +2,14 @@ import React, { useState, forwardRef, useImperativeHandle } from 'react';
 import { View } from 'react-native';
 
 import { IArrowFullSVG } from '@/assets/svg';
+import { TOptionFilterState } from '@/models/types';
 import { FILTER_OPTION_AUTHOR, FILTER_OPTION_SORT, FILTER_OPTION_VOTES, FILTER_OPTION_CHAPTERS, FILTER_OPTION_RATING, FILTER_OPTION_STATUS, FILTER_OPTION_CATEGORY } from '@/constants';
 
 import { TextBase } from '@/components/TextBase';
 import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
-import { TFilterQueryProps, TFilterQueryRefs, TOptionFilterState, TOptionQuery } from '../types';
+import { TFilterQueryProps, TFilterQueryRefs, TOptionQuery } from '../types';
 
 export const FilterQuery = forwardRef<TFilterQueryRefs, TFilterQueryProps>(({ query, onPressFilter }, ref) => {
 

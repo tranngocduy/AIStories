@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, ScrollView } from 'react-native';
 
+import { TOptionFilter } from '@/models/types';
 import { FILTER_OPTION_SORT } from '@/constants';
 
 import { TextBase } from '@/components/TextBase';
@@ -8,7 +9,7 @@ import { OptionFilter } from '@/components/OptionFilter';
 import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
-import { TPageFilterProps, TOptionFilter } from '../types';
+import { TPageFilterProps } from '../types';
 
 export const PageSort: React.FC<TPageFilterProps> = ({ onChangeFilter }) => {
 

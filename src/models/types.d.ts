@@ -113,3 +113,15 @@ export type API_TRatingLike = {
   rating_id: number,
   user_id: number
 }
+
+export type TOptionFilter = { label: string, value: any };
+
+export type TOptionFilterState = {
+  author: TOptionFilter | null,
+  sort: TOptionFilter | null,
+  votes: TOptionFilter | null,
+  chapters: TOptionFilter | null,
+  rating: TOptionFilter | null,
+  status: TOptionFilter | null,
+  category: TOptionFilter | null
+};

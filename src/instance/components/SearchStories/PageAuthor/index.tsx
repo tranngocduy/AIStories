@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { View, ScrollView } from 'react-native';
 
-import { TStoryAuthor } from '@/models/types';
 import { FILTER_OPTION_AUTHOR } from '@/constants';
+import { TStoryAuthor, TOptionFilter } from '@/models/types';
 import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 import { useSearchAuthorByName } from '@/useQuery/useSearchAuthorByName';
 
@@ -12,7 +12,7 @@ import { TouchableView } from '@/components/TouchableView';
 import { TextInputSearch, TTextInputSearchRef } from '@/components/TextInputSearch';
 
 import { styles } from './styles';
-import { TPageFilterProps, TOptionFilter } from '../types';
+import { TPageFilterProps } from '../types';
 
 export const PageAuthor: React.FC<TPageFilterProps> = ({ onChangeFilter }) => {
 
