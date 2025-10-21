@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { fonts, statusHeight, headerHeight } from '@/theme';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     paddingTop: statusHeight,
     backgroundColor: 'transparent'
@@ -28,5 +28,3 @@ const styles = StyleSheet.create({
     height: 24
   }
 });
-
-export default styles;

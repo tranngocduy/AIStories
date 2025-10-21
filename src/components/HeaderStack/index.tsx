@@ -7,7 +7,7 @@ import { useStackNavigation } from '@/useHooks/useNavigation';
 import { TextBase } from '@/components/TextBase';
 import { TouchableView } from '@/components/TouchableView';
 
-import styles from './styles';
+import { styles } from './styles';
 
 type THeaderStack = { label?: string };
 
