@@ -2,11 +2,11 @@ import React, { useState, useRef } from 'react';
 import { View, FlatList } from 'react-native';
 
 import { IFilterSVG } from '@/assets/svg';
-import { NUM_COLUMNS } from '@/constants';
 import { runAfterInteractions } from '@/utils/app';
 import { parseDataToObject } from '@/utils/format';
 import { TStory, TOptionFilterState } from '@/models/types';
 import { useStackIsFocused } from '@/useHooks/useNavigation';
+import { NUM_COLUMNS, FILTER_OPTION_SORT } from '@/constants';
 import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 import { useSearchStoriesByQuery } from '@/useQuery/useSearchStoriesByQuery';
 
@@ -27,7 +27,7 @@ export const Library: React.FC<{}> = () => {
 
   const [searchOptions, setSearchOptions] = useState('');
 
-  const querySearchStoriesByQuery = useSearchStoriesByQuery({ enabled: false });
+  const querySearchStoriesByQuery = useSearchStoriesByQuery({ searchOptions });
 
   const queryRef = useRef<TOptionFilterState>({ author: null, sort: null, votes: null, chapters: null, rating: null, status: null, category: null });
 
@@ -52,7 +52,7 @@ export const Library: React.FC<{}> = () => {
 
     const author_id = query?.author?.value;
 
-    const sort_by = query?.sort?.value;
+    const sort_by = (query?.sort?.value !== FILTER_OPTION_SORT?.[0].value) ? query?.sort?.value : null;
 
     const min_votes = query?.votes?.value;
 
@@ -64,11 +64,11 @@ export const Library: React.FC<{}> = () => {
 
     const status = query?.status?.value;
 
-    const category_ids = [query?.category?.value];
+    const category_ids = !!query?.category?.value ? [query?.category?.value] : null;
 
-    const params = { keyword, author_id, sort_by, min_votes, min_chapters, max_chapters, min_rating, status, category_ids, rank_by: null, time_range: 'all', tag_ids: [0] };
+    if (!keyword && !author_id && !sort_by && !min_votes && !min_chapters && !max_chapters && !min_rating && !status && !category_ids) setSearchOptions('');
 
-    console.log('params', params)
+    else setSearchOptions((JSON.stringify({ keyword, author_id, sort_by, min_votes, min_chapters, max_chapters, min_rating, status, category_ids })));
   }
 
   const _onRefresh = async () => await querySearchStoriesByQuery.refetch?.();

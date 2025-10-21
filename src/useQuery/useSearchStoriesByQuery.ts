@@ -1,11 +1,14 @@
 import { ServiceAPI } from '@/apis';
 import { flatten } from '@/utils/lodash';
+import { parseDataToObject } from '@/utils/format';
 import { useInfiniteQuery, QUERY_KEYS } from '@/useQuery/constants';
 
-const _loadData = async ({ page }: { page: number }) => {
+const _loadData = async ({ searchOptions, page }: { searchOptions?: string, page: number }) => {
   const nextPage = page + 1;
 
-  const result = await ServiceAPI.searchStoriesByQueryString(nextPage, { keyword: '' });
+  const params = parseDataToObject(searchOptions);
+
+  const result = await ServiceAPI.searchStoriesByQueryString(nextPage, params);
 
   const data = result?.data?.items || [];
 
@@ -16,14 +19,14 @@ const _loadData = async ({ page }: { page: number }) => {
   return { data, page: nextPage, hasNextPage };
 }
 
-export const useSearchStoriesByQuery = ({ enabled = true } = {}) => {
+export const useSearchStoriesByQuery = ({ searchOptions }: { searchOptions?: string } = {}) => {
   const query = useInfiniteQuery({
-    queryKey: [QUERY_KEYS.SEARCH_STORIES_BY_QUERY],
-    queryFn: async ({ pageParam: { page } }) => await _loadData({ page }),
+    queryKey: [QUERY_KEYS.SEARCH_STORIES_BY_QUERY, { searchOptions }],
+    queryFn: async ({ pageParam: { page } }) => await _loadData({ searchOptions, page }),
     getNextPageParam: lastPage => !!lastPage.hasNextPage ? ({ page: lastPage.page, hasNextPage: lastPage.hasNextPage }) : null,
     select: data => flatten(data.pages.map((page) => page.data)),
     initialPageParam: { page: 0, hasNextPage: false },
-    enabled
+    enabled: !!searchOptions
   });
 
   return query;
