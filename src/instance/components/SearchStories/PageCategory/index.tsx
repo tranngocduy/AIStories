@@ -8,6 +8,7 @@ import { useGetAllCategory } from '@/useQuery/useGetAllCategory';
 import { TextBase } from '@/components/TextBase';
 import { OptionFilter } from '@/components/OptionFilter';
 import { TouchableView } from '@/components/TouchableView';
+import { ProgressSkeleton } from '@/components/ProgressSkeleton';
 
 import { styles } from './styles';
 import { TPageFilterProps, TOptionFilter } from '../types';
@@ -18,7 +19,7 @@ export const PageCategory: React.FC<TPageFilterProps> = ({ onChangeFilter }) => 
 
   const data = queryGetAllCategory?.data?.map?.((element: TCategory) => ({ label: element?.name, value: element?.id }));
 
-  const items = [{ ...FILTER_OPTION_CATEGORY[0] }, ...(data || [])];
+  const items = [{ ...FILTER_OPTION_CATEGORY[0] }, ...(data || new Array(10).fill(''))];
 
   const [selected, setSelected] = useState<TOptionFilter>(items[0]);
 
@@ -28,6 +29,8 @@ export const PageCategory: React.FC<TPageFilterProps> = ({ onChangeFilter }) => 
 
   const _renderItem = (option: TOptionFilter, index: number) => {
     const isActive = (option.value === selected.value);
+
+    if (!option) return <ProgressSkeleton width={60} height={37} radius={100} key={index} />;
 
     return <OptionFilter option={option} isActive={isActive} onSelect={_onSelect} key={index} />;
   }
