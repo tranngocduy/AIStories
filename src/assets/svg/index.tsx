@@ -24,6 +24,12 @@ export const ITabUserProfileSVG = (props: SvgProps) => <ITabUserProfile_SVG {...
 import ITabUserProfileActive_SVG from './resource/iTabUserProfileActive.svg';
 export const ITabUserProfileActiveSVG = (props: SvgProps) => <ITabUserProfileActive_SVG {...props} />;
 
+import IEyeOn_SVG from './resource/iEyeOn.svg';
+export const IEyeOnSVG = (props: SvgProps) => <IEyeOn_SVG {...props} />;
+
+import IEyeOff_SVG from './resource/iEyeOff.svg';
+export const IEyeOffSVG = (props: SvgProps) => <IEyeOff_SVG {...props} />;
+
 import ITotalView_SVG from './resource/iTotalView.svg';
 export const ITotalViewSVG = (props: SvgProps) => <ITotalView_SVG {...props} />;
 
@@ -77,3 +83,6 @@ export const ICloseModalSVG = (props: SvgProps) => <ICloseModal_SVG {...props} /
 
 import IArrowFull_SVG from './resource/iArrowFull.svg';
 export const IArrowFullSVG = (props: SvgProps) => <IArrowFull_SVG {...props} />;
+
+import IErrorCircle_SVG from './resource/iErrorCircle.svg';
+export const IErrorCircleSVG = (props: SvgProps) => <IErrorCircle_SVG {...props} />;
