@@ -24,6 +24,12 @@ export const ITabUserProfileSVG = (props: SvgProps) => <ITabUserProfile_SVG {...
 import ITabUserProfileActive_SVG from './resource/iTabUserProfileActive.svg';
 export const ITabUserProfileActiveSVG = (props: SvgProps) => <ITabUserProfileActive_SVG {...props} />;
 
+import IUser_SVG from './resource/iUser.svg';
+export const IUserSVG = (props: SvgProps) => <IUser_SVG {...props} />;
+
+import ILock_SVG from './resource/iLock.svg';
+export const ILockSVG = (props: SvgProps) => <ILock_SVG {...props} />;
+
 import IEyeOn_SVG from './resource/iEyeOn.svg';
 export const IEyeOnSVG = (props: SvgProps) => <IEyeOn_SVG {...props} />;
 
