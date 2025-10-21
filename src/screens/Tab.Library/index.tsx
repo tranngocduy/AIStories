@@ -4,6 +4,7 @@ import { View, FlatList } from 'react-native';
 import { IFilterSVG } from '@/assets/svg';
 import { NUM_COLUMNS } from '@/constants';
 import { runAfterInteractions } from '@/utils/app';
+import { parseDataToObject } from '@/utils/format';
 import { TStory, TOptionFilterState } from '@/models/types';
 import { useStackIsFocused } from '@/useHooks/useNavigation';
 import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
@@ -45,9 +46,9 @@ export const Library: React.FC<{}> = () => {
 
     queryRef.current = query;
 
-    const options = JSON.parse(searchOptions);
+    const options = parseDataToObject(searchOptions);
 
-    const keyword = options?.keyword;
+    const keyword = options?.keyword || '';
 
     const author_id = query?.author?.value;
 
@@ -65,7 +66,9 @@ export const Library: React.FC<{}> = () => {
 
     const category_ids = [query?.category?.value];
 
-    const params = { keyword, author_id, sort_by, min_votes, min_chapters, max_chapters, min_rating, status, category_ids, rank_by: null, time_range: 'all', tag_ids: [0] }
+    const params = { keyword, author_id, sort_by, min_votes, min_chapters, max_chapters, min_rating, status, category_ids, rank_by: null, time_range: 'all', tag_ids: [0] };
+
+    console.log('params', params)
   }
 
   const _onRefresh = async () => await querySearchStoriesByQuery.refetch?.();
