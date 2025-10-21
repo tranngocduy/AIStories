@@ -3,7 +3,6 @@ import { View, FlatList } from 'react-native';
 
 import { IFilterSVG } from '@/assets/svg';
 import { runAfterInteractions } from '@/utils/app';
-import { parseDataToObject } from '@/utils/format';
 import { TStory, TOptionFilterState } from '@/models/types';
 import { useStackIsFocused } from '@/useHooks/useNavigation';
 import { NUM_COLUMNS, FILTER_OPTION_SORT } from '@/constants';
@@ -30,6 +29,10 @@ export const Library: React.FC<{}> = () => {
 
   const querySearchStoriesByQuery = useSearchStoriesByQuery({ searchOptions });
 
+  const searchTextRef = useRef('');
+
+  const timeoutRef = useRef<NodeJS.Timeout>(null);
+
   const queryRef = useRef<TOptionFilterState>({ author: null, sort: null, votes: null, chapters: null, rating: null, status: null, category: null });
 
   const data = querySearchStoriesByQuery?.data || [];
@@ -40,6 +43,16 @@ export const Library: React.FC<{}> = () => {
 
   const isLoadMoreRef = useRef(true);
 
+  const _onChangeText = (value: string) => {
+    searchTextRef.current = value;
+
+    const timer = !!value ? 500 : 0;
+
+    if (!!timeoutRef.current) clearTimeout(timeoutRef.current);
+
+    timeoutRef.current = setTimeout(() => { _onSearch(searchTextRef.current, queryRef.current) }, timer);
+  }
+
   const _onPressFilter = async () => {
     const query: typeof queryRef.current = await new Promise(resolve => SearchStoriesInstance.show({ query: queryRef.current, resolve }));
 
@@ -47,9 +60,11 @@ export const Library: React.FC<{}> = () => {
 
     queryRef.current = query;
 
-    const options = parseDataToObject(searchOptions);
+    _onSearch(searchTextRef.current, queryRef.current);
+  }
 
-    const keyword = options?.keyword || '';
+  const _onSearch = (searchText: string, query: typeof queryRef.current) => {
+    const keyword = searchText || '';
 
     const author_id = query?.author?.value;
 
@@ -101,7 +116,7 @@ export const Library: React.FC<{}> = () => {
       <View style={styles.titleView}><TextBase style={styles.title}>Thư viện truyện</TextBase></View>
 
       <View style={styles.searchView}>
-        <TextInputSearch placeholder='Tìm kiếm truyện...' />
+        <TextInputSearch placeholder='Tìm kiếm truyện...' onChangeText={_onChangeText} />
         <TouchableView style={styles.searchButton} onPress={_onPressFilter}><IFilterSVG /><TextBase style={styles.filterLabel}>Lọc</TextBase></TouchableView>
       </View>
 
