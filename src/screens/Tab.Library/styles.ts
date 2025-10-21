@@ -35,7 +35,6 @@ export const styles = StyleSheet.create({
     height: 40,
     borderRadius: 100,
     backgroundColor: '#F2F2F2',
-    overflow: 'hidden',
     columnGap: 8
   },
   filterLabel: {
@@ -55,5 +54,14 @@ export const styles = StyleSheet.create({
   wrapperStyle: {
     flex: 1,
     columnGap: 10
+  },
+  filtered: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: 10,
+    height: 10,
+    borderRadius: 10,
+    backgroundColor: '#000000'
   }
 });

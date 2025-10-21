@@ -117,7 +117,10 @@ export const Library: React.FC<{}> = () => {
 
       <View style={styles.searchView}>
         <TextInputSearch placeholder='Tìm kiếm truyện...' onChangeText={_onChangeText} />
-        <TouchableView style={styles.searchButton} onPress={_onPressFilter}><IFilterSVG /><TextBase style={styles.filterLabel}>Lọc</TextBase></TouchableView>
+        <TouchableView style={styles.searchButton} onPress={_onPressFilter}>
+          {!!searchOptions && <View style={styles.filtered} />}
+          <IFilterSVG /><TextBase style={styles.filterLabel}>Lọc</TextBase>
+        </TouchableView>
       </View>
 
       <View style={styles.view}>
