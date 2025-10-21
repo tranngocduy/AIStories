@@ -1,4 +1,4 @@
-import { TOptionFilterState } from "@/models/types";
+import { TOptionFilterState } from '@/models/types';
 
 export type TTypeFilterState = 'author' | 'sort' | 'votes' | 'chapters' | 'rating' | 'status' | 'category' | '';
 

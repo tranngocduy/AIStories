@@ -1,11 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { View, FlatList } from 'react-native';
 
-import { TStory } from '@/models/types';
 import { IFilterSVG } from '@/assets/svg';
 import { NUM_COLUMNS } from '@/constants';
 import { runAfterInteractions } from '@/utils/app';
-import { TOptionFilterState } from '@/models/types';
+import { TStory, TOptionFilterState } from '@/models/types';
 import { useStackIsFocused } from '@/useHooks/useNavigation';
 import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 import { useSearchStoriesByQuery } from '@/useQuery/useSearchStoriesByQuery';
