@@ -98,7 +98,7 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ query, resolve, o
 
   const memoFilterQuery = useMemo(() => <FilterQuery query={query} onPressFilter={_onPressFilter} ref={filterQueryRef} />, []);
 
-  const memoPageAuthor = useMemo(() => <PageAuthor onChangeFilter={_onChangeFilter} />, []);
+  const memoPageAuthor = useMemo(() => <PageAuthor query={query?.author} onChangeFilter={_onChangeFilter} />, []);
 
   const memoPageSort = useMemo(() => <PageSort query={query?.sort} onChangeFilter={_onChangeFilter} />, []);
 
@@ -110,7 +110,7 @@ export const SearchStories: React.FC<TSearchStoriesProps> = ({ query, resolve, o
 
   const memoPageStatus = useMemo(() => <PageStatus query={query?.status} onChangeFilter={_onChangeFilter} />, []);
 
-  const memoPageCategory = useMemo(() => <PageCategory onChangeFilter={_onChangeFilter} />, []);
+  const memoPageCategory = useMemo(() => <PageCategory query={query?.category} onChangeFilter={_onChangeFilter} />, []);
 
   return (
     <InstanceModal onHide={onHide} ref={instanceModalRef}>

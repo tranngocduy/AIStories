@@ -14,13 +14,15 @@ import { TextInputSearch, TTextInputSearchRef } from '@/components/TextInputSear
 import { styles } from './styles';
 import { TPageFilterProps } from '../types';
 
-export const PageAuthor: React.FC<TPageFilterProps> = ({ onChangeFilter }) => {
+export const PageAuthor: React.FC<TPageFilterProps> = ({ query, onChangeFilter }) => {
 
   const ITEM = { ...FILTER_OPTION_AUTHOR[0] };
 
+  const SELECTED = !!query?.value ? { name: query?.label, id: query?.value } : null;
+
   const [search, setSearch] = useState('');
 
-  const [selected, setSelected] = useState<TOptionFilter>(ITEM);
+  const [selected, setSelected] = useState<TOptionFilter>(query || ITEM);
 
   const timeoutRef = useRef<NodeJS.Timeout>(null);
 
@@ -28,7 +30,7 @@ export const PageAuthor: React.FC<TPageFilterProps> = ({ onChangeFilter }) => {
 
   const querySearchAuthorByName = useSearchAuthorByName({ search });
 
-  const data = querySearchAuthorByName?.data || [];
+  const data = querySearchAuthorByName?.data || (!!SELECTED ? [SELECTED] : []);
 
   const _onSearch = (value: string) => {
     if (!!timeoutRef.current) clearTimeout(timeoutRef.current);

@@ -13,7 +13,7 @@ import { ProgressSkeleton } from '@/components/ProgressSkeleton';
 import { styles } from './styles';
 import { TPageFilterProps } from '../types';
 
-export const PageCategory: React.FC<TPageFilterProps> = ({ onChangeFilter }) => {
+export const PageCategory: React.FC<TPageFilterProps> = ({ query, onChangeFilter }) => {
 
   const queryGetAllCategory = useGetAllCategory();
 
@@ -21,7 +21,7 @@ export const PageCategory: React.FC<TPageFilterProps> = ({ onChangeFilter }) => 
 
   const items = [{ ...FILTER_OPTION_CATEGORY[0] }, ...(data || new Array(10).fill(''))];
 
-  const [selected, setSelected] = useState<TOptionFilter>(items[0]);
+  const [selected, setSelected] = useState<TOptionFilter>(query || items[0]);
 
   const _onSelect = (value: TOptionFilter) => setSelected(value);
 
