@@ -92,3 +92,9 @@ export const IArrowFullSVG = (props: SvgProps) => <IArrowFull_SVG {...props} />;
 
 import IErrorCircle_SVG from './resource/iErrorCircle.svg';
 export const IErrorCircleSVG = (props: SvgProps) => <IErrorCircle_SVG {...props} />;
+
+import IToastSuccess_SVG from './resource/iToastSuccess.svg';
+export const IToastSuccessSVG = (props: SvgProps) => <IToastSuccess_SVG {...props} />;
+
+import IToastError_SVG from './resource/iToastError.svg';
+export const IToastErrorSVG = (props: SvgProps) => <IToastError_SVG {...props} />;

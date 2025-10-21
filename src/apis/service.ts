@@ -1,6 +1,6 @@
 import { api } from './api';
 
-import { API_TStoriesSearch, API_TRatingLike } from '@/models/types';
+import { API_TStoriesSearch, API_TRatingLike, API_TRegister } from '@/models/types';
 
 export const storiesDashboard = async () => {
   const method = 'GET';
@@ -53,5 +53,11 @@ export const searchAuthorByName = async (search: string) => {
 export const getAllCategory = async (page?: number, limit?: number) => {
   const method = 'GET';
   const result = await api(`${process.env.$app.BASE_API}/categories/?page=${page}&limit=${limit}`, method);
+  return result;
+}
+
+export const register = async (body: API_TRegister) => {
+  const method = 'POST';
+  const result = await api(`${process.env.$app.BASE_API}/auth/register`, method, body);
   return result;
 }
