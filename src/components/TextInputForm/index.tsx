@@ -38,7 +38,7 @@ export const TextInputForm: React.FC<TTextInputForm> = ({ inputIcon, error, ...p
 
   const _onChangeText = (value: string) => props?.onChangeText?.(value);
 
-  useEffect(() => { borderRef.current?.setNativeProps?.({ borderColor: !!error ? border.error : border.blur }); }, [error]);
+  useEffect(() => { borderRef.current?.setNativeProps?.({ borderColor: !!error ? border.error : !!isFocusRef.current ? border.focus : border.blur }); }, [error]);
 
   const memoTextMsgError = useMemo(() => <TextMsgError error={error} />, [error]);
 
