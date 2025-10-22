@@ -4,6 +4,8 @@ import { View, FlatList } from 'react-native';
 import { IFilterSVG } from '@/assets/svg';
 import { TStory, TOptionFilterState } from '@/models/types';
 import { NUM_COLUMNS, FILTER_OPTION_SORT } from '@/constants';
+import { useRouteNavigation } from '@/useHooks/useNavigation';
+import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 import { useSearchStoriesByQuery } from '@/useQuery/useSearchStoriesByQuery';
 
 import { TextBase } from '@/components/TextBase';
@@ -19,6 +21,8 @@ import { SearchStoriesInstance } from '@/instance';
 import { styles } from './styles';
 
 export const Library: React.FC<{}> = () => {
+
+  const { params } = useRouteNavigation('Library');
 
   const [searchOptions, setSearchOptions] = useState('');
 
@@ -91,6 +95,8 @@ export const Library: React.FC<{}> = () => {
       isLoadMoreRef.current = true;
     }
   }
+
+  useEffectAfterMount(() => { if (!!params.searchOptions) setSearchOptions(params.searchOptions); }, [params?.searchOptions]);
 
   const _viewsEmpty = useMemo(() => <EmptyList />, []);
 

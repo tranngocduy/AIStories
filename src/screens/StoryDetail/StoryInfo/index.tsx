@@ -31,9 +31,9 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
 
   const status = !!detail?.status ? (STORY_STATUS_LABEL_MAPPING?.[detail?.status] || '-') : '-';
 
-  const _onPressAuthor = () => stackNavigationRef.popToTopBeforeNavigate('Library');
-
   const _onPressStoryDetail = () => { }
+
+  const _onPressAuthor = () => stackNavigationRef.popToTopBeforeNavigate('Library', { searchOptions: JSON.stringify({ author_id: detail?.author?.id }) });
 
   return (
     <View style={styles.container}>

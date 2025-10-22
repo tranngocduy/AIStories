@@ -4,10 +4,10 @@ import { useNavigation, useIsFocused, useRoute, RouteProp, StackActions, CommonA
 import { TStory } from '@/models/types';
 
 type RootStackParamList = {
-  Library: undefined,
   UserSignIn: undefined,
   UserSignUp: undefined,
-  StoryDetail: { story: TStory }
+  StoryDetail: { story: TStory },
+  Library: { searchOptions: string }
 }
 
 export const navigationRef = createNavigationContainerRef<RootStackParamList>();
