@@ -45,26 +45,7 @@ const _requestApi = async (url: string, method: IMethod, headers: IHeader, clone
   }
 };
 
-const _fetchData = async (url: string, method: IMethod, headers: IHeader, data?: any): Promise<IResponse> => {
-  const clonedBody = { ...(data || {}) };
-
-  const [error, result] = await _requestApi(url, method, headers, clonedBody);
-
-  try {
-    if (!!error) throw Error(error);
-
-    if (!!result?.error?.message) throw Error(result?.error?.message);
-
-    if ((result?.status !== 200) && !!result?.message) throw Error(result?.message);
-
-    return result;
-
-  } catch (e) {
-    return { msgError: _formatErrorData(e) };
-  }
-}
-
-const refreshToken = async (headers: IHeader, refresh_token: string) => {
+const _refreshToken = async (headers: IHeader, refresh_token: string) => {
   const method = 'POST';
   const url = `${process.env.$app.BASE_API}/auth/refresh-token`;
 
@@ -85,7 +66,7 @@ const _getRequestToken = async (headers: IHeader) => {
 
   const isExpiredToken = _checkExpiredToken(userJWT?.exp);
 
-  if (!!isExpiredToken) refreshTokenRequest = refreshTokenRequest ? refreshTokenRequest : refreshToken(headers, refresh_token);
+  if (!!isExpiredToken) refreshTokenRequest = refreshTokenRequest ? refreshTokenRequest : _refreshToken(headers, refresh_token);
 
   const userInfo = await refreshTokenRequest;
 
@@ -94,6 +75,23 @@ const _getRequestToken = async (headers: IHeader) => {
   refreshTokenRequest = null;
 
   return `Bearer ${Authorization?.current?.access_token}`;
+}
+
+const _fetchData = async (url: string, method: IMethod, headers: IHeader, data?: any): Promise<IResponse> => {
+  const clonedBody = { ...(data || {}) };
+
+  const [error, result] = await _requestApi(url, method, headers, clonedBody);
+
+  try {
+    if (!!error) throw Error(error);
+
+    if (!!result?.detail?.message) throw Error(result?.detail?.message);
+
+    return result;
+
+  } catch (e) {
+    return { msgError: _formatErrorData(e) };
+  }
 }
 
 export const api = async (url: string, method: IMethod, data?: any): Promise<IResponse> => {
