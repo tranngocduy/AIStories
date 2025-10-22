@@ -107,9 +107,9 @@ export type TOptionFilterState = {
 };
 
 export type TUserProfile = {
-  access_token?: string,
-  refresh_token?: string,
-  token_type?: string,
+  access_token: string,
+  refresh_token: string,
+  token_type: string,
 }
 
 export type API_TStoriesSearch = {
