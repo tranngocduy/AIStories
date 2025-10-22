@@ -68,6 +68,12 @@ export const register = async (body: API_TRegister) => {
   return result;
 }
 
+export const logout = async () => {
+  const method = 'POST';
+  const result = await api(`${process.env.$app.BASE_API}/auth/logout`, method);
+  return result;
+}
+
 export const getUserInfo = async () => {
   const method = 'GET';
   const result = await api(`${process.env.$app.BASE_API}/users/me`, method);
