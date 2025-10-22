@@ -12,10 +12,10 @@ const _shallowData = (oldData: any, newUpdate: any) => {
 }
 
 export const useIStore = create<IStore>((set) => ({
-  userProfile: {},
+  userProfile: null,
   updateUserProfile: (data: TStoreUserProfile) => {
     set(state => ({ userProfile: _shallowData(state.userProfile, data) }))
   },
 
-  clearStore: () => set(() => ({ userProfile: {} }))
+  clearStore: () => set(() => ({ userProfile: null }))
 }));
