@@ -4,7 +4,7 @@ import { useQuery, QUERY_KEYS } from '@/useQuery/constants';
 const _loadData = async () => {
   const result = await ServiceAPI.getStoryMarked();
 
-  return (result?.data || {});
+  return (result?.data || []);
 }
 
 export const useStoryMarked = ({ enabled = true }: { enabled?: boolean }) => {
