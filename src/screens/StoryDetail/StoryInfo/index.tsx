@@ -53,7 +53,7 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
                 <ProgressSkeleton width={80} height={24} radius={4} />
                 :
                 <TouchableView style={styles.authorContent} onPress={_onPressAuthor}>
-                  <IUserAvatarSVG />
+                  <IUserAvatarSVG fill='#FFFFFF' />
                   <TextBase style={styles.authorLabel}>{author}</TextBase>
                 </TouchableView>
               }

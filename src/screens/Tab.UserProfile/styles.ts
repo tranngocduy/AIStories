@@ -7,17 +7,90 @@ export const styles = StyleSheet.create({
     paddingTop: statusHeight
   },
   view: {
-    flex: 1
+    flex: 1,
+    padding: 16
   },
   titleView: {
     paddingTop: 24,
-    paddingLeft: 16,
-    paddingBottom: 16
+    paddingLeft: 16
   },
   title: {
     ...fonts.default.normal700,
     fontSize: 24,
     lineHeight: 36,
     color: '#000000'
+  },
+  userView: {
+    flexDirection: 'row',
+    padding: 16,
+    borderRadius: 8,
+    backgroundColor: '#FFFFFF',
+    boxShadow: '0px 4px 24px rgba(0, 0, 0, 0.1)'
+  },
+  avatarView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 48,
+    height: 48,
+    borderRadius: 48,
+    overflow: 'hidden'
+  },
+  userInfo: {
+    flex: 1,
+    marginLeft: 16
+  },
+  info: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  username: {
+    ...fonts.default.normal700,
+    fontSize: 16,
+    lineHeight: 24,
+    color: '#000000'
+  },
+  userId: {
+    ...fonts.default.normal400,
+    fontSize: 14,
+    lineHeight: 24,
+    color: '#000000'
+  },
+  account: {
+    ...fonts.default.normal400,
+    fontSize: 14,
+    lineHeight: 21,
+    color: '#940000'
+  },
+  detail: {
+    marginTop: 24
+  },
+  item: {
+    height: 56,
+    flexDirection: 'row',
+    alignItems: 'center',
+    columnGap: 8
+  },
+  icon: {
+    transform: [{ rotate: '270deg' }]
+  },
+  labelItem: {
+    ...fonts.default.normal500,
+    fontSize: 14,
+    lineHeight: 21,
+    color: '#000000'
+  },
+  labelLogout: {
+    ...fonts.default.normal500,
+    fontSize: 14,
+    lineHeight: 21,
+    color: '#940000'
+  },
+  viewBG: {
+    ...StyleSheet.absoluteFillObject
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#F2F2F2'
   }
 });

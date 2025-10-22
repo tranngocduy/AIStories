@@ -30,6 +30,9 @@ export const IUserSVG = (props: SvgProps) => <IUser_SVG {...props} />;
 import ILock_SVG from './resource/iLock.svg';
 export const ILockSVG = (props: SvgProps) => <ILock_SVG {...props} />;
 
+import ILockOpen_SVG from './resource/iLockOpen.svg';
+export const ILockOpenSVG = (props: SvgProps) => <ILockOpen_SVG {...props} />;
+
 import IEyeOn_SVG from './resource/iEyeOn.svg';
 export const IEyeOnSVG = (props: SvgProps) => <IEyeOn_SVG {...props} />;
 
@@ -98,3 +101,6 @@ export const IToastSuccessSVG = (props: SvgProps) => <IToastSuccess_SVG {...prop
 
 import IToastError_SVG from './resource/iToastError.svg';
 export const IToastErrorSVG = (props: SvgProps) => <IToastError_SVG {...props} />;
+
+import ILogout_SVG from './resource/iLogout.svg';
+export const ILogoutSVG = (props: SvgProps) => <ILogout_SVG {...props} />;
