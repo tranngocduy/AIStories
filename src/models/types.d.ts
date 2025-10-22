@@ -18,6 +18,12 @@ export type TStory = {
   total_views?: number;
 }
 
+export type TStoryMarked = {
+  story?: TStory;
+  story_id?: number;
+  user_id?: number;
+}
+
 export type TTagDetail = {
   name?: string;
   slug?: string;
@@ -152,6 +158,6 @@ export type API_TRegister = {
 }
 
 export type API_TStoryMarked = {
-  story_id: number,
-  user_id: number
+  story_id?: number | null,
+  user_id?: number | null
 }
