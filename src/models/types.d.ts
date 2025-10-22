@@ -113,9 +113,9 @@ export type TOptionFilterState = {
 };
 
 export type TUserProfile = {
-  access_token?: string,
-  refresh_token?: string,
-  token_type?: string,
+  access_token: string,
+  refresh_token: string,
+  token_type: string,
 
   coin_balance?: number;
   created_at?: string;

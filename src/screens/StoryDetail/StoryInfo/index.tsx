@@ -33,7 +33,13 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
 
   const _onPressStoryDetail = () => { }
 
-  const _onPressAuthor = () => stackNavigationRef.popToTopBeforeNavigate('Library', { searchOptions: JSON.stringify({ author_id: detail?.author?.id }) });
+  const _onPressAuthor = () => {
+    if (!!detail?.author?.name && !!detail?.author?.id) {
+      const value = detail?.author?.id;
+      const label = detail?.author?.name;
+      stackNavigationRef.popToTopBeforeNavigate('Library', { filter: { label, value } });
+    }
+  }
 
   return (
     <View style={styles.container}>

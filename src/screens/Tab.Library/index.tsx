@@ -2,6 +2,7 @@ import React, { useState, useMemo, useRef } from 'react';
 import { View, FlatList } from 'react-native';
 
 import { IFilterSVG } from '@/assets/svg';
+import { runAfterInteractions } from '@/utils/app';
 import { TStory, TOptionFilterState } from '@/models/types';
 import { NUM_COLUMNS, FILTER_OPTION_SORT } from '@/constants';
 import { useRouteNavigation } from '@/useHooks/useNavigation';
@@ -96,7 +97,12 @@ export const Library: React.FC<{}> = () => {
     }
   }
 
-  useEffectAfterMount(() => { if (!!params.searchOptions) setSearchOptions(params.searchOptions); }, [params?.searchOptions]);
+  const _onFilter = () => {
+    const filter = params?.filter;
+
+  }
+
+  useEffectAfterMount(() => { if (!!params.filter) runAfterInteractions(_onFilter); }, [params?.filter]);
 
   const _viewsEmpty = useMemo(() => <EmptyList />, []);
 
