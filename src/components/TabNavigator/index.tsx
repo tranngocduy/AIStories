@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
-import { useIStore } from '@/store/store';
 import { ITabDashboardSVG, ITabDashboardActiveSVG, ITabLibrarySVG, ITabLibraryActiveSVG, ITabSavedStorySVG, ITabSavedStoryActiveSVG, ITabUserProfileSVG, ITabUserProfileActiveSVG } from '@/assets/svg';
 
 import { TextBase } from '@/components/TextBase';
@@ -22,13 +21,7 @@ export const TabNavigator: React.FC<BottomTabBarProps> = ({ navigation, state })
     { label: 'Tài khoản', page: 'UserProfile', blur: ITabUserProfileSVG, focus: ITabUserProfileActiveSVG }
   ];
 
-  const _onPress = (item: TTabItem) => {
-    const isSigned = useIStore.getState().userProfile?.is_signed;
-
-    if (['Dashboard', 'Library']?.includes?.(item?.page) || !!isSigned) navigation?.navigate?.(item.page);
-
-    if (['SavedStory', 'UserProfile']?.includes?.(item?.page) && !isSigned) navigation?.navigate?.('UserSignIn');
-  }
+  const _onPress = (item: TTabItem) => navigation?.navigate?.(item.page);
 
   const _renderItem = (item: TTabItem, index: number) => {
     const activeIndex = state.index;
