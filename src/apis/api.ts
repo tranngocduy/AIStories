@@ -19,10 +19,22 @@ const _requestApi = async (url: string, method: IMethod, headers: IHeader, clone
 
   if ((method !== 'GET') && !!clonedBody) body = JSON.stringify(clonedBody);
 
-  return await fetch(url, { method, headers, body })
-    .then(response => response.json())
-    .then(response => [null, response])
-    .catch(error => [error, null]);
+  const result = await fetch(url, { method, headers, body }).then(response => [null, response]).catch(error => [error, null]);
+
+  try {
+    const [error, response] = result;
+
+    if (!!error) return [error, null];
+
+    const responseJSON = await response.json();
+
+    return [null, responseJSON];
+
+  } catch (error) {
+
+    return [error, null];
+
+  }
 };
 
 const _fetchData = async (url: string, method: IMethod, headers: IHeader, data?: any): Promise<IResponse> => {
@@ -33,9 +45,9 @@ const _fetchData = async (url: string, method: IMethod, headers: IHeader, data?:
   try {
     if (!!error) throw Error(error);
 
-    const message = result?.error?.message;
+    if (!!result?.error?.message) throw Error(result?.error?.message);
 
-    if (!!message) throw Error(message);
+    if ((result?.status !== 200) && !!result?.message) throw Error(result?.message);
 
     return result;
 
