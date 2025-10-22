@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { View, ScrollView } from 'react-native';
 
 import { ServiceAPI } from '@/apis';
+import { StoreUpdate } from '@/store';
 import { logoIMG } from '@/assets/image';
 import { checkRule } from '@/utils/rule';
 import { IUserSVG, ILockSVG } from '@/assets/svg';
@@ -78,7 +79,8 @@ export const UserSignIn: React.FC<{}> = () => {
       if (!!result?.msgError) ToastInstance.show({ message: result?.msgError, type: 'error' });
 
       if (!!result?.data?.access_token) {
-        
+        const storeResult = await StoreUpdate(result.data);
+        if (!!storeResult?.msgError) ToastInstance.show({ message: storeResult?.msgError, type: 'error' });
       }
 
       buttonRef.current?.stopLoad?.();

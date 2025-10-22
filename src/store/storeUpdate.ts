@@ -9,7 +9,7 @@ export const StoreUpdate = async (user: TStoreUserProfile) => {
 
   const userInfo = await ServiceAPI.getUserInfo();
 
-  if (!!userInfo?.msgError) return { errorMessage: userInfo.msgError };
+  if (!!userInfo?.msgError) return { msgError: userInfo.msgError };
 
   const profile = ((user || useIStore.getState().userProfile) || {});
 
