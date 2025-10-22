@@ -14,9 +14,9 @@ export const useAuthenticate = () => {
   const _loadSecure = async () => {
     const secureInfo = await getSecureInfo();
 
-    const access_token = secureInfo.access_token;
+    const access_token = secureInfo?.access_token;
 
-    const refresh_token = secureInfo.refresh_token;
+    const refresh_token = secureInfo?.refresh_token;
 
     useIStore.getState().updateUserProfile({ access_token, refresh_token });
   }

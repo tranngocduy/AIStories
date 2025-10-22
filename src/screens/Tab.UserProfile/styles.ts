@@ -12,7 +12,8 @@ export const styles = StyleSheet.create({
   },
   titleView: {
     paddingTop: 24,
-    paddingLeft: 16
+    paddingLeft: 16,
+    paddingBottom: 12
   },
   title: {
     ...fonts.default.normal700,
