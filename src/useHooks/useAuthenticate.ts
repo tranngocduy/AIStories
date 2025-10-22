@@ -31,7 +31,7 @@ export const useAuthenticate = () => {
 
   useEffect(() => runAfterInteractions(_loadSecure, 500), []);
 
-  useEffectAfterMount(() => { runAfterInteractions(_loadData, 500); }, [access_token, refresh_token])
+  useEffectAfterMount(() => { runAfterInteractions(_loadData, 500); }, [access_token, refresh_token]);
 
   return null;
 

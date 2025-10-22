@@ -13,7 +13,7 @@ export const StoreUpdate = async (user: TStoreUserProfile) => {
 
   const profile = ((user || useIStore.getState().userProfile) || {});
 
-  useIStore.getState().updateUserProfile({ ...profile, ...userInfo.data });
+  useIStore.getState().updateUserProfile({ ...profile, ...userInfo.data, is_signed: true });
 
   return { data: true };
 }

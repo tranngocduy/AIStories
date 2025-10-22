@@ -1,6 +1,6 @@
 import { TUserProfile } from '@/models/types';
 
-export type TStoreUserProfile = { is_signed: boolean } & TUserProfile | null;
+export type TStoreUserProfile = { is_signed?: boolean } & TUserProfile | null;
 
 interface _IStore { clearStore: () => void }
 
