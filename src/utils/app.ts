@@ -1,6 +1,8 @@
 import { createRef } from 'react';
-
 import { Platform, InteractionManager } from 'react-native';
+
+import { useIStore } from '@/store';
+import { removeSecureInfo } from '@/database/secure';
 
 export const isIOS = !!(Platform.OS === 'ios');
 
@@ -17,4 +19,9 @@ export const runAfterInteractions = (fn: Function, time = 0) => {
       clearTimeout(timer);
     }, time);
   });
+}
+
+export const userLogout = async () => {
+  await removeSecureInfo();
+  useIStore.getState().clearStore();
 }
