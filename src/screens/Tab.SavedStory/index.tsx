@@ -1,13 +1,9 @@
 import React, { useMemo } from 'react';
 import { View, FlatList } from 'react-native';
 
-import { useIStore } from '@/store';
 import { TStory } from '@/models/types';
 import { NUM_COLUMNS } from '@/constants';
-import { runAfterInteractions } from '@/utils/app';
 import { useStoryMarked } from '@/useQuery/useStoryMarked';
-import { useStackIsFocused } from '@/useHooks/useNavigation';
-import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 
 import { TextBase } from '@/components/TextBase';
 import { StoryItem } from '@/components/StoryItem';
@@ -20,11 +16,7 @@ import { styles } from './styles';
 
 export const SavedStory: React.FC<{}> = () => {
 
-  const { isFocused } = useStackIsFocused();
-
-  const isSigned = useIStore(state => state.userProfile?.is_signed);
-
-  const queryStoryMarked = useStoryMarked({ enabled: false });
+  const queryStoryMarked = useStoryMarked();
 
   const data = queryStoryMarked?.data || [];
 
@@ -33,8 +25,6 @@ export const SavedStory: React.FC<{}> = () => {
   const items = !queryStoryMarked?.isSuccess ? new Array(9).fill('') : [...data, ...(new Array(NUM_COLUMNS - totalFill).fill(''))];
 
   const _onRefresh = async () => await queryStoryMarked.refetch?.();
-
-  useEffectAfterMount(() => { if (!!isFocused && !!isSigned) runAfterInteractions(_onRefresh, 350); }, [isFocused, isSigned]);
 
   const _viewsEmpty = useMemo(() => <EmptyList />, []);
 

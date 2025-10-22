@@ -1,3 +1,4 @@
+import { useIStore } from '@/store';
 import { ServiceAPI } from '@/apis';
 import { TStoryMarked } from '@/models/types';
 import { useQuery, QUERY_KEYS } from '@/useQuery/constants';
@@ -10,11 +11,13 @@ const _loadData = async () => {
   return (data || []);
 }
 
-export const useStoryMarked = ({ enabled = true }: { enabled?: boolean }) => {
+export const useStoryMarked = () => {
+  const isSigned = useIStore(state => state.userProfile?.is_signed);
+
   const query = useQuery({
-    queryKey: [QUERY_KEYS.GET_STORY_MARKED],
+    queryKey: [QUERY_KEYS.GET_STORY_MARKED, { isSigned }],
     queryFn: async () => await _loadData(),
-    enabled
+    enabled: !!isSigned
   });
 
   return query;
