@@ -6,7 +6,7 @@ import { removeSecureInfo } from '@/database/secure';
 
 export const isIOS = !!(Platform.OS === 'ios');
 
-export const Authorization = createRef<{ id: number, exp: number, access_token: string, refresh_token: string } | null>();
+export const Authorization = createRef<{ id: any, exp: any, access_token?: string, refresh_token?: string } | null>();
 
 export const timeoutSleep = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
