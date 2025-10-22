@@ -61,6 +61,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-end',
+    marginTop: 4,
     columnGap: 16
   },
   statusItem: {
