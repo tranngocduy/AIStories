@@ -67,3 +67,9 @@ export const register = async (body: API_TRegister) => {
   const result = await api(`${process.env.$app.BASE_API}/auth/register`, method, body);
   return result;
 }
+
+export const getUserInfo = async () => {
+  const method = 'GET';
+  const result = await api(`${process.env.$app.BASE_API}/users/me`, method);
+  return result;
+}
