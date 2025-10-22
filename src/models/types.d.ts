@@ -132,6 +132,11 @@ export type API_TRatingLike = {
   user_id: number
 }
 
+export type API_TLogin = {
+  email: string,
+  password: string
+}
+
 export type API_TRegister = {
   email: string,
   username: string,

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { View, ScrollView } from 'react-native';
 
+import { ServiceAPI } from '@/apis';
 import { logoIMG } from '@/assets/image';
 import { checkRule } from '@/utils/rule';
 import { IUserSVG, ILockSVG } from '@/assets/svg';
@@ -14,6 +15,8 @@ import { TextInputForm } from '@/components/TextInputForm';
 import { TouchableView } from '@/components/TouchableView';
 import { ScrollAvoidingView } from '@/components/ScrollAvoidingView';
 import { PrimaryButton, TPrimaryButtonRefs } from '@/components/PrimaryButton';
+
+import { ToastInstance } from '@/instance';
 
 import { styles } from './styles';
 
@@ -56,7 +59,7 @@ export const UserSignIn: React.FC<{}> = () => {
     setError({ ...msgError });
   }
 
-  const _onPressSignIn = () => {
+  const _onPressSignIn = async () => {
     const msgError = { ...error };
 
     if (!emailRef.current) msgError.email = 'Thông tin này là bắt buộc';
@@ -69,6 +72,14 @@ export const UserSignIn: React.FC<{}> = () => {
 
     if (!isInValid) {
       buttonRef.current?.startLoad?.();
+
+      const result = await ServiceAPI.login({ email: emailRef.current, password: passwordRef.current });
+
+      if (!!result?.msgError) ToastInstance.show({ message: result?.msgError, type: 'error' });
+
+      if (!!result?.data?.access_token) {
+        
+      }
 
       buttonRef.current?.stopLoad?.();
     }
