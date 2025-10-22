@@ -2,11 +2,8 @@ import React, { useState, useMemo, useRef } from 'react';
 import { View, FlatList } from 'react-native';
 
 import { IFilterSVG } from '@/assets/svg';
-import { runAfterInteractions } from '@/utils/app';
 import { TStory, TOptionFilterState } from '@/models/types';
-import { useStackIsFocused } from '@/useHooks/useNavigation';
 import { NUM_COLUMNS, FILTER_OPTION_SORT } from '@/constants';
-import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 import { useSearchStoriesByQuery } from '@/useQuery/useSearchStoriesByQuery';
 
 import { TextBase } from '@/components/TextBase';
@@ -22,8 +19,6 @@ import { SearchStoriesInstance } from '@/instance';
 import { styles } from './styles';
 
 export const Library: React.FC<{}> = () => {
-
-  const { isFocused } = useStackIsFocused();
 
   const [searchOptions, setSearchOptions] = useState('');
 
@@ -96,8 +91,6 @@ export const Library: React.FC<{}> = () => {
       isLoadMoreRef.current = true;
     }
   }
-
-  useEffectAfterMount(() => { if (!!isFocused) runAfterInteractions(querySearchStoriesByQuery.refetch, 350); }, [isFocused]);
 
   const _viewsEmpty = useMemo(() => <EmptyList />, []);
 
