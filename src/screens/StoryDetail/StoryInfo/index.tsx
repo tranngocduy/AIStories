@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { STORY_STATUS_LABEL_MAPPING } from '@/constants';
+import { stackNavigationRef } from '@/useHooks/useNavigation';
 import { IUserAvatarSVG, IStoryStatusSVG, ITotalChapterSVG, ITotalViewSVG, IStoryDetailSVG } from '@/assets/svg';
 
 import { TextBase } from '@/components/TextBase';
@@ -30,7 +31,7 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
 
   const status = !!detail?.status ? (STORY_STATUS_LABEL_MAPPING?.[detail?.status] || '-') : '-';
 
-  const _onPressAuthor = () => { }
+  const _onPressAuthor = () => stackNavigationRef.popToTopBeforeNavigate('Library');
 
   const _onPressStoryDetail = () => { }
 

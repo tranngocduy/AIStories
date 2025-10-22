@@ -8,6 +8,7 @@ import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react
 import { createBottomTabNavigator, BottomTabNavigationOptions, BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 import { runAfterInteractions } from '@/utils/app';
+import { navigationRef } from '@/useHooks/useNavigation';
 import { QueryClientProvider, QueryClient, QUERY_OPTIONS } from '@/useQuery/constants';
 
 import { TabNavigator } from '@/components/TabNavigator';
@@ -61,7 +62,7 @@ const AppNavigator = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <RootSiblingParent>
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
           <AppStack />
         </NavigationContainer>
       </RootSiblingParent>
