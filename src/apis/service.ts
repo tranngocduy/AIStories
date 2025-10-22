@@ -1,6 +1,6 @@
 import { api } from './api';
 
-import { API_TStoriesSearch, API_TRatingLike, API_TLogin, API_TRegister } from '@/models/types';
+import { API_TStoriesSearch, API_TRatingLike, API_TLogin, API_TRegister, API_TStoryMarked } from '@/models/types';
 
 export const storiesDashboard = async () => {
   const method = 'GET';
@@ -77,5 +77,17 @@ export const logout = async () => {
 export const getUserInfo = async () => {
   const method = 'GET';
   const result = await api(`${process.env.$app.BASE_API}/users/me`, method);
+  return result;
+}
+
+export const getStoryMarked = async () => {
+  const method = 'GET';
+  const result = await api(`${process.env.$app.BASE_API}/reading/bookmarks`, method);
+  return result;
+}
+
+export const updateStoryMarked = async (body: API_TStoryMarked) => {
+  const method = 'POST';
+  const result = await api(`${process.env.$app.BASE_API}/reading/bookmarks`, method, body);
   return result;
 }

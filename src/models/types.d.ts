@@ -150,3 +150,8 @@ export type API_TRegister = {
   username: string,
   password: string
 }
+
+export type API_TStoryMarked = {
+  story_id: number,
+  user_id: number
+}
