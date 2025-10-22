@@ -72,6 +72,7 @@ export type TChapter = {
   slug: string;
   audio_url: string | null;
   audio_duration: number | null;
+  chapter_index: number | null;
 }
 
 export type TUser = {
