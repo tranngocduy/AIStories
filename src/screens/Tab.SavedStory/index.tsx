@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo } from 'react';
 import { View, FlatList } from 'react-native';
 
 import { useIStore } from '@/store';
@@ -32,16 +32,9 @@ export const SavedStory: React.FC<{}> = () => {
 
   const items = !queryStoryMarked?.isSuccess ? new Array(9).fill('') : [...data, ...(new Array(NUM_COLUMNS - totalFill).fill(''))];
 
-  const isFocusedRef = useRef(false);
-
   const _onRefresh = async () => await queryStoryMarked.refetch?.();
 
-  const _loadData = () => {
-    if (!!isFocused && !!isSigned) isFocusedRef.current = true;
-    if (!!isFocused && !!isSigned) queryStoryMarked?.refetch?.();
-  }
-
-  useEffectAfterMount(() => { if (!isFocusedRef.current) runAfterInteractions(_loadData, 350); }, [isFocused, isSigned]);
+  useEffectAfterMount(() => { if (!!isFocused && !!isSigned) runAfterInteractions(_onRefresh, 350); }, [isFocused, isSigned]);
 
   const _viewsEmpty = useMemo(() => <EmptyList />, []);
 
