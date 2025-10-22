@@ -9,4 +9,7 @@ export const styles = StyleSheet.create({
     padding: 16,
     rowGap: 16
   },
+  empty: {
+    height: 200
+  }
 });

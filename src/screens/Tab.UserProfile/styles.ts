@@ -11,7 +11,11 @@ export const styles = StyleSheet.create({
     padding: 16
   },
   titleView: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
     paddingTop: 24,
+    paddingRight: 16,
     paddingLeft: 16,
     paddingBottom: 12
   },
@@ -86,6 +90,12 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 21,
     color: '#940000'
+  },
+  version: {
+    ...fonts.default.normal500,
+    fontSize: 14,
+    lineHeight: 21,
+    color: '#000000'
   },
   viewBG: {
     ...StyleSheet.absoluteFillObject

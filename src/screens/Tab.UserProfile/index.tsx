@@ -30,7 +30,7 @@ export const UserProfile: React.FC<{}> = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.titleView}><TextBase style={styles.title}>Tài khoản</TextBase></View>
+      <View style={styles.titleView}><TextBase style={styles.title}>Tài khoản</TextBase><TextBase style={styles.version}>Phiên bản: {process.env.$app.APP_VERSION.toFixed(1)}</TextBase></View>
 
       <Authenticate>
         <View style={styles.view}>

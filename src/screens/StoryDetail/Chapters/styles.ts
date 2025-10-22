@@ -6,5 +6,8 @@ export const styles = StyleSheet.create({
     paddingTop: 16,
     paddingRight: 16,
     paddingLeft: 16
+  },
+  empty: {
+    height: 200
   }
 });

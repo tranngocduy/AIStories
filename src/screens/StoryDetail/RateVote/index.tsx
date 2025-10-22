@@ -25,8 +25,8 @@ export const RateVote: React.FC<TRateVotesProps> = ({ story }) => {
     <View style={styles.container}>
       <View style={styles.view}>
         {!!isLoading && <ProgressIcon />}
-        {(!isLoading && !data?.[0]) && <EmptyList />}
         {(!isLoading && !!data?.[0]) && data?.map(_renderItem)}
+        {(!isLoading && !data?.[0]) && <View style={styles.empty}><EmptyList /></View>}
       </View>
     </View>
   )
