@@ -4,6 +4,7 @@ import { useNavigation, useIsFocused, useRoute, RouteProp } from '@react-navigat
 import { TStory } from '@/models/types';
 
 type RootStackParamList = {
+  UserSignIn: undefined,
   UserSignUp: undefined,
   StoryDetail: { story: TStory }
 }
