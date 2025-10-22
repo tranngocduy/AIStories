@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View } from 'react-native';
 
+import { ServiceAPI } from '@/apis';
+import { useIStore } from '@/store';
+import { TStory } from '@/models/types';
 import { IStoryMarkSVG } from '@/assets/svg';
+import { useStoryMarked } from '@/useQuery/useStoryMarked';
+import { useStackNavigation } from '@/useHooks/useNavigation';
 
 import { TouchableView } from '@/components/TouchableView';
 
@@ -11,9 +16,45 @@ type TStoryMarkProps = { storyId?: number };
 
 export const StoryMark: React.FC<TStoryMarkProps> = ({ storyId }) => {
 
-  const [isMarked, setMarked] = useState(false);
+  const { navigate } = useStackNavigation();
 
-  const _onPress = () => setMarked(!isMarked);
+  const queryStoryMarked = useStoryMarked();
+
+  const isSuccess = queryStoryMarked?.isSuccess;
+
+  const isStoryMarked = queryStoryMarked?.data?.some?.((element: TStory) => (element?.id === storyId));
+
+  const [isMarked, setMarked] = useState(isStoryMarked);
+
+  const statusRef = useRef(!!isStoryMarked);
+
+  const timeoutRef = useRef<NodeJS.Timeout>(null);
+
+  const _loadMarkStatus = async () => {
+    if (isStoryMarked === statusRef.current) return null;
+
+    const userId = useIStore.getState().userProfile?.id;
+
+    await ServiceAPI.updateStoryMarked({ story_id: storyId, user_id: userId });
+
+    await queryStoryMarked?.refetch();
+  }
+
+  const _onPress = () => {
+    if (!isSuccess) navigate('UserSignIn');
+
+    if (!isSuccess) return null;
+
+    statusRef.current = !isMarked;
+
+    setMarked(statusRef.current);
+
+    if (!!timeoutRef.current) clearTimeout(timeoutRef.current);
+
+    timeoutRef.current = setTimeout(() => _loadMarkStatus(), 1000);
+  }
+
+  useEffect(() => { if (!!isSuccess) setMarked(!!isStoryMarked); }, [isSuccess, isStoryMarked]);
 
   return (
     <View>
