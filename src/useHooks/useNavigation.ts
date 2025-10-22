@@ -1,13 +1,13 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation, useIsFocused, useRoute, RouteProp, StackActions, CommonActions, createNavigationContainerRef } from '@react-navigation/native';
 
-import { TStory, TOptionFilter } from '@/models/types';
+import { TStory, TOptionFilterState } from '@/models/types';
 
 type RootStackParamList = {
   UserSignIn: undefined,
   UserSignUp: undefined,
   StoryDetail: { story: TStory },
-  Library: { filter: TOptionFilter }
+  Library: { filter: TOptionFilterState }
 }
 
 export const navigationRef = createNavigationContainerRef<RootStackParamList>();

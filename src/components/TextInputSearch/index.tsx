@@ -42,11 +42,13 @@ export const TextInputSearch = forwardRef<TTextInputSearchRef, TextInputProps>((
   const _onClear = () => {
     searchRef.current = '';
     textInputRef?.current?.clear?.();
+    viewInputClearRef.current?.setNativeProps?.({ style: { display: 'none' } });
   }
 
   const _onSetValue = (value: string) => {
     searchRef.current = value;
     textInputRef.current?.setNativeProps?.({ text: value });
+    viewInputClearRef.current?.setNativeProps?.({ style: { display: 'flex' } });
   }
 
   const _onLoading = (isLoading: boolean) => {

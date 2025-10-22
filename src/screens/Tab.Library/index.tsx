@@ -15,7 +15,7 @@ import { EmptyList } from '@/components/EmptyList';
 import { ScrollRefresh } from '@/components/ScrollRefresh';
 import { TouchableView } from '@/components/TouchableView';
 import { StorySkeleton } from '@/components/StorySkeleton';
-import { TextInputSearch } from '@/components/TextInputSearch';
+import { TextInputSearch, TTextInputSearchRef } from '@/components/TextInputSearch';
 
 import { SearchStoriesInstance } from '@/instance';
 
@@ -32,6 +32,8 @@ export const Library: React.FC<{}> = () => {
   const searchTextRef = useRef('');
 
   const timeoutRef = useRef<NodeJS.Timeout>(null);
+
+  const textInputSearchRef = useRef<TTextInputSearchRef>(null);
 
   const queryRef = useRef<TOptionFilterState>({ author: null, sort: null, votes: null, chapters: null, rating: null, status: null, category: null });
 
@@ -100,9 +102,16 @@ export const Library: React.FC<{}> = () => {
   const _onFilter = () => {
     const filter = params?.filter;
 
+    queryRef.current = filter;
+
+    searchTextRef.current = '';
+
+    textInputSearchRef.current?.clear?.();
+
+    _onSearch(searchTextRef.current, queryRef.current);
   }
 
-  useEffectAfterMount(() => { if (!!params.filter) runAfterInteractions(_onFilter); }, [params?.filter]);
+  useEffectAfterMount(() => { if (!!params.filter) runAfterInteractions(_onFilter); }, [params]);
 
   const _viewsEmpty = useMemo(() => <EmptyList />, []);
 
@@ -121,7 +130,7 @@ export const Library: React.FC<{}> = () => {
       <View style={styles.titleView}><TextBase style={styles.title}>Thư viện truyện</TextBase></View>
 
       <View style={styles.searchView}>
-        <TextInputSearch placeholder='Tìm kiếm truyện...' onChangeText={_onChangeText} />
+        <TextInputSearch placeholder='Tìm kiếm truyện...' onChangeText={_onChangeText} ref={textInputSearchRef} />
         <TouchableView style={styles.searchButton} onPress={_onPressFilter}>
           {!!searchOptions && <View style={styles.filtered} />}
           <IFilterSVG /><TextBase style={styles.filterLabel}>Lọc</TextBase>

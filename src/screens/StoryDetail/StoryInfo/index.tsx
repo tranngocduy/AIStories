@@ -37,7 +37,8 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
     if (!!detail?.author?.name && !!detail?.author?.id) {
       const value = detail?.author?.id;
       const label = detail?.author?.name;
-      stackNavigationRef.popToTopBeforeNavigate('Library', { filter: { label, value } });
+      const filter = { author: { label, value }, sort: null, votes: null, chapters: null, rating: null, status: null, category: null };
+      stackNavigationRef.popToTopBeforeNavigate('Library', { filter });
     }
   }
 
