@@ -22,7 +22,7 @@ import { ToastInstance } from '@/instance';
 import { styles } from './styles';
 
 export const UserSignIn: React.FC<{}> = () => {
-  const { navigate } = useStackNavigation();
+  const navigation = useStackNavigation();
 
   const [error, setError] = useState({ email: '', password: '' });
 
@@ -32,7 +32,7 @@ export const UserSignIn: React.FC<{}> = () => {
 
   const buttonRef = useRef<TPrimaryButtonRefs>(null);
 
-  const _onPressSignUp = () => navigate('UserSignUp');
+  const _onPressSignUp = () => navigation?.navigate?.('UserSignUp');
 
   const _onChangeEmail = (value: string) => {
     emailRef.current = value;
@@ -80,6 +80,9 @@ export const UserSignIn: React.FC<{}> = () => {
 
       if (!!result?.data?.access_token) {
         const storeResult = await StoreUpdate(result.data);
+
+        if (!!storeResult?.data) navigation?.goBack?.();
+
         if (!!storeResult?.msgError) ToastInstance.show({ message: storeResult?.msgError, type: 'error' });
       }
 
