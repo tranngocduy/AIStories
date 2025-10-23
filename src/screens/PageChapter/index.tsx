@@ -5,8 +5,6 @@ import Animated, { FadeInDown, FadeOutDown } from 'react-native-reanimated';
 import { dayjs } from '@/utils/timeTz';
 import { useRouteNavigation } from '@/useHooks/useNavigation';
 
-import { Paragraph } from './Paragraph';
-
 import { styles } from './styles';
 
 export const PageChapter: React.FC<{}> = () => {
@@ -25,13 +23,11 @@ export const PageChapter: React.FC<{}> = () => {
 
   const keyFrame = useMemo(() => dayjs().valueOf(), [chapterId]);
 
-  const memoParagraph = useMemo(() => <Paragraph title={title} content={content} onPressPage={_onPressPage} />, [title, content]);
-
   return (
     <View style={styles.container}>
 
       <Animated.View style={styles.view} entering={FadeInDown} exiting={FadeOutDown} key={keyFrame}>
-        {memoParagraph}
+
       </Animated.View>
 
     </View>
