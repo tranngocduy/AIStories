@@ -97,7 +97,7 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
         </View>
 
         <View style={styles.bottom}>
-          <TouchableView style={buttonStyle} disabled={disabled} onPress={_onPressStoryDetail}>
+          <TouchableView style={buttonStyle} disabled={!!disabled} onPress={_onPressStoryDetail}>
             <IStoryDetailSVG /><TextBase style={styles.buttonLabel}>Đọc ngay</TextBase>
           </TouchableView>
         </View>
