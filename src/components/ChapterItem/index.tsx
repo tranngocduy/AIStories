@@ -13,7 +13,7 @@ type TChapterItemProps = { item: TChapter, chapterIndex: number, onPressChapter:
 
 export const ChapterItem: React.FC<TChapterItemProps> = memo(({ item, chapterIndex, onPressChapter }) => {
 
-  const _onPressChapter = () => onPressChapter?.({ ...item, chapterIndex });
+  const _onPressChapter = () => onPressChapter?.({ ...item, chapter_index: chapterIndex });
 
   return (
     <View>

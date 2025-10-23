@@ -29,9 +29,9 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
 
   const sharedValue = useSharedValue(1);
 
-  const _onPressPrev = () => setParams({ ...prevChapter, chapterIndex: (chapterIndex - 1), translateVersionId });
+  const _onPressPrev = () => setParams({ chapter: { ...prevChapter, chapter_index: (chapterIndex - 1), translateVersionId } });
 
-  const _onPressNext = () => setParams({ ...nextChapter, chapterIndex: (chapterIndex + 1), translateVersionId });
+  const _onPressNext = () => setParams({ chapter: { ...nextChapter, chapter_index: (chapterIndex + 1), translateVersionId } });
 
   const _renderPrevButton = () => {
     const color = !prevChapter ? 'rgba(0,0,0,0.5)' : 'rgba(255, 255, 255, 1)';
