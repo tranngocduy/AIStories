@@ -15,7 +15,7 @@ const _checkExpiredToken = (exp: number) => ((exp > 0) && (exp < (dayjs().valueO
 const _formatErrorData = (error: any) => {
   const msgError = (error instanceof Error) ? (error.message || error.stack) : error;
 
-  if (!msgError || (typeof (msgError) !== 'string')) return 'Xảy ra lỗi vui lòng thử lại sau.';
+  if (!msgError || (typeof (msgError) !== 'string')) return 'Xảy ra lỗi, vui lòng thử lại sau.';
 
   if (!!msgError?.includes?.('TypeError: Network request failed')) return 'Không thể kết nối đến máy chủ';
 
@@ -87,7 +87,7 @@ const _fetchData = async (url: string, method: IMethod, headers: IHeader, data?:
 
     if (!!result?.detail?.message) throw Error(result?.detail?.message);
 
-    if ((result?.status !== 200) && !!result?.message) throw Error(result?.message);
+    if (!!result?.status && (result?.status !== 200)) throw Error(result?.message);
 
     return result;
 

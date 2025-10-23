@@ -79,7 +79,7 @@ export const UserSignIn: React.FC<{}> = () => {
 
       if (!!result?.msgError) ToastInstance.show({ message: result?.msgError, type: 'error' });
 
-      if (!!result?.data?.access_token && !!result?.data?.access_token) {
+      if (!!result?.data?.access_token && !!result?.data?.refresh_token) {
         const access_token = result?.data?.access_token;
 
         const refresh_token = result?.data?.refresh_token;
