@@ -80,7 +80,7 @@ export const Paragraphs: React.FC<TParagraphsProps> = ({ content }) => {
   return (
     <View style={styles.container}>
       <View style={styles.view} ref={viewRef}>
-        <View style={styles.pageSub} pointerEvents='none'><TextBase allowFontScaling={false} onTextLayout={_onTextLayout}><TextBase>{'\n'}</TextBase><TextBase style={textStyle}>{content}</TextBase></TextBase></View>
+        <View style={styles.pageSub} pointerEvents='none'><TextBase allowFontScaling={false} onTextLayout={_onTextLayout}><TextBase style={textStyle}>{content}</TextBase></TextBase></View>
         <ScrollView contentContainerStyle={styles.scroll} horizontal={true} pagingEnabled={true} bounces={false} showsHorizontalScrollIndicator={false} scrollEventThrottle={16} ref={scrollViewRef}>{items?.map?.(_renderItem)}</ScrollView>
       </View>
     </View>

@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
   },
   pageMain: {
     width: wWidth,
+    paddingTop: 32,
     paddingRight: 16,
     paddingLeft: 16,
     backgroundColor: 'transparent'
@@ -26,6 +27,7 @@ export const styles = StyleSheet.create({
     top: 0,
     right: 0,
     left: 0,
+    paddingTop: 32,
     paddingRight: 16,
     paddingLeft: 16,
     opacity: 0
