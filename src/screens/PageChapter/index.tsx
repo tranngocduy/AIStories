@@ -2,12 +2,17 @@ import React, { useMemo } from 'react';
 import { View } from 'react-native';
 import Animated, { FadeInDown, FadeOutDown } from 'react-native-reanimated';
 
+import { useIStore } from '@/store';
 import { dayjs } from '@/utils/timeTz';
 import { useRouteNavigation } from '@/useHooks/useNavigation';
+
+import { PageHeader } from './PageHeader';
 
 import { styles } from './styles';
 
 export const PageChapter: React.FC<{}> = () => {
+
+  const backgroundColor = useIStore(state => state?.storeGlobal?.chapterSettings?.mapColors?.background);
 
   const { params } = useRouteNavigation('PageChapter');
 
@@ -23,8 +28,11 @@ export const PageChapter: React.FC<{}> = () => {
 
   const keyFrame = useMemo(() => dayjs().valueOf(), [chapterId]);
 
+  const memoPageHeader = useMemo(() => <PageHeader title={title} />, [title]);
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor }]}>
+      {memoPageHeader}
 
       <Animated.View style={styles.view} entering={FadeInDown} exiting={FadeOutDown} key={keyFrame}>
 
