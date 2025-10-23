@@ -111,7 +111,7 @@ export const Library: React.FC<{}> = () => {
     _onSearch(searchTextRef.current, queryRef.current);
   }
 
-  useEffectAfterMount(() => { if (!!params.filter) runAfterInteractions(_onFilter); }, [params]);
+  useEffectAfterMount(() => { if (!!params?.filter) runAfterInteractions(_onFilter); }, [JSON.stringify(params?.filter)]);
 
   const _viewsEmpty = useMemo(() => <EmptyList />, []);
 

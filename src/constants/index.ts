@@ -58,7 +58,7 @@ export const FILTER_OPTION_CHAPTERS = [
 export const FILTER_OPTION_RATING = [
   { label: 'Tất cả', value: 0 },
   { label: 'Hơn 2.0', value: 2 },
-  { label: 'Hơn 4.0', value: 4},
+  { label: 'Hơn 4.0', value: 4 },
   { label: 'Hơn 6.0', value: 6 },
   { label: 'Hơn 8.0', value: 8 }
 ] as const;
@@ -69,3 +69,9 @@ export const FILTER_OPTION_STATUS = [
   { label: 'Hoàn thành', value: STORY_STATUS_VALUE.COMPLETED },
   { label: 'Tạm Dừng', value: STORY_STATUS_VALUE.HIATUS }
 ] as const;
+
+export const CHAPTER_FONT_SIZE = [12, 14, 16, 18, 20, 22, 24] as const;
+
+export const CHAPTER_LINE_HEIGHT = [2.0, 2.1, 2.2, 2.3, 2.4, 2.5] as const;
+
+export const CHAPTER_COLORS = [{ text: '#000000', background: '#FFFFFF' }, { text: '#000000', background: '#FAF2DF' }, { text: '#FFFFFF', background: '#17354A' }, { text: '#FFFFFF', background: '#000000' }] as const;
