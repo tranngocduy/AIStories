@@ -24,7 +24,7 @@ export const PageHeader: React.FC<TPageHeaderProps> = ({ title }) => {
     <View>
       <View style={styles.statusBar} />
       <View style={styles.view}>
-        <TouchableView hitSlop={12} onPress={_onPressBack}><IBackStackSVG width={16} height={16} fill={color}/></TouchableView>
+        <TouchableView hitSlop={12} onPress={_onPressBack}><IBackStackSVG width={16} height={16} fill={color} /></TouchableView>
         <TextBase style={[styles.title, { color }]}>{title}</TextBase>
       </View>
     </View>
