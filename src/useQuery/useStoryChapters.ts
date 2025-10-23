@@ -1,4 +1,5 @@
 import { ServiceAPI } from '@/apis';
+import { useIStore } from '@/store';
 import { flatten } from '@/utils/lodash';
 import { useInfiniteQuery, QUERY_KEYS } from '@/useQuery/constants';
 
@@ -16,6 +17,8 @@ const _loadData = async ({ translateVersionId, page }: { translateVersionId?: nu
   const currentChapters = (metadata?.limit || 0) * (metadata?.current_page || 0);
 
   const hasNextPage = (!totalChapters || !currentChapters) ? false : (currentChapters < totalChapters);
+
+  useIStore.getState().updateStoreStory({ totalChapters, translateVersionId });
 
   return { data: chapters, page: !!hasNextPage ? ((page || 0) + 1) : 1, hasNextPage };
 }

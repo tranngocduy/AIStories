@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { IStore, TStoreUserProfile, TStoreGlobal } from './types';
+import { IStore, TStoreUserProfile, TStoreStory, TStoreGlobal } from './types';
 
 const _shallowData = (oldData: any, newUpdate: any) => {
   const newData = { ...oldData, ...newUpdate };
@@ -18,10 +18,15 @@ export const useIStore = create<IStore>((set) => ({
     set(state => ({ userProfile: _shallowData(state.userProfile, data) }))
   },
 
+  storeStory: {},
+  updateStoreStory: (data: TStoreStory) => {
+    set(state => ({ storeStory: _shallowData(state.storeStory, data) }))
+  },
+
   storeGlobal: {},
   updateStoreGlobal: (data: TStoreGlobal) => {
     set(state => ({ storeGlobal: _shallowData(state.storeGlobal, data) }))
   },
 
-  clearStore: () => set(() => ({ userProfile: null, storeGlobal: null }))
+  clearStore: () => set(() => ({ userProfile: null, storeStory: null,  storeGlobal: null }))
 }));
