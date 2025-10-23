@@ -25,6 +25,10 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
 
   const queryStoryChapters = useStoryChapters({ translateVersionId, enabled: !!translateVersionId });
 
+  const disabled = (!!queryStoryChapters?.isLoading || !queryStoryChapters?.isSuccess);
+
+  const buttonStyle = [styles.button, { opacity: !disabled ? 1 : 0.3 }];
+
   const storyId = story?.id;
 
   const title = story?.title;
@@ -93,7 +97,7 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
         </View>
 
         <View style={styles.bottom}>
-          <TouchableView style={styles.button} onPress={_onPressStoryDetail}>
+          <TouchableView style={buttonStyle} disabled={disabled} onPress={_onPressStoryDetail}>
             <IStoryDetailSVG /><TextBase style={styles.buttonLabel}>Đọc ngay</TextBase>
           </TouchableView>
         </View>
