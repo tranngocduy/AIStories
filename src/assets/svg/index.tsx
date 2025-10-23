@@ -104,3 +104,9 @@ export const IToastErrorSVG = (props: SvgProps) => <IToastError_SVG {...props} /
 
 import ILogout_SVG from './resource/iLogout.svg';
 export const ILogoutSVG = (props: SvgProps) => <ILogout_SVG {...props} />;
+
+import IPage_SVG from './resource/iPage.svg';
+export const IPageSVG = (props: SvgProps) => <IPage_SVG {...props} />;
+
+import IPageSetting_SVG from './resource/iPageSetting.svg';
+export const IPageSettingSVG = (props: SvgProps) => <IPageSetting_SVG {...props} />;
