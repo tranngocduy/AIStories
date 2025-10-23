@@ -30,7 +30,7 @@ export const PageChapter: React.FC<{}> = () => {
 
   const memoPageHeader = useMemo(() => <PageHeader title={title} />, [title]);
 
-  const memoParagraphs = useMemo(() => <Paragraphs title={title} content={content} />, [title, content]);
+  const memoParagraphs = useMemo(() => <Paragraphs content={content} />, [content]);
 
   const memoPageSetting = useMemo(() => <PageSetting chapterId={chapterId} chapterIndex={chapterIndex} />, [chapterId, chapterIndex]);
 
