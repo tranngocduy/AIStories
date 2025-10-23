@@ -34,8 +34,8 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
   const _onPressNext = () => setParams({ ...nextChapter, chapterIndex: (chapterIndex + 1), translateVersionId });
 
   const _renderPrevButton = () => {
-    const color = !prevChapter ? '#417584' : '#FFFFFF';
-    const backgroundColor = !prevChapter ? 'rgba(65, 117, 132, 0.2)' : 'rgba(23, 53, 74, 1)';
+    const color = !prevChapter ? 'rgba(0,0,0,0.5)' : 'rgba(255, 255, 255, 1)';
+    const backgroundColor = !prevChapter ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 1)';
 
     return (
       <TouchableView disabled={!prevChapter} style={styles.button} onPress={_onPressPrev}>
@@ -47,8 +47,8 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
   }
 
   const _renderNextButton = () => {
-    const color = !nextChapter ? '#417584' : '#FFFFFF';
-    const backgroundColor = !nextChapter ? 'rgba(65, 117, 132, 0.2)' : 'rgba(23, 53, 74, 1)';
+    const color = !nextChapter ? 'rgba(0,0,0,0.5)' : 'rgba(255, 255, 255, 1)';
+    const backgroundColor = !nextChapter ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 1)';
 
     return (
       <TouchableView disabled={!nextChapter} style={styles.button} onPress={_onPressNext}>
