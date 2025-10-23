@@ -28,5 +28,5 @@ export const useIStore = create<IStore>((set) => ({
     set(state => ({ storeGlobal: _shallowData(state.storeGlobal, data) }))
   },
 
-  clearStore: () => set(() => ({ userProfile: null, storeStory: null,  storeGlobal: null }))
+  clearStore: () => set(() => ({ userProfile: null, storeStory: null, storeGlobal: null }))
 }));
