@@ -29,6 +29,8 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
 
   const sharedValue = useSharedValue(1);
 
+  const _onPressSetting = () => navigate('PageSetting');
+
   const _onPressPrev = () => setParams({ chapter: { ...prevChapter, chapter_index: (chapterIndex - 1), translateVersionId } });
 
   const _onPressNext = () => setParams({ chapter: { ...nextChapter, chapter_index: (chapterIndex + 1), translateVersionId } });
@@ -73,7 +75,7 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
 
         <View style={styles.space} />
 
-        <TouchableView style={styles.option}><IPageSettingSVG /></TouchableView>
+        <TouchableView style={styles.option} onPress={_onPressSetting}><IPageSettingSVG /></TouchableView>
       </View>
     </View>
   )

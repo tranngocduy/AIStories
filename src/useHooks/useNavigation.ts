@@ -6,6 +6,7 @@ import { TStory, TChapter, TOptionFilterState } from '@/models/types';
 type RootStackParamList = {
   UserSignIn: undefined,
   UserSignUp: undefined,
+  PageSetting: undefined,
   StoryDetail: { story: TStory },
   PageChapter: { chapter: TChapter },
   Library: { filter: TOptionFilterState }
