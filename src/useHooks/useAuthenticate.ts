@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { useIStore, StoreUpdate } from '@/store';
 import { getSecureInfo } from '@/database/secure';
+import { loadChapterSettings } from '@/utils/service';
 import { runAfterInteractions, userLogout } from '@/utils/app';
 import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 
@@ -14,6 +15,8 @@ export const useAuthenticate = () => {
   const refresh_token = useIStore(state => state.userProfile?.refresh_token);
 
   const _loadSecure = async () => {
+    loadChapterSettings();
+
     const secureInfo = await getSecureInfo();
 
     const access_token = secureInfo?.access_token;

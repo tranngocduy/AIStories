@@ -1,8 +1,10 @@
 import { TUserProfile } from '@/models/types';
 
-export type TStoreUserProfile = { is_signed?: boolean } & TUserProfile | null;
+export type TChapSettings = { fontSize?: number, lineHeight?: number, mapColors?: { text?: string, background?: string } };
 
-export type TStoreGlobal = { chapterSetting?: { fontSize?: number, lineHeight?: number, mapColors?: { text?: string, background?: string } } } | null;
+export type TStoreGlobal = { chapterSettings?: TChapSettings } | null;
+
+export type TStoreUserProfile = { is_signed?: boolean } & TUserProfile | null;
 
 interface _IStore { clearStore: () => void }
 
