@@ -7,6 +7,7 @@ import { dayjs } from '@/utils/timeTz';
 import { useRouteNavigation } from '@/useHooks/useNavigation';
 
 import { PageHeader } from './PageHeader';
+import { PageSetting } from './PageSetting';
 
 import { styles } from './styles';
 
@@ -30,6 +31,8 @@ export const PageChapter: React.FC<{}> = () => {
 
   const memoPageHeader = useMemo(() => <PageHeader title={title} />, [title]);
 
+  const memoPageSetting = useMemo(() => <PageSetting chapterId={chapterId} chapterIndex={chapterIndex} />, [chapterId, chapterIndex]);
+
   return (
     <View style={[styles.container, { backgroundColor }]}>
       {memoPageHeader}
@@ -38,6 +41,7 @@ export const PageChapter: React.FC<{}> = () => {
 
       </Animated.View>
 
+      {memoPageSetting}
     </View>
   )
 
