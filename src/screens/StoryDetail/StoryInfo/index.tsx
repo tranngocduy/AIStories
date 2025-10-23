@@ -3,6 +3,8 @@ import { View } from 'react-native';
 
 import { STORY_STATUS_LABEL_MAPPING } from '@/constants';
 import { stackNavigationRef } from '@/useHooks/useNavigation';
+import { useStoryChapters } from '@/useQuery/useStoryChapters';
+import { useTranslateVersions } from '@/useQuery/useTranslateVersions';
 import { IUserAvatarSVG, IStoryStatusSVG, ITotalChapterSVG, ITotalViewSVG, IStoryDetailSVG } from '@/assets/svg';
 
 import { TextBase } from '@/components/TextBase';
@@ -16,6 +18,12 @@ import { styles } from './styles';
 import { TStoryInfoProps } from '../types';
 
 export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
+
+  const queryTranslateVersion = useTranslateVersions({ storyId: story?.id, enabled: false });
+
+  const translateVersionId = (queryTranslateVersion?.data?.[0]?.id || null);
+
+  const queryStoryChapters = useStoryChapters({ translateVersionId, enabled: !!translateVersionId });
 
   const storyId = story?.id;
 
@@ -31,7 +39,10 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
 
   const status = !!detail?.status ? (STORY_STATUS_LABEL_MAPPING?.[detail?.status] || '-') : '-';
 
-  const _onPressStoryDetail = () => { }
+  const _onPressStoryDetail = () => {
+    const chapter = { ...(queryStoryChapters?.data?.[0] || {}) };
+    if (!!chapter?.id) stackNavigationRef.navigate('PageChapter', { chapter });
+  }
 
   const _onPressAuthor = () => {
     if (!!detail?.author?.name && !!detail?.author?.id) {
