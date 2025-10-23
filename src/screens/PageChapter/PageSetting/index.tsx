@@ -1,6 +1,5 @@
 import React from 'react';
 import { View } from 'react-native';
-import Animated, { withTiming, useSharedValue, useAnimatedStyle, interpolate, Easing } from 'react-native-reanimated';
 
 import { useIStore } from '@/store';
 import { useStoryChapter } from '@/useQuery/useStoryChapter';
@@ -26,8 +25,6 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
   const prevChapter = queryStoryChapter.data?.prevChapter;
 
   const nextChapter = queryStoryChapter.data?.nextChapter;
-
-  const sharedValue = useSharedValue(1);
 
   const _onPressSetting = () => navigate('PageSetting');
 
