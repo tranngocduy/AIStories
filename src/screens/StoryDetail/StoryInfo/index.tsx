@@ -44,7 +44,7 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
   const status = !!detail?.status ? (STORY_STATUS_LABEL_MAPPING?.[detail?.status] || '-') : '-';
 
   const _onPressStoryDetail = () => {
-    const chapter = { ...(queryStoryChapters?.data?.[0] || {}) };
+    const chapter = { ...(queryStoryChapters?.data?.[0] || {}), chapter_index: 0 };
     if (!!chapter?.id) stackNavigationRef.navigate('PageChapter', { chapter });
   }
 
