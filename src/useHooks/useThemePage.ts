@@ -18,9 +18,11 @@ export const useThemePage = () => {
 
   const isThemeLight = (CHAPTER_COLORS?.findIndex?.(element => (element?.background === background)) < 2);
 
+  const pageColor = !!isThemeLight ? 'rgba(85, 85, 85, 1)' : 'rgba(170, 170, 170, 1)';
+
   const settingColor = { active: !!isThemeLight ? 'rgba(255, 255, 255, 1)' : 'rgba(0, 0, 0, 1)', inactive: !!isThemeLight ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)' };
 
   const settingBackground = { active: !!isThemeLight ? 'rgba(0, 0, 0, 1)' : 'rgba(255, 255, 255, 1)', inactive: !!isThemeLight ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)' };
 
-  return { fontSize, lineHeight, color, background, settingColor, settingBackground };
+  return { fontSize, lineHeight, color, background, pageColor, settingColor, settingBackground };
 }

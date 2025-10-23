@@ -18,7 +18,7 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
 
   const { navigate, setParams } = useStackNavigation();
 
-  const { settingColor, settingBackground } = useThemePage();
+  const { pageColor, settingColor, settingBackground } = useThemePage();
 
   const totalChapters = useIStore(state => state.storeStory?.totalChapters);
 
@@ -67,16 +67,16 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
       <View style={styles.view}>
         {_renderPrevButton()}
 
-        <TouchableView style={styles.pages}>
-          <IPageSVG />
-          <TextBase style={styles.pagesText}>{(chapterIndex + 1)}/{totalChapters}</TextBase>
+        <TouchableView style={[styles.pages, { borderColor: pageColor }]}>
+          <IPageSVG fill={pageColor} />
+          <TextBase style={[styles.pagesText, { color: pageColor }]}>{(chapterIndex + 1)}/{totalChapters}</TextBase>
         </TouchableView>
 
         {_renderNextButton()}
 
         <View style={styles.space} />
 
-        <TouchableView style={styles.option} onPress={_onPressSetting}><IPageSettingSVG /></TouchableView>
+        <TouchableView style={[styles.option, { borderColor: pageColor }]} onPress={_onPressSetting}><IPageSettingSVG fill={pageColor} /></TouchableView>
       </View>
     </View>
   )

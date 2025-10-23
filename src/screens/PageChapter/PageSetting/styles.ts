@@ -21,14 +21,12 @@ export const styles = StyleSheet.create({
     paddingLeft: 8,
     borderWidth: 1,
     borderRadius: 4,
-    borderColor: '#F2F2F2',
     columnGap: 8
   },
   pagesText: {
     ...fonts.default.normal500,
     fontSize: 12,
-    lineHeight: 16,
-    color: '#555555'
+    lineHeight: 16
   },
   option: {
     justifyContent: 'center',
@@ -36,8 +34,7 @@ export const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderWidth: 1,
-    borderRadius: 4,
-    borderColor: '#F2F2F2',
+    borderRadius: 4
   },
   button: {
     flexDirection: 'row',
