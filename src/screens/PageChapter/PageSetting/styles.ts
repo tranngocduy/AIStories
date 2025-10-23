@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
   view: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 64,
     columnGap: 8
   },
   pages: {
