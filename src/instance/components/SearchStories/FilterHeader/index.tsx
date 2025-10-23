@@ -40,9 +40,9 @@ export const FilterHeader = forwardRef<TFilterHeaderRefs, TFilterHeaderProps>(({
 
   if (typeFilter === 'category') label = 'Thể loại';
 
-  const backIcon = <IBackStackSVG width={16} height={16} />;
-
   const closeIcon = <ICloseModalSVG width={16} height={16} />;
+
+  const backIcon = <IBackStackSVG width={16} height={16} fill='#000000' />;
 
   return (
     <View>

@@ -20,7 +20,7 @@ export const HeaderStack: React.FC<THeaderStack> = memo(({ label }) => {
   return (
     <View style={styles.container}>
       <View style={styles.view}>
-        <TouchableView hitSlop={12} style={styles.back} onPress={_onPressGoBack}><IBackStackSVG /></TouchableView>
+        <TouchableView hitSlop={12} style={styles.back} onPress={_onPressGoBack}><IBackStackSVG fill='#000000' /></TouchableView>
         <View style={styles.labelView}><TextBase style={styles.label} numberOfLines={1}>{label}</TextBase></View>
       </View>
     </View>

@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { useIStore } from '@/store';
+import { useThemePage } from '@/useHooks/useThemePage';
 import { useStoryChapter } from '@/useQuery/useStoryChapter';
 import { useStackNavigation } from '@/useHooks/useNavigation';
 import { IArrowFullSVG, IPageSVG, IPageSettingSVG } from '@/assets/svg';
@@ -14,7 +15,10 @@ import { styles } from './styles';
 type TPageSettingProps = { chapterId: number, chapterIndex: number }
 
 export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterIndex }) => {
+
   const { navigate, setParams } = useStackNavigation();
+
+  const { settingColor, settingBackground } = useThemePage();
 
   const totalChapters = useIStore(state => state.storeStory?.totalChapters);
 
@@ -33,8 +37,8 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
   const _onPressNext = () => setParams({ chapter: { ...nextChapter, chapter_index: (chapterIndex + 1), translateVersionId } });
 
   const _renderPrevButton = () => {
-    const color = !prevChapter ? 'rgba(0,0,0,0.5)' : 'rgba(255, 255, 255, 1)';
-    const backgroundColor = !prevChapter ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 1)';
+    const color = !!prevChapter ? settingColor.active : settingColor.inactive;
+    const backgroundColor = !!prevChapter ? settingBackground.active : settingBackground.inactive;
 
     return (
       <TouchableView disabled={!prevChapter} style={styles.button} onPress={_onPressPrev}>
@@ -46,8 +50,8 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
   }
 
   const _renderNextButton = () => {
-    const color = !nextChapter ? 'rgba(0,0,0,0.5)' : 'rgba(255, 255, 255, 1)';
-    const backgroundColor = !nextChapter ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 1)';
+    const color = !!nextChapter ? settingColor.active : settingColor.inactive;
+    const backgroundColor = !!nextChapter ? settingBackground.active : settingBackground.inactive;
 
     return (
       <TouchableView disabled={!nextChapter} style={styles.button} onPress={_onPressNext}>

@@ -12,8 +12,7 @@ export const styles = StyleSheet.create({
   title: {
     ...fonts.default.normal700,
     fontSize: 16,
-    lineHeight: 24,
-    color: '#000000'
+    lineHeight: 24
   },
   statusBar: {
     height: statusHeight,
