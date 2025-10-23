@@ -110,3 +110,12 @@ export const IPageSVG = (props: SvgProps) => <IPage_SVG {...props} />;
 
 import IPageSetting_SVG from './resource/iPageSetting.svg';
 export const IPageSettingSVG = (props: SvgProps) => <IPageSetting_SVG {...props} />;
+
+import ICheck_SVG from './resource/iCheck.svg';
+export const ICheckSVG = (props: SvgProps) => <ICheck_SVG {...props} />;
+
+import IPlusCircle_SVG from './resource/iPlusCircle.svg';
+export const IPlusCircleSVG = (props: SvgProps) => <IPlusCircle_SVG {...props} />;
+
+import ISubCircle_SVG from './resource/iSubCircle.svg';
+export const ISubCircleSVG = (props: SvgProps) => <ISubCircle_SVG {...props} />;
