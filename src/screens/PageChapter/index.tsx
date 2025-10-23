@@ -7,6 +7,7 @@ import { dayjs } from '@/utils/timeTz';
 import { useRouteNavigation } from '@/useHooks/useNavigation';
 
 import { PageHeader } from './PageHeader';
+import { Paragraphs } from './Paragraphs';
 import { PageSetting } from './PageSetting';
 
 import { styles } from './styles';
@@ -25,11 +26,11 @@ export const PageChapter: React.FC<{}> = () => {
 
   const chapterIndex = params?.chapter?.chapter_index;
 
-  const _onPressPage = () => { }
-
   const keyFrame = useMemo(() => dayjs().valueOf(), [chapterId]);
 
   const memoPageHeader = useMemo(() => <PageHeader title={title} />, [title]);
+
+  const memoParagraphs = useMemo(() => <Paragraphs title={title} content={content} />, [title, content]);
 
   const memoPageSetting = useMemo(() => <PageSetting chapterId={chapterId} chapterIndex={chapterIndex} />, [chapterId, chapterIndex]);
 
@@ -38,7 +39,7 @@ export const PageChapter: React.FC<{}> = () => {
       {memoPageHeader}
 
       <Animated.View style={styles.view} entering={FadeInDown} exiting={FadeOutDown} key={keyFrame}>
-
+        {memoParagraphs}
       </Animated.View>
 
       {memoPageSetting}
