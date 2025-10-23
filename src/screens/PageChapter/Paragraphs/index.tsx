@@ -1,10 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { View, ScrollView, TextLayoutEvent, TextLayoutLine } from 'react-native';
 
-import { useIStore } from '@/store';
 import { decimal } from '@/utils/decimal';
 import { runAfterInteractions } from '@/utils/app';
-import { CHAPTER_FONT_SIZE, CHAPTER_LINE_HEIGHT, CHAPTER_COLORS } from '@/constants';
+import { useThemePage } from '@/useHooks/useThemePage';
 
 import { TextBase } from '@/components/TextBase';
 import { TouchableView } from '@/components/TouchableView';
@@ -14,13 +13,9 @@ import styles from './styles';
 type TParagraphsProps = { content: string };
 
 export const Paragraphs: React.FC<TParagraphsProps> = ({ content }) => {
-  const _color = CHAPTER_COLORS[0];
-  const _fontSize = CHAPTER_FONT_SIZE[3];
-  const _lineHeight = CHAPTER_LINE_HEIGHT[2];
 
-  const fontSize = (useIStore(state => state.storeGlobal?.chapterSettings?.fontSize) || _fontSize);
-  const lineHeight = (useIStore(state => state.storeGlobal?.chapterSettings?.lineHeight) || _lineHeight);
-  const color = (useIStore(state => state.storeGlobal?.chapterSettings?.mapColors?.text) || _color.text);
+  const { fontSize, lineHeight, color } = useThemePage();
+
   const textStyle = ({ ...styles.content, fontSize, lineHeight: +decimal(fontSize).mul(lineHeight), color });
 
   const [items, setPages] = useState<string[]>([]);

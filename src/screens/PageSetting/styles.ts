@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   label: {
-    ...fonts.default.normal400,
+    ...fonts.default.normal500,
     fontSize: 14,
     lineHeight: 21,
     color: '#000000'

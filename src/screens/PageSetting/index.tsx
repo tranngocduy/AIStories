@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
 
-import { useIStore } from '@/store';
+import { useThemePage } from '@/useHooks/useThemePage';
 import { ICheckSVG, IPlusCircleSVG, ISubCircleSVG } from '@/assets/svg';
 import { CHAPTER_COLORS, CHAPTER_FONT_SIZE, CHAPTER_LINE_HEIGHT } from '@/constants';
 import { updateChapterSettings, mapLabelFontSize, mapLabelLineHeight } from '@/utils/service';
@@ -15,13 +15,11 @@ import { styles } from './styles';
 type TMapColor = { text: string, background: string };
 
 export const PageSetting: React.FC<{}> = () => {
-  const chapterSettings = useIStore(state => state.storeGlobal?.chapterSettings);
 
-  const background = chapterSettings?.mapColors?.background;
-  const fontSize = chapterSettings?.fontSize || CHAPTER_FONT_SIZE[3];
-  const lineHeight = chapterSettings?.lineHeight || CHAPTER_LINE_HEIGHT[2];
+  const { fontSize, lineHeight, background } = useThemePage();
 
   const labelFontSize = mapLabelFontSize(fontSize);
+
   const labelLineHeight = mapLabelLineHeight(lineHeight);
 
   const _onPressBackground = (mapColors: TMapColor) => updateChapterSettings({ mapColors });
