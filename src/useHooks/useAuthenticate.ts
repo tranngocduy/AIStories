@@ -5,6 +5,8 @@ import { getSecureInfo } from '@/database/secure';
 import { runAfterInteractions, userLogout } from '@/utils/app';
 import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 
+import { ToastInstance } from '@/instance';
+
 export const useAuthenticate = () => {
 
   const access_token = useIStore(state => state.userProfile?.access_token);
@@ -24,9 +26,11 @@ export const useAuthenticate = () => {
   const _loadData = async () => {
     if (!access_token || !refresh_token) return null;
 
-    const result = await StoreUpdate({ access_token, refresh_token });
+    const storeResult = await StoreUpdate({ access_token, refresh_token });
 
-    if (!result || !!result.msgError) await userLogout();
+    if (!storeResult || !!storeResult.msgError) await userLogout();
+
+    if (!!storeResult?.msgError) ToastInstance.show({ message: storeResult?.msgError, type: 'error' });
   }
 
   useEffect(() => runAfterInteractions(_loadSecure, 500), []);

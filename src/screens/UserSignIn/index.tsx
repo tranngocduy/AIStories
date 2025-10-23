@@ -2,9 +2,10 @@ import React, { useState, useRef } from 'react';
 import { View, ScrollView } from 'react-native';
 
 import { ServiceAPI } from '@/apis';
-import { StoreUpdate } from '@/store';
+import { useIStore } from '@/store';
 import { logoIMG } from '@/assets/image';
 import { checkRule } from '@/utils/rule';
+import { timeoutSleep } from '@/utils/app';
 import { IUserSVG, ILockSVG } from '@/assets/svg';
 import { getDataMessageInValid } from '@/utils/service';
 import { useStackNavigation } from '@/useHooks/useNavigation';
@@ -78,12 +79,16 @@ export const UserSignIn: React.FC<{}> = () => {
 
       if (!!result?.msgError) ToastInstance.show({ message: result?.msgError, type: 'error' });
 
-      if (!!result?.data?.access_token) {
-        const storeResult = await StoreUpdate(result.data);
+      if (!!result?.data?.access_token && !!result?.data?.access_token) {
+        const access_token = result?.data?.access_token;
 
-        if (!!storeResult?.data) navigation?.goBack?.();
+        const refresh_token = result?.data?.refresh_token;
 
-        if (!!storeResult?.msgError) ToastInstance.show({ message: storeResult?.msgError, type: 'error' });
+        navigation?.goBack?.();
+
+        await timeoutSleep(250);
+
+        useIStore.getState().updateUserProfile({ access_token, refresh_token });
       }
 
       buttonRef.current?.stopLoad?.();

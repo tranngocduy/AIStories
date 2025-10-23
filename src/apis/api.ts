@@ -87,6 +87,8 @@ const _fetchData = async (url: string, method: IMethod, headers: IHeader, data?:
 
     if (!!result?.detail?.message) throw Error(result?.detail?.message);
 
+    if ((result?.status !== 200) && !!result?.message) throw Error(result?.message);
+
     return result;
 
   } catch (e) {
