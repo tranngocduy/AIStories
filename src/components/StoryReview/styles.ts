@@ -55,8 +55,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    columnGap: 8,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    columnGap: 8
   },
   labelButton: {
     ...fonts.default.normal400,
