@@ -5,16 +5,20 @@ import { dayjs } from '@/utils/timeTz';
 import { LABEL_REVIEW } from '@/constants';
 import { TStoryRateVotes } from '@/models/types';
 import { IReviewLikeSVG, IReviewRelaySVG } from '@/assets/svg';
+import { useProtectAction } from '@/useHooks/useProtectAction';
 
 import { TextBase } from '@/components/TextBase';
 import { StoryScore } from '@/components/StoryScore';
 import { TouchableView } from '@/components/TouchableView';
+import { ProgressSkeleton } from '@/components/ProgressSkeleton';
 
 import { styles } from './styles';
 
 type TStoryReviewProps = { item: TStoryRateVotes };
 
 export const StoryReview: React.FC<TStoryReviewProps> = ({ item }) => {
+
+  const { userId, isSigning, onProtectAction } = useProtectAction();
 
   const score = item?.score;
 
@@ -33,6 +37,9 @@ export const StoryReview: React.FC<TStoryReviewProps> = ({ item }) => {
   const createAt = !!item?.created_at ? dayjs(item?.created_at).format('DD/MM/YYYY') : '';
 
   const _onPressLike = async () => {
+    const { isProtected } = onProtectAction();
+
+    if (!isProtected || !userId) return null;
 
   }
 
@@ -56,19 +63,27 @@ export const StoryReview: React.FC<TStoryReviewProps> = ({ item }) => {
         </View>
 
         <View style={styles.review}>
-          <TouchableView style={styles.button} hitSlop={12} onPress={_onPressLike}>
-            <IReviewLikeSVG />
-            <TextBase style={styles.labelButton}>Ưa thích</TextBase>
-            <View style={styles.countView}><TextBase style={styles.countText}>{likesCount}</TextBase></View>
-          </TouchableView>
+          {!!isSigning ?
+            <View style={styles.button}><ProgressSkeleton width={100} height={16} /></View>
+            :
+            <TouchableView style={styles.button} hitSlop={12} onPress={_onPressLike}>
+              <IReviewLikeSVG />
+              <TextBase style={styles.labelButton}>Ưa thích</TextBase>
+              <View style={styles.countView}><TextBase style={styles.countText}>{likesCount}</TextBase></View>
+            </TouchableView>
+          }
 
           <View style={styles.line} />
 
-          <TouchableView style={styles.button} hitSlop={12}>
-            <IReviewRelaySVG />
-            <TextBase style={styles.labelButton}>Phản hồi</TextBase>
-            <View style={styles.countView}><TextBase style={styles.countText}>{commentsCount}</TextBase></View>
-          </TouchableView>
+          {!!isSigning ?
+            <View style={styles.button}><ProgressSkeleton width={100} height={16} /></View>
+            :
+            <TouchableView style={styles.button} hitSlop={12}>
+              <IReviewRelaySVG />
+              <TextBase style={styles.labelButton}>Phản hồi</TextBase>
+              <View style={styles.countView}><TextBase style={styles.countText}>{commentsCount}</TextBase></View>
+            </TouchableView>
+          }
         </View>
       </View>
     </View>

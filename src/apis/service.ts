@@ -44,6 +44,12 @@ export const likePostRating = async (body: API_TRatingLike) => {
   return result;
 }
 
+export const unLikePostRating = async (body: API_TRatingLike) => {
+  const method = 'POST';
+  const result = await api(`${process.env.$app.BASE_API}/rating/like`, method, body);
+  return result;
+}
+
 export const searchAuthorByName = async (search: string) => {
   const method = 'GET';
   const result = await api(`${process.env.$app.BASE_API}/authors?search=${search}`, method);
