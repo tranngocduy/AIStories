@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import { View, FlatList, StatusBar } from 'react-native';
 
 import { TChapter } from '@/models/types';
-import { ICheckSVG, ICloseModalSVG } from '@/assets/svg';
 import { runAfterInteractions } from '@/utils/app';
+import { ICheckSVG, ICloseModalSVG } from '@/assets/svg';
 import { useStoryChapters } from '@/useQuery/useStoryChapters';
 
 import { TextBase } from '@/components/TextBase';
