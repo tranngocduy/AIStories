@@ -6,6 +6,7 @@ import { useRouteNavigation } from '@/useHooks/useNavigation';
 import { useGetStoryRateReviews } from '@/useQuery/useGetStoryRateReviews';
 
 import { HeaderStack } from '@/components/HeaderStack';
+import { StoryComment } from '@/components/StoryComment';
 import { ScrollAvoidingView } from '@/components/ScrollAvoidingView';
 
 import { ItemMain } from './ItemMain';
@@ -41,6 +42,8 @@ export const StoryReview: React.FC<{}> = () => {
           ListHeaderComponent={_viewsHeader}
           contentContainerStyle={styles.scroll}
         />
+
+        <StoryComment />
       </ScrollAvoidingView>
     </View>
   )
