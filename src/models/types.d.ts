@@ -101,21 +101,21 @@ export type TStoryRateVotes = {
   is_liked: boolean;
 }
 
-export type TOptionFilter = { label: string, value: any };
+export type TOptionFilter = { label: string; value: any };
 
 export type TOptionFilterState = {
-  author: TOptionFilter | null,
-  sort: TOptionFilter | null,
-  votes: TOptionFilter | null,
-  chapters: TOptionFilter | null,
-  rating: TOptionFilter | null,
-  status: TOptionFilter | null,
+  author: TOptionFilter | null;
+  sort: TOptionFilter | null;
+  votes: TOptionFilter | null;
+  chapters: TOptionFilter | null;
+  rating: TOptionFilter | null;
+  status: TOptionFilter | null;
   category: TOptionFilter | null
 };
 
 export type TUserProfile = {
-  access_token: string,
-  refresh_token: string,
+  access_token: string;
+  refresh_token: string;
 
   coin_balance?: number;
   created_at?: string;
@@ -132,41 +132,48 @@ export type TComment = {
   content: string;
   parent_id: number | null;
   created_at: string;
-  replies: Comment[]; 
+  replies: Comment[];
 }
 
 export type API_TStoriesSearch = {
-  keyword?: string,
-  author_id?: number,
-  sort_by?: string,
-  min_votes?: number,
-  min_chapters?: number,
-  max_chapters?: number,
-  rank_by?: string,
-  time_range?: string,
-  min_rating?: number,
-  status?: string,
-  category_ids?: number[],
+  keyword?: string;
+  author_id?: number;
+  sort_by?: string;
+  min_votes?: number;
+  min_chapters?: number;
+  max_chapters?: number;
+  rank_by?: string;
+  time_range?: string;
+  min_rating?: number;
+  status?: string;
+  category_ids?: number[];
   tag_ids?: number[]
 }
 
 export type API_TRatingLike = {
-  rating_id: number,
+  rating_id: number;
   user_id: number
 }
 
 export type API_TLogin = {
-  email: string,
+  email: string;
   password: string
 }
 
 export type API_TRegister = {
-  email: string,
-  username: string,
+  email: string;
+  username: string;
   password: string
 }
 
 export type API_TStoryMarked = {
-  story_id?: number | null,
+  story_id?: number | null;
   user_id?: number | null
+}
+
+export type API_TStoryRating = {
+  story_id?: number | null;
+  user_id?: number | null;
+  score?: number | null;
+  content?: string | null;
 }

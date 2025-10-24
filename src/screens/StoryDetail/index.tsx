@@ -69,7 +69,7 @@ export const StoryDetail: React.FC<{}> = () => {
             {(activeIndex === 2) && <Animated.View style={styles.view} entering={FadeInDown}>{memoRateVote}</Animated.View>}
           </View>
         </ScrollView>
-        {(activeIndex === 2) && <Animated.View style={styles.view} entering={FadeInDown}><StoryComment /></Animated.View>}
+        {(activeIndex === 2) && <Animated.View style={styles.view} entering={FadeInDown}><StoryComment storyId={params?.story?.id} /></Animated.View>}
       </View>
     </View>
   )
