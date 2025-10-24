@@ -91,10 +91,12 @@ export const StoryReview: React.FC<TStoryReviewProps> = memo(({ item, onRefresh 
       <View>
         <View style={styles.separator} />
 
-        <View>
-          <TextBase style={styles.content}>{content}</TextBase>
-          <View style={styles.separator} />
-        </View>
+        {!!content &&
+          <View>
+            <TextBase style={styles.content}>{content}</TextBase>
+            <View style={styles.separator} />
+          </View>
+        }
 
         <View style={styles.review}>
           <TouchableView style={styles.button} hitSlop={12} disabled={!!isSigning} onPress={_onPressLike}>
