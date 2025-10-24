@@ -19,7 +19,9 @@ export const RateVote: React.FC<TRateVotesProps> = ({ story }) => {
 
   const isLoading = !!queryStoryRateVotes?.isLoading;
 
-  const _renderItem = (item: TStoryRateVotes) => <StoryReview item={item} key={`${item?.id}`} />;
+  const _onRefresh = () => queryStoryRateVotes?.refetch?.();
+
+  const _renderItem = (item: TStoryRateVotes) => <StoryReview item={item} onRefresh={_onRefresh} key={`${item?.id}`} />;
 
   return (
     <View style={styles.container}>

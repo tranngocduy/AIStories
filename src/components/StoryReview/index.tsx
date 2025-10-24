@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import Animated, { FadeInDown, FadeOutUp } from 'react-native-reanimated';
 
+import { ServiceAPI } from '@/apis';
 import { dayjs } from '@/utils/timeTz';
 import { LABEL_REVIEW } from '@/constants';
 import { TStoryRateVotes } from '@/models/types';
@@ -15,15 +16,17 @@ import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
 
-type TStoryReviewProps = { item: TStoryRateVotes };
+type TStoryReviewProps = { item: TStoryRateVotes, onRefresh: Function };
 
-export const StoryReview: React.FC<TStoryReviewProps> = ({ item }) => {
+export const StoryReview: React.FC<TStoryReviewProps> = ({ item, onRefresh }) => {
 
   const { userId, isSigning, onProtectAction } = useProtectAction();
 
   const _isLiked = !!item?.likes?.some(element => (element?.user_id === userId));
 
   const [isLiked, setLiked] = useState(_isLiked);
+
+  const timeoutRef = useRef<NodeJS.Timeout>(null);
 
   const score = item?.score;
 
@@ -41,11 +44,22 @@ export const StoryReview: React.FC<TStoryReviewProps> = ({ item }) => {
 
   const createAt = !!item?.created_at ? dayjs(item?.created_at).format('DD/MM/YYYY') : '';
 
+  const _onUpdateStateLiked = (status: boolean) => {
+    if (!!status && !!userId) ServiceAPI.likePostRating({ user_id: userId, rating_id: ratingId }).then(() => onRefresh());
+    if (!status && !!userId) ServiceAPI.unLikePostRating({ user_id: userId, rating_id: ratingId }).then(() => onRefresh());
+  }
+
   const _onPressLike = async () => {
     const { isProtected } = onProtectAction();
 
     if (!isProtected || !userId) return null;
 
+    if (!!timeoutRef.current) clearTimeout(timeoutRef.current);
+
+    setLiked(prevState => {
+      timeoutRef.current = setTimeout(() => { _onUpdateStateLiked(!prevState); }, 1000);
+      return !prevState;
+    });
   }
 
   useEffectAfterMount(() => { if (isLiked !== _isLiked) setLiked(_isLiked) }, [_isLiked]);
