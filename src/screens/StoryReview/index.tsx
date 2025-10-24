@@ -27,7 +27,7 @@ export const StoryReview: React.FC<{}> = () => {
 
   const _keyExtractor = (item: TComment) => `${item?.id}`;
 
-  const _renderItem = ({ item }: { item: TComment }) => <ItemSub item={item} />;
+  const _renderItem = ({ item }: { item: TComment }) => <ItemSub data={item} />;
 
   return (
     <View style={styles.container}>

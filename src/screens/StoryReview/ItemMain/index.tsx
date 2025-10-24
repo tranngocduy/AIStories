@@ -26,7 +26,7 @@ export const ItemMain: React.FC<TItemMainProps> = ({ data }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.view}>
+      <View style={styles.userView}>
         <View style={styles.infoView}>
           <View style={styles.usernameView}><TextBase style={styles.username} numberOfLines={1}>{usernameReview}</TextBase></View>
           <StoryScore score={score} isHideScore={true} />

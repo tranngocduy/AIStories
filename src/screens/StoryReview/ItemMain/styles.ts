@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: '#F2F2F2'
   },
-  view: {
+  userView: {
     flexDirection: 'row',
     alignItems: 'center'
   },

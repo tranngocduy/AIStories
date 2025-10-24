@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
   },
   scroll: {
     flexGrow: 1,
-    padding: 16
+    padding: 16,
+    rowGap: 16
   }
 });
