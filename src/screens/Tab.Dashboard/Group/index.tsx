@@ -2,6 +2,7 @@ import React from 'react';
 import { View, FlatList } from 'react-native';
 
 import { TStory } from '@/models/types';
+import { useStackNavigation } from '@/useHooks/useNavigation';
 
 import { TextBase } from '@/components/TextBase';
 import { StoryItem } from '@/components/StoryItem';
@@ -12,11 +13,15 @@ import { StorySkeleton } from '@/components/StorySkeleton';
 import { styles } from './styles';
 import { TGroupProps } from '../types';
 
-export const Group: React.FC<TGroupProps> = ({ label, data }) => {
+export const Group: React.FC<TGroupProps> = ({ label, data, sort }) => {
+
+  const navigation = useStackNavigation();
 
   const items = data || new Array(10).fill('');
 
-  const _onPressSeeAll = () => { }
+  const _onPressSeeAll = () => {
+    if (!!sort) navigation.navigate('Library', { filter: { author: null, sort, votes: null, chapters: null, rating: null, status: null, category: null } });
+  }
 
   const _viewsEmpty = <View style={styles.emptyView}><EmptyList /></View>;
 

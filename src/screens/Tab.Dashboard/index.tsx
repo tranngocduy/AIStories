@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { View, ScrollView } from 'react-native';
 
+import { FILTER_OPTION_SORT } from '@/constants';
 import { useGetStoriesDashboard } from '@/useQuery/useGetStoriesDashboard';
 
 import { ScrollRefresh } from '@/components/ScrollRefresh';
@@ -17,9 +18,9 @@ export const Dashboard: React.FC<{}> = () => {
 
   const _onRefresh = async () => await queryStoriesDashboard.refetch?.();
 
-  const memoGroupHotStories = useMemo(() => <Group data={data?.hotStories} label='Truyện hot' />, [data?.hotStories]);
+  const memoGroupHotStories = useMemo(() => <Group data={data?.hotStories} label='Truyện hot' sort={FILTER_OPTION_SORT[2]} />, [data?.hotStories]);
 
-  const memoGroupNewestStories = useMemo(() => <Group data={data?.newestStories} label='Truyện mới cập nhật' />, [data?.newestStories]);
+  const memoGroupNewestStories = useMemo(() => <Group data={data?.newestStories} label='Truyện mới cập nhật' sort={FILTER_OPTION_SORT[0]} />, [data?.newestStories]);
 
   const memoGroupRecommendedStories = useMemo(() => <Group data={data?.recommendedStories} label='Truyện đề xuất' />, [data?.recommendedStories]);
 
