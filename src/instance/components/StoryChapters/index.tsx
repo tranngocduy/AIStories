@@ -31,8 +31,9 @@ export const StoryChapters: React.FC<TStoryChaptersProps> = ({ translateVersionI
     instanceModalRef.current?.onClose?.(() => resolve(null));
   }
 
-  const _onPressChapter = () => {
-
+  const _onPressChapter = (chapter: TChapter) => {
+    StatusBar.setBarStyle('dark-content', true);
+    instanceModalRef.current?.onClose?.(() => resolve(chapter));
   }
 
   const _loadMore = async () => {

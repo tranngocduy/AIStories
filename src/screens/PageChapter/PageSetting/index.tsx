@@ -40,6 +40,8 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
 
   const _onPressChapter = async () => {
     const result = await new Promise(resolve => StoryChaptersInstance.show({ translateVersionId, resolve }));
+
+    if (!!result) setParams({ chapter: { ...result, translateVersionId } });
   }
 
   const _renderPrevButton = () => {
