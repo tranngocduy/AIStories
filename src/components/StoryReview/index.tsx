@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, memo } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import Animated, { FadeInDown, FadeOutUp } from 'react-native-reanimated';
 
@@ -18,7 +18,7 @@ import { styles } from './styles';
 
 type TStoryReviewProps = { item: TStoryRateVotes, onRefresh: Function };
 
-export const StoryReview: React.FC<TStoryReviewProps> = ({ item, onRefresh }) => {
+export const StoryReview: React.FC<TStoryReviewProps> = memo(({ item, onRefresh }) => {
 
   const { userId, isSigning, onProtectAction } = useProtectAction();
 
@@ -57,7 +57,7 @@ export const StoryReview: React.FC<TStoryReviewProps> = ({ item, onRefresh }) =>
     if (!!timeoutRef.current) clearTimeout(timeoutRef.current);
 
     setLiked(prevState => {
-      timeoutRef.current = setTimeout(() => { _onUpdateStateLiked(!prevState); }, 1000);
+      timeoutRef.current = setTimeout(() => { _onUpdateStateLiked(!prevState); }, 500);
       return !prevState;
     });
   }
@@ -112,4 +112,4 @@ export const StoryReview: React.FC<TStoryReviewProps> = ({ item, onRefresh }) =>
     </View>
   )
 
-}
+}, (prevProps, nextProps) => (JSON.stringify(prevProps) === JSON.stringify(nextProps)));
