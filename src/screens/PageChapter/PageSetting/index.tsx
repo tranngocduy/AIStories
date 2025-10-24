@@ -10,6 +10,8 @@ import { IArrowFullSVG, IPageSVG, IPageSettingSVG } from '@/assets/svg';
 import { TextBase } from '@/components/TextBase';
 import { TouchableView } from '@/components/TouchableView';
 
+import { StoryChaptersInstance } from '@/instance';
+
 import { styles } from './styles';
 
 type TPageSettingProps = { chapterId: number, chapterIndex: number }
@@ -35,6 +37,10 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
   const _onPressPrev = () => setParams({ chapter: { ...prevChapter, chapter_index: (chapterIndex - 1), translateVersionId } });
 
   const _onPressNext = () => setParams({ chapter: { ...nextChapter, chapter_index: (chapterIndex + 1), translateVersionId } });
+
+  const _onPressChapter = async () => {
+    const result = await new Promise(resolve => StoryChaptersInstance.show({ translateVersionId, resolve }));
+  }
 
   const _renderPrevButton = () => {
     const color = !!prevChapter ? settingColor.active : settingColor.inactive;
@@ -67,7 +73,7 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
       <View style={styles.view}>
         {_renderPrevButton()}
 
-        <TouchableView style={[styles.pages, { borderColor: pageColor }]}>
+        <TouchableView style={[styles.pages, { borderColor: pageColor }]} onPress={_onPressChapter}>
           <IPageSVG fill={pageColor} />
           <TextBase style={[styles.pagesText, { color: pageColor }]}>{(chapterIndex + 1)}/{totalChapters}</TextBase>
         </TouchableView>
