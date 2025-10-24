@@ -42,8 +42,8 @@ export const Chapters = forwardRef<TChaptersRef, TChaptersProps>(({ translateVer
 
   return (
     <View style={styles.container}>
-      {!!isLoading && <ProgressIcon />}
       {(!isLoading && !!data?.[0]) && data?.map(_renderItem)}
+      {!!isLoading && <View style={styles.empty}><ProgressIcon /></View>}
       {(!isLoading && !data?.[0]) && <View style={styles.empty}><EmptyList /></View>}
     </View>
   )
