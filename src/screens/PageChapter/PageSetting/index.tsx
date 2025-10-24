@@ -39,7 +39,7 @@ export const PageSetting: React.FC<TPageSettingProps> = ({ chapterId, chapterInd
   const _onPressNext = () => setParams({ chapter: { ...nextChapter, chapter_index: (chapterIndex + 1), translateVersionId } });
 
   const _onPressChapter = async () => {
-    const result = await new Promise(resolve => StoryChaptersInstance.show({ translateVersionId, resolve }));
+    const result = await new Promise(resolve => StoryChaptersInstance.show({ translateVersionId, chapterIndex, resolve }));
 
     if (!!result) setParams({ chapter: { ...result, translateVersionId } });
   }

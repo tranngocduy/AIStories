@@ -30,6 +30,14 @@ export const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#000000'
   },
+  selectedView :{
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    paddingRight: 16,
+    borderRadius: 8,
+    backgroundColor: '#F2F2F2'
+  },
   close: {
     position: 'absolute',
     top: 0,

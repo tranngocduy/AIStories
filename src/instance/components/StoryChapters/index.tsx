@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import { View, FlatList, StatusBar } from 'react-native';
 
 import { TChapter } from '@/models/types';
-import { ICloseModalSVG } from '@/assets/svg';
+import { ICheckSVG, ICloseModalSVG } from '@/assets/svg';
 import { runAfterInteractions } from '@/utils/app';
 import { useStoryChapters } from '@/useQuery/useStoryChapters';
 
@@ -14,9 +14,9 @@ import { InstanceModal, TInstanceModalRefs } from '@/components/InstanceModal';
 
 import { styles } from './styles';
 
-type TStoryChaptersProps = { translateVersionId: number, resolve: Function, onHide?: Function };
+type TStoryChaptersProps = { translateVersionId: number, chapterIndex: number, resolve: Function, onHide?: Function };
 
-export const StoryChapters: React.FC<TStoryChaptersProps> = ({ translateVersionId, resolve, onHide }) => {
+export const StoryChapters: React.FC<TStoryChaptersProps> = ({ translateVersionId, chapterIndex, resolve, onHide }) => {
 
   const queryStoryChapters = useStoryChapters({ translateVersionId, enabled: !!translateVersionId });
 
@@ -57,7 +57,14 @@ export const StoryChapters: React.FC<TStoryChaptersProps> = ({ translateVersionI
 
   const _keyExtractor = (item: TChapter) => `${item?.id}`;
 
-  const _renderItem = ({ item, index }: { item: TChapter, index: number }) => <ChapterItem item={item} chapterIndex={index} onPressChapter={_onPressChapter} />;
+  const _renderItem = ({ item, index }: { item: TChapter, index: number }) => {
+    return (
+      <View>
+        {(chapterIndex === index) && <View style={styles.selectedView} pointerEvents='none'><ICheckSVG /></View>}
+        <ChapterItem item={item} chapterIndex={index} onPressChapter={_onPressChapter} />
+      </View>
+    )
+  }
 
   return (
     <InstanceModal onHide={onHide} ref={instanceModalRef}>
