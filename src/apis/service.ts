@@ -97,3 +97,9 @@ export const updateStoryMarked = async (body: API_TStoryMarked) => {
   const result = await api(`${process.env.$app.BASE_API}/reading/bookmarks`, method, body);
   return result;
 }
+
+export const getStoryRateReviews = async (ratingId: number) => {
+  const method = 'GET';
+  const result = await api(`${process.env.$app.BASE_API}/rating/comment/${ratingId}`, method);
+  return result;
+}

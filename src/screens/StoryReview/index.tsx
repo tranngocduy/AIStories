@@ -1,12 +1,15 @@
 import React, { useMemo } from 'react';
 import { View, FlatList } from 'react-native';
 
+import { TComment } from '@/models/types';
 import { useRouteNavigation } from '@/useHooks/useNavigation';
+import { useGetStoryRateReviews } from '@/useQuery/useGetStoryRateReviews';
 
 import { HeaderStack } from '@/components/HeaderStack';
 import { ScrollAvoidingView } from '@/components/ScrollAvoidingView';
 
 import { ItemMain } from './ItemMain';
+import { ItemSub } from './ItemSub';
 
 import { styles } from './styles';
 
@@ -14,11 +17,17 @@ export const StoryReview: React.FC<{}> = () => {
 
   const { params } = useRouteNavigation('StoryReview');
 
-  const id = params.review.id;
+  const ratingId = params.review.id;
 
-  const content = params.review.content;
+  const queryGetStoryRateReviews = useGetStoryRateReviews({ ratingId });
+
+  const data = queryGetStoryRateReviews?.data || [];
 
   const _viewsHeader = useMemo(() => <ItemMain data={params.review} />, []);
+
+  const _keyExtractor = (item: TComment) => `${item?.id}`;
+
+  const _renderItem = ({ item }: { item: TComment }) => <ItemSub item={item} />;
 
   return (
     <View style={styles.container}>
@@ -26,6 +35,9 @@ export const StoryReview: React.FC<{}> = () => {
 
       <ScrollAvoidingView>
         <FlatList
+          data={data}
+          renderItem={_renderItem}
+          keyExtractor={_keyExtractor}
           ListHeaderComponent={_viewsHeader}
           contentContainerStyle={styles.scroll}
         />

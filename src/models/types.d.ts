@@ -126,6 +126,15 @@ export type TUserProfile = {
   username?: string;
 }
 
+export type TComment = {
+  id: number;
+  user: TUserProfile;
+  content: string;
+  parent_id: number | null;
+  created_at: string;
+  replies: Comment[]; 
+}
+
 export type API_TStoriesSearch = {
   keyword?: string,
   author_id?: number,
