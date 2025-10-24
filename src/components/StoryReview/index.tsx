@@ -6,6 +6,7 @@ import { ServiceAPI } from '@/apis';
 import { dayjs } from '@/utils/timeTz';
 import { LABEL_REVIEW } from '@/constants';
 import { TStoryRateVotes } from '@/models/types';
+import { useStackNavigation } from '@/useHooks/useNavigation';
 import { IReviewLikeSVG, IReviewRelaySVG } from '@/assets/svg';
 import { useProtectAction } from '@/useHooks/useProtectAction';
 import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
@@ -19,6 +20,8 @@ import { styles } from './styles';
 type TStoryReviewProps = { item: TStoryRateVotes, onRefresh: Function };
 
 export const StoryReview: React.FC<TStoryReviewProps> = memo(({ item, onRefresh }) => {
+
+  const { navigate } = useStackNavigation();
 
   const { userId, isSigning, onProtectAction } = useProtectAction();
 
@@ -62,6 +65,14 @@ export const StoryReview: React.FC<TStoryReviewProps> = memo(({ item, onRefresh 
     });
   }
 
+  const _onPressReview = () => {
+    const { isProtected } = onProtectAction();
+
+    if (!isProtected || !userId) return null;
+
+    navigate('StoryReview', { review: item });
+  }
+
   useEffectAfterMount(() => { if (isLiked !== _isLiked) setLiked(_isLiked) }, [_isLiked]);
 
   const _viewLoading = useMemo(() => <View style={styles.loading}><ActivityIndicator size='small' color='#000000' /></View>, []);
@@ -100,7 +111,7 @@ export const StoryReview: React.FC<TStoryReviewProps> = memo(({ item, onRefresh 
 
           <View style={styles.line} />
 
-          <TouchableView style={styles.button} hitSlop={12} disabled={!!isSigning}>
+          <TouchableView style={styles.button} hitSlop={12} disabled={!!isSigning} onPress={_onPressReview}>
             <IReviewRelaySVG />
 
             <TextBase style={styles.labelButton}>Phản hồi</TextBase>

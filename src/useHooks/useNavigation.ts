@@ -1,7 +1,7 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation, useIsFocused, useRoute, RouteProp, StackActions, CommonActions, createNavigationContainerRef } from '@react-navigation/native';
 
-import { TStory, TChapter, TOptionFilterState } from '@/models/types';
+import { TStory, TChapter, TOptionFilterState, TStoryRateVotes } from '@/models/types';
 
 type RootStackParamList = {
   UserSignIn: undefined,
@@ -9,6 +9,7 @@ type RootStackParamList = {
   PageSetting: undefined,
   StoryDetail: { story: TStory },
   PageChapter: { chapter: TChapter },
+  StoryReview: { review: TStoryRateVotes }
   Library: { filter: TOptionFilterState }
 }
 
