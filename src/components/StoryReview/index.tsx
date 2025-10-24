@@ -1,16 +1,17 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useState, useMemo } from 'react';
+import { ActivityIndicator, View } from 'react-native';
+import Animated, { FadeInDown, FadeOutUp } from 'react-native-reanimated';
 
 import { dayjs } from '@/utils/timeTz';
 import { LABEL_REVIEW } from '@/constants';
 import { TStoryRateVotes } from '@/models/types';
 import { IReviewLikeSVG, IReviewRelaySVG } from '@/assets/svg';
 import { useProtectAction } from '@/useHooks/useProtectAction';
+import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 
 import { TextBase } from '@/components/TextBase';
 import { StoryScore } from '@/components/StoryScore';
 import { TouchableView } from '@/components/TouchableView';
-import { ProgressSkeleton } from '@/components/ProgressSkeleton';
 
 import { styles } from './styles';
 
@@ -19,6 +20,10 @@ type TStoryReviewProps = { item: TStoryRateVotes };
 export const StoryReview: React.FC<TStoryReviewProps> = ({ item }) => {
 
   const { userId, isSigning, onProtectAction } = useProtectAction();
+
+  const _isLiked = !!item?.likes?.some(element => (element?.user_id === userId));
+
+  const [isLiked, setLiked] = useState(_isLiked);
 
   const score = item?.score;
 
@@ -43,6 +48,10 @@ export const StoryReview: React.FC<TStoryReviewProps> = ({ item }) => {
 
   }
 
+  useEffectAfterMount(() => { if (isLiked !== _isLiked) setLiked(_isLiked) }, [_isLiked]);
+
+  const _viewLoading = useMemo(() => <View style={styles.loading}><ActivityIndicator size='small' color='#000000' /></View>, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -63,27 +72,27 @@ export const StoryReview: React.FC<TStoryReviewProps> = ({ item }) => {
         </View>
 
         <View style={styles.review}>
-          {!!isSigning ?
-            <View style={styles.button}><ProgressSkeleton width={100} height={16} /></View>
-            :
-            <TouchableView style={styles.button} hitSlop={12} onPress={_onPressLike}>
-              <IReviewLikeSVG />
-              <TextBase style={styles.labelButton}>Ưa thích</TextBase>
-              <View style={styles.countView}><TextBase style={styles.countText}>{likesCount}</TextBase></View>
-            </TouchableView>
-          }
+          <TouchableView style={styles.button} hitSlop={12} disabled={!!isSigning} onPress={_onPressLike}>
+            {!!isSigning && <Animated.View entering={FadeInDown} exiting={FadeOutUp}>{_viewLoading}</Animated.View>}
+
+            {(!isSigning && !isLiked) && <Animated.View entering={FadeInDown} exiting={FadeOutUp}><IReviewLikeSVG fill='#000000' /></Animated.View>}
+
+            {(!isSigning && !!isLiked) && <Animated.View entering={FadeInDown} exiting={FadeOutUp}><IReviewLikeSVG fill='#F2C422' /></Animated.View>}
+
+            <TextBase style={styles.labelButton}>Ưa thích</TextBase>
+
+            <View style={styles.countView}><TextBase style={styles.countText}>{likesCount}</TextBase></View>
+          </TouchableView>
 
           <View style={styles.line} />
 
-          {!!isSigning ?
-            <View style={styles.button}><ProgressSkeleton width={100} height={16} /></View>
-            :
-            <TouchableView style={styles.button} hitSlop={12}>
-              <IReviewRelaySVG />
-              <TextBase style={styles.labelButton}>Phản hồi</TextBase>
-              <View style={styles.countView}><TextBase style={styles.countText}>{commentsCount}</TextBase></View>
-            </TouchableView>
-          }
+          <TouchableView style={styles.button} hitSlop={12} disabled={!!isSigning}>
+            <IReviewRelaySVG />
+
+            <TextBase style={styles.labelButton}>Phản hồi</TextBase>
+
+            <View style={styles.countView}><TextBase style={styles.countText}>{commentsCount}</TextBase></View>
+          </TouchableView>
         </View>
       </View>
     </View>

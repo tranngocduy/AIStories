@@ -55,7 +55,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    columnGap: 8
+    columnGap: 8,
+    overflow: 'hidden'
   },
   labelButton: {
     ...fonts.default.normal400,
@@ -75,6 +76,11 @@ export const styles = StyleSheet.create({
     ...fonts.default.normal400,
     fontSize: 10,
     color: '#417584'
+  },
+  loading: {
+    width: 12,
+    height: 12,
+    transform: [{ scale: 0.6 }]
   },
   separator: {
     height: 1,
