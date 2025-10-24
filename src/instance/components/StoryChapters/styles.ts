@@ -4,7 +4,7 @@ import { fonts, statusHeight } from '@/theme';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: statusHeight + 45,
+    paddingTop: statusHeight,
     justifyContent: 'flex-end'
   },
   view: {
@@ -13,6 +13,11 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 16,
     backgroundColor: '#FFFFFF',
     overflow: 'hidden'
+  },
+  scroll: {
+    flexGrow: 1,
+    paddingRight: 16,
+    paddingLeft: 16
   },
   header: {
     justifyContent: 'center',
@@ -25,11 +30,15 @@ export const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#000000'
   },
-  close :{
+  close: {
     position: 'absolute',
     top: 0,
     left: 16,
     bottom: 0,
     justifyContent: 'center'
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#F2F2F2'
   }
 });
