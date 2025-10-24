@@ -9,7 +9,7 @@ type RootStackParamList = {
   PageSetting: undefined,
   StoryDetail: { story: TStory },
   PageChapter: { chapter: TChapter },
-  StoryReview: { review: TStoryRateVotes }
+  StoryReview: { review: TStoryRateVotes },
   Library: { filter: TOptionFilterState }
 }
 
