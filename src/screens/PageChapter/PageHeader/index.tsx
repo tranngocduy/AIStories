@@ -16,14 +16,13 @@ export const PageHeader: React.FC<TPageHeaderProps> = ({ title }) => {
 
   const { goBack } = useStackNavigation();
 
-  const { color } = useThemePage();
+  const { color, background } = useThemePage();
 
   const _onPressBack = () => goBack?.();
 
   return (
-    <View>
-      <View style={styles.statusBar} />
-      <View style={styles.view}>
+    <View style={styles.container}>
+      <View style={[styles.view, { backgroundColor: background }]}>
         <TouchableView hitSlop={12} onPress={_onPressBack}><IBackStackSVG width={16} height={16} fill={color} /></TouchableView>
         <TextBase style={[styles.title, { color }]}>{title}</TextBase>
       </View>
