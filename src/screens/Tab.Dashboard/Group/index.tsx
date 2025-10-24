@@ -20,7 +20,8 @@ export const Group: React.FC<TGroupProps> = ({ label, data, sort }) => {
   const items = data || new Array(10).fill('');
 
   const _onPressSeeAll = () => {
-    if (!!sort) navigation.navigate('Library', { filter: { author: null, sort, votes: null, chapters: null, rating: null, status: null, category: null } });
+    if (!sort?.label || !sort?.value) return null;
+    navigation.navigate('Library', { filter: { author: null, sort, votes: null, chapters: null, rating: null, status: null, category: null } });
   }
 
   const _viewsEmpty = <View style={styles.emptyView}><EmptyList /></View>;
