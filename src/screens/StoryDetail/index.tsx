@@ -7,12 +7,12 @@ import { useRouteNavigation } from '@/useHooks/useNavigation';
 import { useTranslateVersions } from '@/useQuery/useTranslateVersions';
 
 import { HeaderStack } from '@/components/HeaderStack';
+import { StoryVoteRate } from '@/components/StoryVoteRate';
 
 import { Overview } from './Overview';
 import { TabStory } from './TabStory';
 import { Chapters } from './Chapters';
 import { RateVote } from './RateVote';
-import { VoteRate } from './VoteRate';
 import { StoryInfo } from './StoryInfo';
 
 import { styles } from './styles';
@@ -69,7 +69,7 @@ export const StoryDetail: React.FC<{}> = () => {
             {(activeIndex === 2) && <Animated.View style={styles.view} entering={FadeInDown}>{memoRateVote}</Animated.View>}
           </View>
         </ScrollView>
-        {(activeIndex === 2) && <Animated.View style={styles.view} entering={FadeInDown}><VoteRate /></Animated.View>}
+        {(activeIndex === 2) && <Animated.View style={styles.view} entering={FadeInDown}><StoryVoteRate /></Animated.View>}
       </View>
     </View>
   )

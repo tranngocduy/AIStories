@@ -8,7 +8,7 @@ import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
 
-export const VoteRate: React.FC<{}> = () => {
+export const StoryVoteRate: React.FC<{}> = () => {
 
   const _onPressReview = () => {
 
