@@ -1,12 +1,11 @@
 import React from 'react';
 import { Alert, View } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 
 import { ServiceAPI } from '@/apis';
 import { useIStore } from '@/store';
 import { userLogout } from '@/utils/app';
+import { IArrowFullSVG, ILogoutSVG } from '@/assets/svg';
 import { useAuthenticate } from '@/useHooks/useAuthenticate';
-import { IUserAvatarSVG, IArrowFullSVG, ILockOpenSVG, ILogoutSVG } from '@/assets/svg';
 
 import { TextBase } from '@/components/TextBase';
 import { ImageAvatar } from '@/components/ImageAvatar';
