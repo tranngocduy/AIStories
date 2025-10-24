@@ -32,14 +32,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     boxShadow: '0px 4px 24px rgba(0, 0, 0, 0.1)'
   },
-  avatarView: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 48,
-    height: 48,
-    borderRadius: 48,
-    overflow: 'hidden'
-  },
   userInfo: {
     flex: 1,
     marginLeft: 16
@@ -96,9 +88,6 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 21,
     color: '#000000'
-  },
-  viewBG: {
-    ...StyleSheet.absoluteFillObject
   },
   separator: {
     height: 1,

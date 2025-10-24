@@ -9,6 +9,7 @@ import { useAuthenticate } from '@/useHooks/useAuthenticate';
 import { IUserAvatarSVG, IArrowFullSVG, ILockOpenSVG, ILogoutSVG } from '@/assets/svg';
 
 import { TextBase } from '@/components/TextBase';
+import { ImageAvatar } from '@/components/ImageAvatar';
 import { Authenticate } from '@/components/Authenticate';
 import { TouchableView } from '@/components/TouchableView';
 
@@ -36,10 +37,7 @@ export const UserProfile: React.FC<{}> = () => {
         <View style={styles.view}>
 
           <View style={styles.userView}>
-            <View style={styles.avatarView}>
-              <IUserAvatarSVG width={36} height={36} fill='#000000' />
-              <LinearGradient style={styles.viewBG} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} colors={['rgba(255, 255, 255, 0)', 'rgba(0, 0, 0, 0.5)']} />
-            </View>
+            <ImageAvatar />
 
             <View style={styles.userInfo}>
               <View style={styles.info}>
