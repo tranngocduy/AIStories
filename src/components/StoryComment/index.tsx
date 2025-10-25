@@ -20,7 +20,7 @@ export const StoryComment: React.FC<TStoryCommentProps> = ({ storyId, ratingId }
   const _onPressReview = () => {
     const { isProtected } = onProtectAction();
 
-    if (!isProtected) return null;
+    if (!isProtected || (!storyId && !ratingId)) return null;
 
     StoryCommentInstance.show({ storyId, ratingId });
   }

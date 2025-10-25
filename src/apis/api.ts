@@ -81,7 +81,7 @@ const _fetchData = async (url: string, method: IMethod, headers: IHeader, data?:
   const clonedBody = { ...(data || {}) };
 
   const [error, result] = await _requestApi(url, method, headers, clonedBody);
-  debugger
+
   try {
     if (!!error) throw Error(error);
 

@@ -34,12 +34,6 @@ export const StoryComment: React.FC<TStoryCommentProps> = ({ storyId, ratingId, 
   const _onChangeText = (value: string) => (reviewRef.current = value?.trim?.() || '');
 
   const _onPressSubmit = async () => {
-    if (!!storyId && !score) ToastInstance.show({ message: 'Vui lòng cho sao để đánh giá!', type: 'error' });
-
-    if (!storyId && !reviewRef.current) ToastInstance.show({ message: 'Vui lòng điền đánh giá!', type: 'error' });
-
-    if ((!!storyId && !score) || (!storyId && !reviewRef.current)) return null;
-
     const content = reviewRef.current || '';
 
     const userId = useIStore.getState().userProfile?.id;
