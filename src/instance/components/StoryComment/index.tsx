@@ -25,13 +25,29 @@ export const StoryComment: React.FC<TStoryCommentProps> = ({ storyId, ratingId, 
 
   const reviewRef = useRef<string>('');
 
+  const postViewRef = useRef<View>(null);
+
   const instanceModalRef = useRef<TInstanceModalRefs>(null);
 
   const _onClose = () => instanceModalRef.current?.onClose?.();
 
-  const _onPressScore = (value: number) => setScore(value);
+  const _onPressScore = (value: number) => {
+    setScore(value);
 
-  const _onChangeText = (value: string) => (reviewRef.current = value?.trim?.() || '');
+    if (!!storyId && !ratingId) {
+      if (!!value) postViewRef.current?.setNativeProps?.({ pointerEvents: 'auto', opacity: 1 });
+      if (!value) postViewRef.current?.setNativeProps?.({ pointerEvents: 'none', opacity: 0.4 });
+    }
+  }
+
+  const _onChangeText = (value: string) => {
+    reviewRef.current = value?.trim?.() || '';
+
+    if (!storyId && !!ratingId) {
+      if (!!value) postViewRef.current?.setNativeProps?.({ pointerEvents: 'auto', opacity: 1 });
+      if (!value) postViewRef.current?.setNativeProps?.({ pointerEvents: 'none', opacity: 0.4 });
+    }
+  }
 
   const _onPressSubmit = async () => {
     const content = reviewRef.current || '';
@@ -78,8 +94,14 @@ export const StoryComment: React.FC<TStoryCommentProps> = ({ storyId, ratingId, 
 
             <View style={styles.headerView}>
               <TouchableView style={styles.closeView} hitSlop={16} onPress={_onClose}><ICloseModalSVG /></TouchableView>
+
               <TextBase style={styles.title}>Đánh giá</TextBase>
-              <TouchableView style={styles.postView} hitSlop={16} onPress={_onPressSubmit}><TextBase style={styles.label}>Đăng</TextBase></TouchableView>
+
+              <View style={styles.postView} pointerEvents='none' ref={postViewRef}>
+                <TouchableView hitSlop={16} onPress={_onPressSubmit}>
+                  <TextBase style={styles.label}>Đăng</TextBase>
+                </TouchableView>
+              </View>
             </View>
 
             <View style={styles.separator} />

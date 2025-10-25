@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { footerHeight } from '@/theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -6,7 +7,10 @@ export const styles = StyleSheet.create({
   },
   scroll: {
     flexGrow: 1,
-    padding: 16,
+    paddingTop: 16,
+    paddingRight: 16,
+    paddingLeft: 16,
+    paddingBottom: footerHeight + 90,
     rowGap: 16
   }
 });

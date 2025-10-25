@@ -81,7 +81,8 @@ export const styles = StyleSheet.create({
     top: 0,
     right: 16,
     bottom: 0,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    opacity: 0.4
   },
   closeView: {
     position: 'absolute',
