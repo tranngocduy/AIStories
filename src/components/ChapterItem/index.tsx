@@ -9,17 +9,21 @@ import { TouchableView } from '@/components/TouchableView';
 
 import { styles } from './styles';
 
-type TChapterItemProps = { item: TChapter, chapterIndex: number, onPressChapter: Function }
+type TChapterItemProps = { item: TChapter, isActive?: boolean, chapterIndex: number, onPressChapter: Function }
 
-export const ChapterItem: React.FC<TChapterItemProps> = memo(({ item, chapterIndex, onPressChapter }) => {
+export const ChapterItem: React.FC<TChapterItemProps> = memo(({ item, isActive, chapterIndex, onPressChapter }) => {
+
+  const fill = !!isActive ? '#000000' : '#A3A3A3';
+
+  const labelStyle = !!isActive ? styles.active : styles.label;
 
   const _onPressChapter = () => onPressChapter?.({ ...item, chapter_index: chapterIndex });
 
   return (
     <View>
       <TouchableView style={styles.view} onPress={_onPressChapter}>
-        <IPlayCircleSVG fill='#A3A3A3' />
-        <View style={styles.detail}><TextBase style={styles.label} numberOfLines={1}>{item?.title}</TextBase></View>
+        <IPlayCircleSVG fill={fill} />
+        <View style={styles.detail}><TextBase style={labelStyle} numberOfLines={1}>{item?.title}</TextBase></View>
       </TouchableView>
 
       <View style={styles.separator} />

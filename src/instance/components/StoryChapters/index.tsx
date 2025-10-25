@@ -58,12 +58,7 @@ export const StoryChapters: React.FC<TStoryChaptersProps> = ({ translateVersionI
   const _keyExtractor = (item: TChapter) => `${item?.id}`;
 
   const _renderItem = ({ item, index }: { item: TChapter, index: number }) => {
-    return (
-      <View>
-        {(chapterIndex === index) && <View style={styles.selectedView} pointerEvents='none'><ICheckSVG /></View>}
-        <ChapterItem item={item} chapterIndex={index} onPressChapter={_onPressChapter} />
-      </View>
-    )
+    return <ChapterItem item={item} isActive={(chapterIndex === index)} chapterIndex={index} onPressChapter={_onPressChapter} />;
   }
 
   return (

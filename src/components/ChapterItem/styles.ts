@@ -21,6 +21,12 @@ export const styles = StyleSheet.create({
     lineHeight: 21,
     color: '#000000'
   },
+  active: {
+    ...fonts.default.normal700,
+    fontSize: 14,
+    lineHeight: 21,
+    color: '#000000'
+  },
   separator: {
     height: 1,
     backgroundColor: '#F2F2F2'
