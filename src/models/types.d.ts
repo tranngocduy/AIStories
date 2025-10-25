@@ -177,3 +177,9 @@ export type API_TStoryRating = {
   score?: number | null;
   content?: string | null;
 }
+
+export type API_TCommentRating = {
+  rating_id?: number | null;
+  content?: string | null;
+  user_id?: number | null;
+}

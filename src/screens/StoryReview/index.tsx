@@ -43,7 +43,7 @@ export const StoryReview: React.FC<{}> = () => {
           contentContainerStyle={styles.scroll}
         />
 
-        <StoryComment />
+        <StoryComment ratingId={ratingId} />
       </ScrollAvoidingView>
     </View>
   )

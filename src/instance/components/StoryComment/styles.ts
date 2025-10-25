@@ -38,8 +38,7 @@ export const styles = StyleSheet.create({
   startView: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 24,
-    marginBottom: 24
+    marginTop: 24
   },
   startItem: {
     alignItems: 'center',
@@ -57,6 +56,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 16
   },
   inputLabel: {
+    marginTop: 24,
     marginBottom: 8,
     ...fonts.default.normal500,
     fontSize: 12,

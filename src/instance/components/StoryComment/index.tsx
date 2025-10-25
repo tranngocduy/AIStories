@@ -15,9 +15,9 @@ import { LoadingInstance, ToastInstance } from '@/instance';
 
 import { styles } from './styles';
 
-type TStoryCommentProps = { storyId?: number, onHide?: Function };
+type TStoryCommentProps = { storyId?: number, ratingId?: number, onHide?: Function };
 
-export const StoryComment: React.FC<TStoryCommentProps> = ({ storyId, onHide }) => {
+export const StoryComment: React.FC<TStoryCommentProps> = ({ storyId, ratingId, onHide }) => {
 
   const queryClient = useQueryClient();
 
@@ -27,8 +27,6 @@ export const StoryComment: React.FC<TStoryCommentProps> = ({ storyId, onHide }) 
 
   const instanceModalRef = useRef<TInstanceModalRefs>(null);
 
-  const labelStyle = [styles.label, { opacity: !!score ? 1 : 0.3 }];
-
   const _onClose = () => instanceModalRef.current?.onClose?.();
 
   const _onPressScore = (value: number) => setScore(value);
@@ -36,19 +34,35 @@ export const StoryComment: React.FC<TStoryCommentProps> = ({ storyId, onHide }) 
   const _onChangeText = (value: string) => (reviewRef.current = value?.trim?.() || '');
 
   const _onPressSubmit = async () => {
+    if (!!storyId && !score) ToastInstance.show({ message: 'Vui lòng cho sao để đánh giá!', type: 'error' });
+
+    if (!storyId && !reviewRef.current) ToastInstance.show({ message: 'Vui lòng điền đánh giá!', type: 'error' });
+
+    if ((!!storyId && !score) || (!storyId && !reviewRef.current)) return null;
+
     const content = reviewRef.current || '';
 
     const userId = useIStore.getState().userProfile?.id;
 
     LoadingInstance.show({});
 
-    const result = await ServiceAPI.updateStoryRating({ story_id: storyId, score, content, user_id: userId });
+    if (!!storyId) {
+      const result = await ServiceAPI.updateStoryRating({ story_id: storyId, score, content, user_id: userId });
 
-    if (!!result?.data) await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.GET_STORY_RATE_VOTES, { storyId }] });
+      await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.GET_STORY_RATE_VOTES, { storyId }] });
+
+      if (!!result?.msgError) ToastInstance.show({ message: result.msgError, type: 'error' });
+    }
+
+    if (!!ratingId) {
+      const result = await ServiceAPI.updateCommentRating({ rating_id: ratingId, content, user_id: userId });
+
+      await queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.GET_STORY_RATE_REVIEWS, { ratingId }] });
+
+      if (!!result?.msgError) ToastInstance.show({ message: result.msgError, type: 'error' });
+    }
 
     LoadingInstance.hide();
-
-    if (!!result?.msgError) ToastInstance.show({ message: result.msgError, type: 'error' });
 
     instanceModalRef.current?.onClose?.();
   }
@@ -71,18 +85,20 @@ export const StoryComment: React.FC<TStoryCommentProps> = ({ storyId, onHide }) 
             <View style={styles.headerView}>
               <TouchableView style={styles.closeView} hitSlop={16} onPress={_onClose}><ICloseModalSVG /></TouchableView>
               <TextBase style={styles.title}>Đánh giá</TextBase>
-              <TouchableView style={styles.postView} hitSlop={16} disabled={!score} onPress={_onPressSubmit}><TextBase style={labelStyle}>Đăng</TextBase></TouchableView>
+              <TouchableView style={styles.postView} hitSlop={16} onPress={_onPressSubmit}><TextBase style={styles.label}>Đăng</TextBase></TouchableView>
             </View>
 
             <View style={styles.separator} />
 
-            <View style={styles.startView}>
-              {_renderStart('Tệ', 1)}
-              {_renderStart('Bình thường', 2)}
-              {_renderStart('Khá hay', 3)}
-              {_renderStart('Hay', 4)}
-              {_renderStart('Tuyệt vời', 5)}
-            </View>
+            {!!storyId &&
+              <View style={styles.startView}>
+                {_renderStart('Tệ', 1)}
+                {_renderStart('Bình thường', 2)}
+                {_renderStart('Khá hay', 3)}
+                {_renderStart('Hay', 4)}
+                {_renderStart('Tuyệt vời', 5)}
+              </View>
+            }
 
             <View style={styles.inputView}>
               <TextBase style={styles.inputLabel}>Đánh giá</TextBase>

@@ -1,6 +1,6 @@
 import { api } from './api';
 
-import { API_TStoriesSearch, API_TRatingLike, API_TLogin, API_TRegister, API_TStoryMarked, API_TStoryRating } from '@/models/types';
+import { API_TStoriesSearch, API_TRatingLike, API_TLogin, API_TRegister, API_TStoryMarked, API_TStoryRating, API_TCommentRating } from '@/models/types';
 
 export const storiesDashboard = async () => {
   const method = 'GET';
@@ -106,6 +106,12 @@ export const getStoryRateReviews = async (ratingId: number) => {
 
 export const updateStoryRating = async (body: API_TStoryRating) => {
   const method = 'POST';
-  const result = await api(`${process.env.$app.BASE_API}/rating`, method, body);
+  const result = await api(`${process.env.$app.BASE_API}/rating/`, method, body);
+  return result;
+}
+
+export const updateCommentRating = async (body: API_TCommentRating) => {
+  const method = 'POST';
+  const result = await api(`${process.env.$app.BASE_API}/rating/comment`, method, body);
   return result;
 }
