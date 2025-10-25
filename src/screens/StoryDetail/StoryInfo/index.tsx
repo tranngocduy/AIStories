@@ -25,7 +25,7 @@ export const StoryInfo: React.FC<TStoryInfoProps> = ({ story, detail }) => {
 
   const queryStoryChapters = useStoryChapters({ translateVersionId, enabled: !!translateVersionId });
 
-  const disabled = (!!queryStoryChapters?.isLoading || !queryStoryChapters?.isSuccess);
+  const disabled = (!!queryStoryChapters?.isLoading || !queryStoryChapters?.isSuccess || !queryStoryChapters?.data?.[0]);
 
   const buttonStyle = [styles.button, { opacity: !disabled ? 1 : 0.3 }];
 

@@ -22,7 +22,7 @@ export const Dashboard: React.FC<{}> = () => {
 
   const memoGroupNewestStories = useMemo(() => <Group data={data?.newestStories} label='Truyện mới cập nhật' sort={FILTER_OPTION_SORT[0]} />, [data?.newestStories]);
 
-  const memoGroupRecommendedStories = useMemo(() => <Group data={data?.recommendedStories} label='Truyện đề xuất' />, [data?.recommendedStories]);
+  const memoGroupRecommendedStories = useMemo(() => <Group data={data?.recommendedStories} label='Truyện đề xuất' sort={FILTER_OPTION_SORT[3]} />, [data?.recommendedStories]);
 
   return (
     <View style={styles.container}>
