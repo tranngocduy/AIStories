@@ -12,6 +12,8 @@ import { ImageAvatar } from '@/components/ImageAvatar';
 import { Authenticate } from '@/components/Authenticate';
 import { TouchableView } from '@/components/TouchableView';
 
+import { LoadingInstance, ToastInstance } from '@/instance';
+
 import { styles } from './styles';
 
 export const UserProfile: React.FC<{}> = () => {
@@ -24,8 +26,20 @@ export const UserProfile: React.FC<{}> = () => {
 
   const _onPressLogout = () => Alert.alert('Đăng xuất', '\nBạn có muốn đăng xuất khỏi tài khoản', [{ text: 'Hủy', style: 'cancel', onPress: () => null }, { text: 'Đăng xuất', onPress: _onUserLogout }]);
 
-  const _onPressDelete = () => {
+  const _onPressDelete = () => Alert.alert('Xoá tài khoản', '\nBạn có muốn xoá tài khoản Chivi App.\nSau khi xoá tài khoản không thể khôi phục lai.', [{ text: 'Hủy', style: 'cancel', onPress: () => null }, { text: 'Xoá tài khoản', onPress: _onDelete }]);
 
+  const _onDelete = async () => {
+    LoadingInstance.show({});
+
+    const result = await ServiceAPI.deleteUser();
+
+    if (!result?.msgError) await userLogout();
+
+    if (!result?.msgError) ToastInstance.show({ title: 'Xoá tài khoản thành công' });
+
+    if (!!result?.msgError) ToastInstance.show({ title: result?.msgError });
+
+    LoadingInstance.hide();
   }
 
   return (

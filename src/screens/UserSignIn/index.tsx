@@ -77,7 +77,13 @@ export const UserSignIn: React.FC<{}> = () => {
 
       const result = await ServiceAPI.login({ email: emailRef.current, password: passwordRef.current });
 
-      if (!!result?.msgError) ToastInstance.show({ message: result?.msgError, type: 'error' });
+      if (!!result?.msgError) {
+        if ((result?.msgError === 'Inactive user')) ToastInstance.show({ message: 'Tài khoản không tồn tại.', type: 'error' });
+
+        else if ((result?.msgError === 'Incorrect email or password')) ToastInstance.show({ message: 'Tài khoản hoặc mật khẩu không đúng.', type: 'error' });
+
+        else ToastInstance.show({ message: result?.msgError, type: 'error' });
+      }
 
       if (!!result?.data?.access_token && !!result?.data?.refresh_token) {
         const access_token = result?.data?.access_token;
