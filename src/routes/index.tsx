@@ -65,8 +65,8 @@ const AppNavigator = () => {
   const queryClient = useMemo(() => new QueryClient(QUERY_OPTIONS), []);
 
   useEffect(() => {
-    runAfterInteractions(() => hide({ fade: true }), 150);
-    runAfterInteractions(() => StatusBar.setBarStyle('dark-content'));
+    StatusBar.setBarStyle('dark-content');
+    runAfterInteractions(() => hide({ fade: true }));
   }, []);
 
   return (
