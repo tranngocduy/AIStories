@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { StatusBar } from 'react-native';
 
+import { hide } from 'react-native-bootsplash';
 import { NavigationContainer } from '@react-navigation/native';
 import { RootSiblingParent } from 'react-native-root-siblings';
 
@@ -63,7 +64,10 @@ const AppNavigator = () => {
 
   const queryClient = useMemo(() => new QueryClient(QUERY_OPTIONS), []);
 
-  useEffect(() => { runAfterInteractions(() => StatusBar.setBarStyle('dark-content')); }, []);
+  useEffect(() => {
+    runAfterInteractions(() => hide({ fade: true }), 150);
+    runAfterInteractions(() => StatusBar.setBarStyle('dark-content'));
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

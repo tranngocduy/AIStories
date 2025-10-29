@@ -16,13 +16,10 @@ export const InstanceModal = forwardRef<TInstanceModalRefs, TInstanceModalProps>
 
   const sharedValue = useSharedValue(0);
 
-  const _resolveLoadEnd = (resolve?: Function) => resolve?.();
-
   const _loadAnimation = async (toValue: number) => {
-    await new Promise(resolve => {
-      sharedValue.value = withTiming(toValue, { duration }, () => {
-        runOnJS(_resolveLoadEnd)(resolve);
-      });
+    await new Promise<void>(resolve => {
+      sharedValue.value = withTiming(toValue, { duration });
+      runAfterInteractions(() => resolve?.(), (duration + 100));
     });
   }
 
