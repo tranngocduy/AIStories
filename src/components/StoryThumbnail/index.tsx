@@ -29,10 +29,12 @@ export const StoryThumbnail: React.FC<TStoryThumbnailProps> = ({ item, thumbSize
         <View style={styles.emptyView}><TextBase style={styles.emptyLabel}>No Cover</TextBase></View>
       }
 
-      <View style={styles.categoryView}>
-        <LinearGradient style={styles.categoryTag} start={start} end={end} colors={['#333333', '#1A1A1A', '#000000', '#0D0D0D']} />
-        <View style={styles.categoryLabelView}><TextBase style={styles.categoryLabel}>{category}</TextBase></View>
-      </View>
+      {!!category &&
+        <View style={styles.categoryView}>
+          <LinearGradient style={styles.categoryTag} start={start} end={end} colors={['#333333', '#1A1A1A', '#000000', '#0D0D0D']} />
+          <View style={styles.categoryLabelView}><TextBase style={styles.categoryLabel}>{category}</TextBase></View>
+        </View>
+      }
 
       {!!isOverview &&
         <LinearGradient style={styles.rateView} start={start} end={end} colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.6)']}>
