@@ -10,6 +10,8 @@ import Dashboard from '@/screens/Tab.Dashboard';
 import SavedStory from '@/screens/Tab.SavedStory';
 import UserProfile from '@/screens/Tab.UserProfile';
 
+import TabNavigator from '@/component/TabNavigator';
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +20,7 @@ const stackOptions: NativeStackNavigationOptions = { headerShown: false, animati
 
 const AppTab = () => {
   return (
-    <Tab.Navigator screenOptions={tabOptions}>
+    <Tab.Navigator screenOptions={tabOptions} tabBar={(props: BottomTabBarProps) => <TabNavigator {...props} />}>
       <Tab.Screen name='Dashboard' component={Dashboard} />
       <Tab.Screen name='Library' component={Library} />
       <Tab.Screen name='SavedStory' component={SavedStory} />
