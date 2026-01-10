@@ -117,6 +117,11 @@ export interface IRequest {
     email: string;
     password: string;
   };
+  Register: {
+    email: string;
+    username: string;
+    password: string
+  },
   StoriesSearchQuery: {
     keyword?: string;
     author_id?: number;

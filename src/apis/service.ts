@@ -8,6 +8,12 @@ export const login = async (body: IRequest['Login']) => {
   return result;
 }
 
+export const register = async (body: IRequest['Register']) => {
+  const method = 'POST';
+  const result = await api<IResponse['GetUserInfo']>(`${process.env.$app.BASE_API}/auth/register`, method, body);
+  return result;
+}
+
 export const getUserInfo = async () => {
   const method = 'GET';
   const result = await api<IResponse['GetUserInfo']>(`${process.env.$app.BASE_API}/users/me`, method);
