@@ -1,7 +1,7 @@
 import * as KeyChain from 'react-native-keychain';
 
 import { formatJWT } from '@/utils/jwt';
-
+import { Authorization } from '@/utils/app';
 import type { TUserProfile } from '@/models/types';
 
 const keyChainServer = '@AIStories_5afdaca7_5d7c_4ec6_ad00_fefb22f2265e_server';
@@ -11,6 +11,7 @@ export const setSecureInfo = async (userInfo: TUserProfile) => {
   const userJWT = await formatJWT(userInfo);
 
   if (!!userJWT?.id && !!userJWT?.exp && !!userJWT?.access_token && !!userJWT?.refresh_token) {
+    Authorization.current = { ...userJWT };
     const payload = JSON.stringify(userJWT);
     await KeyChain.setInternetCredentials(keyChainServer, keyChainService, payload);
   }
@@ -25,9 +26,12 @@ export const getSecureInfo = async () => {
 
   const userJWT = JSON.parse(result.password);
 
+  Authorization.current = { ...userJWT };
+
   return userJWT;
 }
 
 export const removeSecureInfo = async () => {
+  Authorization.current = null;
   await KeyChain.resetInternetCredentials({ server: keyChainServer, service: keyChainService });
 }

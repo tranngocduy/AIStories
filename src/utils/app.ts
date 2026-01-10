@@ -1,4 +1,11 @@
+import { createRef } from 'react';
 import { Platform } from 'react-native';
+
+import { useIStore } from '@/store';
+import { removeSecureInfo } from '@/database/secure';
+import { clearAllSchemaStorage } from '@/database/storage';
+
+export const Authorization = createRef<{ id: number; exp: number; access_token?: string; refresh_token?: string; } | null>();
 
 export const isIOS = !!(Platform.OS === 'ios');
 
@@ -18,5 +25,7 @@ export const runAfterInteractions = (fn: () => void, time?: number) => {
 };
 
 export const userLogout = async () => {
-
+  clearAllSchemaStorage();
+  await removeSecureInfo();
+  useIStore.getState().clearStore();
 }

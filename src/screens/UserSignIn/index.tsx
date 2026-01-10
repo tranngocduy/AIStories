@@ -2,7 +2,9 @@ import React, { useState, useRef } from 'react';
 import { View, ScrollView } from 'react-native';
 
 import { ServiceAPI } from '@/apis';
+import { useIStore } from '@/store';
 import { logoIMG } from '@/assets/image';
+import { timeoutSleep } from '@/utils/app';
 import { IUserSVG, ILockSVG } from '@/assets/svg';
 import { getDataMessageInValid } from '@/utils/service';
 import { useStackNavigation } from '@/useHooks/useNavigation';
@@ -81,6 +83,18 @@ const UserSignIn: React.FC = () => {
         else if ((result?.errorMessage === 'Incorrect email or password')) ToastInstance.show({ message: 'Tài khoản hoặc mật khẩu không đúng.', type: 'error' });
 
         else ToastInstance.show({ message: result?.errorMessage, type: 'error' });
+      }
+
+      if (!!result?.data?.access_token && !!result?.data?.refresh_token) {
+        const access_token = result?.data?.access_token;
+
+        const refresh_token = result?.data?.refresh_token;
+
+        navigation?.goBack?.();
+
+        await timeoutSleep(250);
+
+        useIStore.getState().updateUserProfile({ access_token, refresh_token });
       }
 
       buttonRef.current?.stopLoad?.();

@@ -1,5 +1,9 @@
 import { dayjs } from '@/utils/timeTz';
 
+import { setSecureInfo } from '@/database/secure';
+
+import { Authorization, userLogout } from '@/utils/app';
+
 type IMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 type IResponse<T> = { data?: T, errorMessage?: string };
@@ -41,12 +45,42 @@ const _fetchData = async (url: string, method: IMethod, headers: IHeader, cloned
   }
 }
 
-const _getRequestToken = () => {
+const _refreshToken = async (headers: IHeader, refresh_token: string) => {
+  const method = 'POST';
+  const url = `${process.env.$app.BASE_API}/auth/refresh-token`;
+
+  const [_, result] = await _fetchData(url, method, headers, { refresh_token });
+  if (!!result?.access_token && !!result?.refresh_token) return result;
+
+  await userLogout();
+};
+
+const _getRequestToken = async () => {
   const headers = <IHeader>{};
 
   headers['Accept'] = 'application/json';
 
   headers['Content-Type'] = 'application/json';
+
+  const userJWT = Authorization?.current;
+
+  const access_token = userJWT?.access_token;
+
+  const refresh_token = userJWT?.refresh_token;
+
+  if (!access_token || !refresh_token) return headers;
+
+  const isExpiredToken = _checkExpiredToken(userJWT?.exp);
+
+  if (!!isExpiredToken) refreshTokenRequest = refreshTokenRequest ? refreshTokenRequest : _refreshToken(headers, refresh_token);
+
+  const userInfo = await refreshTokenRequest;
+
+  if (!!userInfo) await setSecureInfo(userInfo);
+
+  refreshTokenRequest = null;
+
+  headers['Authorization'] = `Bearer ${Authorization?.current?.access_token}`;
 
   return headers;
 }
@@ -54,7 +88,7 @@ const _getRequestToken = () => {
 export const api = async <T>(url: string, method: IMethod, data?: unknown): Promise<IResponse<T>> => {
   const clonedBody = { ...(data || {}) };
 
-  const headers = _getRequestToken();
+  const headers = await _getRequestToken();
 
   const [error, result] = await _fetchData(url, method, headers, clonedBody);
 
