@@ -3,10 +3,9 @@ import { View, ScrollView } from 'react-native';
 
 import { FILTER_OPTION_SORT } from '@/constants';
 import { useGetStoriesDashboard } from '@/useQuery/useGetStoriesDashboard';
+import type { TStory } from '@/models/types';
 
 import ScrollRefresh from '@/component/ScrollRefresh';
-
-import type { TStory } from '@/models/types';
 
 import GroupStories from './component/GroupStories';
 

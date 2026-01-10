@@ -43,6 +43,7 @@ const StoryThumbnail: React.FC<TStoryThumbnailProps> = ({ item, thumbSize, isOve
       }
     </View>
   )
+
 }
 
 export default StoryThumbnail;

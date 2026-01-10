@@ -30,6 +30,7 @@ const StoryScore: React.FC<TStoryScoreProps> = ({ score, isHideScore, background
       <View style={styles.star}>{displayStar?.map?.(_renderItem)}{displayStarGray?.map?.(_renderItemGray)}</View>
     </View>
   )
+
 }
 
 export default StoryScore;

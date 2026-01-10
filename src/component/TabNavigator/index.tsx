@@ -4,9 +4,8 @@ import { View, Image, ImageSourcePropType } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Animated, { withTiming, useSharedValue, useAnimatedStyle, interpolate, Easing } from 'react-native-reanimated';
 
-import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-
 import { tabDashboardIMG, tabLibraryIMG, tabSavedStoryIMG, tabUserProfileIMG } from '@/assets/image';
+import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 import TextBase from '@/component/TextBase';
 import TouchableView from '@/component/TouchableView';

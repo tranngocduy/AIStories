@@ -39,6 +39,7 @@ const StoryItem: React.FC<TStoryItemProps> = ({ item, isHorizon = false }) => {
       </View>
     </TouchableView>
   )
+
 }
 
 export default StoryItem;
