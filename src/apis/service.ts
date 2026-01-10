@@ -13,3 +13,15 @@ export const searchStoriesByQueryString = async (page?: number, body?: IRequest[
   const result = await api<IResponse['StoriesSearchQuery']>(`${process.env.$app.BASE_API}/stories/search?page=${page}&limit=9`, method, body);
   return result;
 }
+
+export const searchAuthorByName = async (search: string) => {
+  const method = 'GET';
+  const result = await api<IResponse['SearchAuthorByName']>(`${process.env.$app.BASE_API}/authors?search=${search}`, method);
+  return result;
+}
+
+export const getAllCategory = async (page?: number, limit?: number) => {
+  const method = 'GET';
+  const result = await api<IResponse['GetAllCategory']>(`${process.env.$app.BASE_API}/categories/?page=${page}&limit=${limit}`, method);
+  return result;
+}

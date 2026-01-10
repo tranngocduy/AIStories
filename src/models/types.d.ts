@@ -36,20 +36,27 @@ export type TChapter = {
   chapter_index: number;
 }
 
-export type Author = {
+export type TCategory = {
+  name?: string;
+  description?: string | null;
+  id?: number;
+  slug?: string;
+}
+
+export type TAuthor = {
   name: string;
   slug: string;
   id: number;
 }
 
-export type StoryDetail = {
+export type TStoryDetail = {
   title: string;
   chinese_title: string;
   description: string;
   id: number;
   slug: string;
   cover_image_url?: string;
-  author: Author;
+  author: TAuthor;
   status: string;
   categories: string[];
   tags: string[];
@@ -61,21 +68,23 @@ export type StoryDetail = {
   total_follows: number;
 }
 
+export type TOptionFilter = { label: string; value: any };
+
 export type TOptionFilterState = {
-  author: { label: string; value: any } | null;
-  sort: { label: string; value: any } | null;
-  votes: { label: string; value: any } | null;
-  chapters: { label: string; value: any } | null;
-  rating: { label: string; value: any } | null;
-  status: { label: string; value: any } | null;
-  category: { label: string; value: any } | null
+  author: TOptionFilter | null;
+  sort: TOptionFilter | null;
+  votes: TOptionFilter | null;
+  chapters: TOptionFilter | null;
+  rating: TOptionFilter | null;
+  status: TOptionFilter | null;
+  category: TOptionFilter | null;
 };
 
-export type Metadata = { 
-  total_items: number; 
-  current_page: number; 
+export type TMetadata = {
+  total_items: number;
+  current_page: number;
   total_pages: number;
-  limit: number; 
+  limit: number;
 };
 
 export interface IResponse {
@@ -85,8 +94,16 @@ export interface IResponse {
     newest_stories: TStory[];
   };
   StoriesSearchQuery: {
-   items: StoryDetail[]; 
-   metadata: Metadata;
+    items: TStoryDetail[];
+    metadata: TMetadata;
+  },
+  SearchAuthorByName: {
+    items: TAuthor[];
+    metadata: TMetadata;
+  },
+  GetAllCategory: {
+    items: TCategory[];
+    metadata: TMetadata;
   }
 }
 

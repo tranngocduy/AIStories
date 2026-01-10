@@ -16,6 +16,7 @@ import ScrollRefresh from '@/component/ScrollRefresh';
 import TouchableView from '@/component/TouchableView';
 import StorySkeleton from '@/component/StorySkeleton';
 import TextInputSearch, { TextInputSearchRefs } from '@/component/TextInputSearch';
+import { SearchStoriesInstance } from '@/instance';
 
 import styles from './styles';
 
