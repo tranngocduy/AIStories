@@ -5,7 +5,7 @@ import { styles } from './styles';
 
 type ScrollAvoidingViewProps = { children: React.ReactNode, offset?: number }
 
-export const ScrollAvoidingView: React.FC<ScrollAvoidingViewProps> = ({ children, offset = 0 }) => {
+const ScrollAvoidingView: React.FC<ScrollAvoidingViewProps> = ({ children, offset = 0 }) => {
 
   return (
     <KeyboardAvoidingView behavior={'padding'} style={styles.container} keyboardVerticalOffset={offset}>
@@ -14,3 +14,5 @@ export const ScrollAvoidingView: React.FC<ScrollAvoidingViewProps> = ({ children
   )
 
 }
+
+export default ScrollAvoidingView;

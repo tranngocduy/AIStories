@@ -1,3 +1,6 @@
+const logo_IMG = require('./resource/logo.png');
+export const logoIMG = logo_IMG;
+
 const tabDashboard_IMG = require('./resource/tabDashboard.png');
 export const tabDashboardIMG = tabDashboard_IMG;
 

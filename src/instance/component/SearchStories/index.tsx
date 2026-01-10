@@ -5,7 +5,7 @@ import { runAfterInteractions } from '@/utils/app';
 import { FILTER_OPTION_AUTHOR, FILTER_OPTION_SORT, FILTER_OPTION_VOTES, FILTER_OPTION_CHAPTERS, FILTER_OPTION_RATING, FILTER_OPTION_STATUS, FILTER_OPTION_CATEGORY } from '@/constants';
 import type { TOptionFilterState } from '@/models/types';
 
-import { ScrollAvoidingView } from '@/component/ScrollAvoidingView';
+import ScrollAvoidingView from '@/component/ScrollAvoidingView';
 import InstanceModal, { InstanceModalRefs } from '@/component/InstanceModal';
 
 import { FilterHeader } from './FilterHeader';
