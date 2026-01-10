@@ -2,6 +2,12 @@ import { api } from '@/apis/api';
 
 import type { IRequest, IResponse } from '@/models/types';
 
+export const getUserInfo = async () => {
+  const method = 'GET';
+  const result = await api<IResponse['GetUserInfo']>(`${process.env.$app.BASE_API}/users/me`, method);
+  return result;
+}
+
 export const storiesDashboard = async () => {
   const method = 'GET';
   const result = await api<IResponse['StoriesDashboard']>(`${process.env.$app.BASE_API}/stories/dashboard`, method);

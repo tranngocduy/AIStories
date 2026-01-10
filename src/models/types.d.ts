@@ -88,19 +88,24 @@ export type TMetadata = {
 };
 
 export interface IResponse {
+  GetUserInfo: TUserProfile;
+
   StoriesDashboard: {
     hot_stories: TStory[];
     recommended_stories: TStory[];
     newest_stories: TStory[];
   };
+
   StoriesSearchQuery: {
     items: TStoryDetail[];
     metadata: TMetadata;
-  },
+  };
+
   SearchAuthorByName: {
     items: TAuthor[];
     metadata: TMetadata;
-  },
+  };
+
   GetAllCategory: {
     items: TCategory[];
     metadata: TMetadata;
