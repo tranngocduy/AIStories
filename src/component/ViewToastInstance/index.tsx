@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 import { dayjs } from '@/utils/timeTz';
 
-import { ToastMessage } from '@/component/ToastMessage';
+import ToastMessage from '@/component/ToastMessage';
 
 import styles from './styles';
 

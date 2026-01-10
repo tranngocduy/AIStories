@@ -14,7 +14,7 @@ import styles from './styles';
 
 type ToastMessageProps = { item: { type?: 'success' | 'error' | 'notice', title?: string, message?: string }, onRemove: Function };
 
-export const ToastMessage: React.FC<ToastMessageProps> = memo(({ item, onRemove }) => {
+export const ToastMessage: React.FC<ToastMessageProps> = ({ item, onRemove }) => {
   const DURATION = 5000;
 
   const type = item?.type;
@@ -114,4 +114,6 @@ export const ToastMessage: React.FC<ToastMessageProps> = memo(({ item, onRemove 
     </Animated.View>
   )
 
-}, () => true);
+};
+
+export default memo(ToastMessage, () => true);
