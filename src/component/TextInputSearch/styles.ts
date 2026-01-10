@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     display: 'none'
   },
   borderView: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     borderWidth: 1,
     borderRadius: 100,
     borderColor: '#F2F2F2'
