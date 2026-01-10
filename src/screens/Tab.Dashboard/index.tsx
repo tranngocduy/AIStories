@@ -11,13 +11,13 @@ import GroupStories from './component/GroupStories';
 
 import styles from './styles';
 
-type TDataStories = { hotStories: TStory[], newestStories: TStory[], recommendedStories: TStory[] };
+type DataStories = { hotStories: TStory[], newestStories: TStory[], recommendedStories: TStory[] };
 
 const Dashboard: React.FC = () => {
 
   const queryStoriesDashboard = useGetStoriesDashboard();
 
-  const data: TDataStories = queryStoriesDashboard?.data || null;
+  const data: DataStories = queryStoriesDashboard?.data || null;
 
   const _onRefresh = async () => await queryStoriesDashboard.refetch?.();
 

@@ -12,9 +12,9 @@ import StorySkeleton from '@/component/StorySkeleton';
 
 import styles from './styles';
 
-type TGroupStoriesProps = { label: string, data?: TStory[], sort?: { label: string, value: string } };
+type GroupStoriesProps = { label: string, data?: TStory[], sort?: { label: string, value: string } };
 
-const GroupStories: React.FC<TGroupStoriesProps> = ({ label, data, sort }) => {
+const GroupStories: React.FC<GroupStoriesProps> = ({ label, data, sort }) => {
 
   const navigation = useStackNavigation();
 
