@@ -113,6 +113,10 @@ export interface IResponse {
 }
 
 export interface IRequest {
+  Login: {
+    email: string;
+    password: string;
+  };
   StoriesSearchQuery: {
     keyword?: string;
     author_id?: number;

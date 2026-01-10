@@ -1,14 +1,17 @@
 import React, { useState, useRef } from 'react';
 import { View, ScrollView } from 'react-native';
 
+import { ServiceAPI } from '@/apis';
 import { logoIMG } from '@/assets/image';
 import { IUserSVG, ILockSVG } from '@/assets/svg';
 import { getDataMessageInValid } from '@/utils/service';
+import { useStackNavigation } from '@/useHooks/useNavigation';
 
 import TextBase from '@/component/TextBase';
 import ImageIcon from '@/component/ImageIcon';
 import HeaderStack from '@/component/HeaderStack';
 import TextInputForm from '@/component/TextInputForm';
+import TouchableView from '@/component/TouchableView';
 import Button, { ButtonRefs } from '@/component/Button';
 import ScrollAvoidingView from '@/component/ScrollAvoidingView';
 import { ToastInstance } from '@/instance';
@@ -16,6 +19,7 @@ import { ToastInstance } from '@/instance';
 import styles from './styles';
 
 const UserSignIn: React.FC = () => {
+  const navigation = useStackNavigation();
 
   const [error, setError] = useState({ email: '', password: '' });
 
@@ -24,6 +28,8 @@ const UserSignIn: React.FC = () => {
   const passwordRef = useRef('');
 
   const buttonRef = useRef<ButtonRefs>(null);
+
+  const _onPressSignUp = () => navigation?.navigate?.('UserSignUp');
 
   const _onChangeEmail = (value: string) => {
     emailRef.current = value;
@@ -67,6 +73,16 @@ const UserSignIn: React.FC = () => {
     if (!isInValid) {
       buttonRef.current?.startLoad?.();
 
+      const result = await ServiceAPI.login({ email: emailRef.current, password: passwordRef.current });
+
+      if (!!result?.errorMessage) {
+        if ((result?.errorMessage === 'Inactive user')) ToastInstance.show({ message: 'Tài khoản không tồn tại.', type: 'error' });
+
+        else if ((result?.errorMessage === 'Incorrect email or password')) ToastInstance.show({ message: 'Tài khoản hoặc mật khẩu không đúng.', type: 'error' });
+
+        else ToastInstance.show({ message: result?.errorMessage, type: 'error' });
+      }
+
       buttonRef.current?.stopLoad?.();
     }
   }
@@ -90,6 +106,7 @@ const UserSignIn: React.FC = () => {
 
           <Button label='Đăng nhập' onPress={_onPressSignIn} ref={buttonRef} />
 
+          <View style={styles.bottomView}><TouchableView hitSlop={16} onPress={_onPressSignUp}><TextBase style={styles.bottomText}>Đăng ký</TextBase></TouchableView></View>
         </ScrollView>
       </ScrollAvoidingView>
     </View>
