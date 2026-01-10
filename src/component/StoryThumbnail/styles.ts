@@ -6,10 +6,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8F8F8'
   },
   thumbnail: {
-    ...StyleSheet.absoluteFillObject
+    ...StyleSheet.absoluteFill
   },
   emptyView: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#E5E7EB'
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     zIndex: 1
   },
   categoryTag: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     borderTopLeftRadius: 8,
     borderBottomRightRadius: 8
   },

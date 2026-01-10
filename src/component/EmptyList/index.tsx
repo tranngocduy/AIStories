@@ -7,7 +7,7 @@ import TextBase from '@/component/TextBase';
 
 import styles from './styles';
 
-const EmptyList: React.FC<{}> = () => {
+const EmptyList: React.FC = () => {
 
   return (
     <View style={styles.container}>
