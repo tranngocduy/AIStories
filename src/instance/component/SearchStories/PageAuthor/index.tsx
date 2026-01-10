@@ -2,9 +2,9 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { View, ScrollView } from 'react-native';
 
 import { FILTER_OPTION_AUTHOR } from '@/constants';
-import { TAuthor, TOptionFilter } from '@/models/types';
 import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 import { useSearchAuthorByName } from '@/useQuery/useSearchAuthorByName';
+import type { TOptionFilter } from '@/models/types';
 
 import TextBase from '@/component/TextBase';
 import OptionFilter from '@/component/OptionFilter';
