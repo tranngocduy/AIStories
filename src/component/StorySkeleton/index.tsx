@@ -5,9 +5,9 @@ import ProgressSkeleton from '@/component/ProgressSkeleton';
 
 import styles from './styles';
 
-type TStoryItemProps = { isEmpty?: boolean, isHorizon?: boolean };
+type StoryItemProps = { isEmpty?: boolean, isHorizon?: boolean };
 
-export const StorySkeleton: React.FC<TStoryItemProps> = ({ isEmpty, isHorizon }) => {
+export const StorySkeleton: React.FC<StoryItemProps> = ({ isEmpty, isHorizon }) => {
 
   const thumbSize = !!isHorizon ? 180 : 152;
 

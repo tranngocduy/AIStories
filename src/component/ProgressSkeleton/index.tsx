@@ -6,9 +6,9 @@ import { skeletonJSON } from '@/assets/files';
 
 import styles from './styles';
 
-type TProgressSkeletonProps = { width?: number, height?: number, radius?: number }
+type ProgressSkeletonProps = { width?: number, height?: number, radius?: number }
 
-export const ProgressSkeleton: React.FC<TProgressSkeletonProps> =({ width, height, radius }) => {
+export const ProgressSkeleton: React.FC<ProgressSkeletonProps> =({ width, height, radius }) => {
   const containerStyle = (!!width || !!height) ? ({ width, height }) : ({ flex: 1 });
 
   return (

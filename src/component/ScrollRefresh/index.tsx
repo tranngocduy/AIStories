@@ -3,9 +3,9 @@ import { RefreshControl } from 'react-native';
 
 import { runAfterInteractions } from '@/utils/app';
 
-type TScrollRefreshProps = { onRefresh: Function };
+type ScrollRefreshProps = { onRefresh: Function };
 
-const ScrollRefresh: React.FC<TScrollRefreshProps> = ({ onRefresh, ...props }) => {
+const ScrollRefresh: React.FC<ScrollRefreshProps> = ({ onRefresh, ...props }) => {
   const [isRefreshing, setRefreshing] = useState(false);
 
   const _onRefresh = () => setRefreshing(true);

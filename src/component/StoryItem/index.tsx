@@ -11,9 +11,9 @@ import StoryThumbnail from '@/component/StoryThumbnail';
 
 import styles from './styles';
 
-type TStoryItemProps = { item: TStory, isHorizon?: boolean };
+type StoryItemProps = { item: TStory, isHorizon?: boolean };
 
-const StoryItem: React.FC<TStoryItemProps> = ({ item, isHorizon = false }) => {
+const StoryItem: React.FC<StoryItemProps> = ({ item, isHorizon = false }) => {
 
   const navigation = useStackNavigation();
 

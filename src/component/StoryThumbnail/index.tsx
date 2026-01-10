@@ -9,9 +9,9 @@ import StoryScore from '@/component/StoryScore';
 
 import styles from './styles';
 
-type TStoryThumbnailProps = { item?: TStory, thumbSize?: number, isOverview?: boolean };
+type StoryThumbnailProps = { item?: TStory, thumbSize?: number, isOverview?: boolean };
 
-const StoryThumbnail: React.FC<TStoryThumbnailProps> = ({ item, thumbSize, isOverview }) => {
+const StoryThumbnail: React.FC<StoryThumbnailProps> = ({ item, thumbSize, isOverview }) => {
 
   const end = { x: 0.5, y: 1 };
 

@@ -7,9 +7,9 @@ import TextBase from '@/component/TextBase';
 
 import styles from './styles';
 
-type TStoryScoreProps = { score?: number, isHideScore?: boolean, backgroundColor?: string, color?: string }
+type StoryScoreProps = { score?: number, isHideScore?: boolean, backgroundColor?: string, color?: string }
 
-const StoryScore: React.FC<TStoryScoreProps> = ({ score, isHideScore, backgroundColor = '#555555', color = '#FFFFFF' }) => {
+const StoryScore: React.FC<StoryScoreProps> = ({ score, isHideScore, backgroundColor = '#555555', color = '#FFFFFF' }) => {
   const STAR_POINT = 2;
 
   const stars = Math.min(((score || 0) / STAR_POINT), 5);

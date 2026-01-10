@@ -3,9 +3,9 @@ import { ActivityIndicator, View } from 'react-native';
 
 import styles from './styles';
 
-type TProgressIconProps = { size?: 'small' | 'large' }
+type ProgressIconProps = { size?: 'small' | 'large' }
 
-export const ProgressIcon: React.FC<TProgressIconProps> = ({ size }) => {
+export const ProgressIcon: React.FC<ProgressIconProps> = ({ size }) => {
 
   const sizeIndicator = (size || 'large');
 
