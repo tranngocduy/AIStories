@@ -54,7 +54,7 @@ export const PageAuthor: React.FC<PageFilterProps> = ({ query, onChangeFilter })
 
   const items = useMemo(() => ([{ name: ITEM.label, id: ITEM.value }, ...(data || [])]), [JSON.stringify(data)]);
 
-  const _renderItem = (item: TAuthor, index: number) => {
+  const _renderItem = (item: { name: string, id: number }, index: number) => {
     const isActive = (item.id === selected.value);
 
     const option = { label: item?.name, value: item?.id };
