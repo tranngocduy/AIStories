@@ -6,11 +6,11 @@ import TouchableView from '@/component/TouchableView';
 
 import styles from './styles';
 
-export type PrimaryButtonRefs = { startLoad: () => void, stopLoad: () => void, enabled: (status: boolean) => void };
+export type ButtonRefs = { startLoad: () => void, stopLoad: () => void, enabled: (status: boolean) => void };
 
-type PrimaryButtonProps = { label?: string, style?: ViewStyle, labelStyle?: TextStyle, color?: string, disabled?: boolean, onPress: Function };
+type ButtonProps = { label?: string, style?: ViewStyle, labelStyle?: TextStyle, color?: string, disabled?: boolean, onPress: Function };
 
-const PrimaryButton = forwardRef<PrimaryButtonRefs, PrimaryButtonProps>(({ label, style, labelStyle, color, onPress, ...props }, ref) => {
+const Button = forwardRef<ButtonRefs, ButtonProps>(({ label, style, labelStyle, color, onPress, ...props }, ref) => {
 
   const viewRef = useRef<View>(null);
 
@@ -61,4 +61,4 @@ const PrimaryButton = forwardRef<PrimaryButtonRefs, PrimaryButtonProps>(({ label
 
 });
 
-export default PrimaryButton;
+export default Button;
