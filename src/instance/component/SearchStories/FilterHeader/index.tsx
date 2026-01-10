@@ -8,7 +8,7 @@ import TextBase from '@/component/TextBase';
 import TouchableView from '@/component/TouchableView';
 
 import styles from './styles';
-import { FilterHeaderProps, FilterHeaderRefs, TypeFilterState } from '../types';
+import type { FilterHeaderProps, FilterHeaderRefs, TypeFilterState } from '../types';
 
 export const FilterHeader = forwardRef<FilterHeaderRefs, FilterHeaderProps>(({ onGenerateQuery, onBack, onClose }, ref) => {
 

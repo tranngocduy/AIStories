@@ -12,7 +12,7 @@ import TouchableView from '@/component/TouchableView';
 import TextInputSearch, { TextInputSearchRefs } from '@/component/TextInputSearch';
 
 import styles from './styles';
-import { PageFilterProps } from '../types';
+import type { PageFilterProps } from '../types';
 
 export const PageAuthor: React.FC<PageFilterProps> = ({ query, onChangeFilter }) => {
 

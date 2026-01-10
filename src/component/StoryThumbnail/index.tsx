@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ImageBackground } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { TStory } from '@/models/types';
+import type { TStory } from '@/models/types';
 
 import TextBase from '@/component/TextBase';
 import StoryScore from '@/component/StoryScore';

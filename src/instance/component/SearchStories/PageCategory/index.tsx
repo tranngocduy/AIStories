@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, ScrollView } from 'react-native';
 
 import { FILTER_OPTION_CATEGORY } from '@/constants';
-import { TCategory, TOptionFilter } from '@/models/types';
 import { useGetAllCategory } from '@/useQuery/useGetAllCategory';
+import type { TCategory, TOptionFilter } from '@/models/types';
 
 import TextBase from '@/component/TextBase';
 import OptionFilter from '@/component/OptionFilter';
@@ -11,7 +11,7 @@ import TouchableView from '@/component/TouchableView';
 import ProgressSkeleton from '@/component/ProgressSkeleton';
 
 import styles from './styles';
-import { PageFilterProps } from '../types';
+import type { PageFilterProps } from '../types';
 
 export const PageCategory: React.FC<PageFilterProps> = ({ query, onChangeFilter }) => {
 

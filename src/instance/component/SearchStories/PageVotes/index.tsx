@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { View, ScrollView } from 'react-native';
 
-import { TOptionFilter } from '@/models/types';
 import { FILTER_OPTION_VOTES } from '@/constants';
+import type { TOptionFilter } from '@/models/types';
 
 import TextBase from '@/component/TextBase';
 import OptionFilter from '@/component/OptionFilter';
 import TouchableView from '@/component/TouchableView';
 
 import styles from './styles';
-import { PageFilterProps } from '../types';
+import type { PageFilterProps } from '../types';
 
 export const PageVotes: React.FC<PageFilterProps> = ({ query, onChangeFilter }) => {
 

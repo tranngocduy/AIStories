@@ -2,8 +2,8 @@ import React, { useState, useMemo, useRef } from 'react';
 import { View, ScrollView, Keyboard } from 'react-native';
 
 import { runAfterInteractions } from '@/utils/app';
-import { TOptionFilterState } from '@/models/types';
 import { FILTER_OPTION_AUTHOR, FILTER_OPTION_SORT, FILTER_OPTION_VOTES, FILTER_OPTION_CHAPTERS, FILTER_OPTION_RATING, FILTER_OPTION_STATUS, FILTER_OPTION_CATEGORY } from '@/constants';
+import type { TOptionFilterState } from '@/models/types';
 
 import { ScrollAvoidingView } from '@/component/ScrollAvoidingView';
 import InstanceModal, { InstanceModalRefs } from '@/component/InstanceModal';
@@ -19,7 +19,7 @@ import { PageStatus } from './PageStatus';
 import { PageCategory } from './PageCategory';
 
 import styles from './styles';
-import { SearchStoriesProps, FilterHeaderRefs, TypeFilterState, OptionQuery } from './types';
+import type { SearchStoriesProps, FilterHeaderRefs, TypeFilterState, OptionQuery } from './types';
 
 export const SearchStories: React.FC<SearchStoriesProps> = ({ query, resolve, onHide }) => {
 

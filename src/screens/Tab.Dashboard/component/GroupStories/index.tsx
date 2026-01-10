@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
 
-import { TStory } from '@/models/types';
 import { useStackNavigation } from '@/useHooks/useNavigation';
+import type { TStory } from '@/models/types';
 
 import TextBase from '@/component/TextBase';
 import StoryItem from '@/component/StoryItem';

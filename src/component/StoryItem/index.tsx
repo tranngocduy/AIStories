@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { TStory } from '@/models/types';
 import { useStackNavigation } from '@/useHooks/useNavigation';
 import { ITotalViewSVG, ITotalChapterSVG } from '@/assets/svg';
+import type { TStory } from '@/models/types';
 
 import TextBase from '@/component/TextBase';
 import TouchableView from '@/component/TouchableView';

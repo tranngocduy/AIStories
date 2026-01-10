@@ -1,7 +1,7 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation, useIsFocused, useRoute, RouteProp } from '@react-navigation/native';
 
-import { TStory, TChapter, TOptionFilterState } from '@/models/types';
+import type { TStory, TChapter, TOptionFilterState } from '@/models/types';
 
 type RootStackParamList = {
   UserSignIn: undefined,
