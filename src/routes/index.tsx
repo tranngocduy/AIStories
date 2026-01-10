@@ -13,6 +13,8 @@ import Dashboard from '@/screens/Tab.Dashboard';
 import SavedStory from '@/screens/Tab.SavedStory';
 import UserProfile from '@/screens/Tab.UserProfile';
 
+import UserSignIn from '@/screens/UserSignIn';
+
 import TabNavigator from '@/component/TabNavigator';
 
 const Tab = createBottomTabNavigator();
@@ -36,6 +38,8 @@ const AppStack = () => {
   return (
     <Stack.Navigator screenOptions={stackOptions}>
       <Stack.Screen name='AppTab' component={AppTab} />
+
+      <Stack.Screen name='UserSignIn' component={UserSignIn} />
     </Stack.Navigator>
   )
 }
