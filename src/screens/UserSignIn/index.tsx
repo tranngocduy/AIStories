@@ -3,6 +3,7 @@ import { View, ScrollView } from 'react-native';
 
 import { logoIMG } from '@/assets/image';
 import { IUserSVG, ILockSVG } from '@/assets/svg';
+import { getDataMessageInValid } from '@/utils/service';
 
 import TextBase from '@/component/TextBase';
 import ImageIcon from '@/component/ImageIcon';
@@ -10,6 +11,7 @@ import HeaderStack from '@/component/HeaderStack';
 import TextInputForm from '@/component/TextInputForm';
 import Button, { ButtonRefs } from '@/component/Button';
 import ScrollAvoidingView from '@/component/ScrollAvoidingView';
+import { ToastInstance } from '@/instance';
 
 import styles from './styles';
 
@@ -52,7 +54,21 @@ const UserSignIn: React.FC = () => {
   }
 
   const _onPressSignIn = async () => {
+    const msgError = { ...error };
 
+    if (!emailRef.current) msgError.email = 'Thông tin này là bắt buộc';
+
+    if (!passwordRef.current) msgError.password = 'Thông tin này là bắt buộc';
+
+    const isInValid = getDataMessageInValid(msgError);
+
+    if (!!isInValid) setError({ ...msgError });
+
+    if (!isInValid) {
+      buttonRef.current?.startLoad?.();
+
+      buttonRef.current?.stopLoad?.();
+    }
   }
 
   return (

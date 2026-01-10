@@ -21,7 +21,7 @@ import { PageCategory } from './PageCategory';
 import styles from './styles';
 import type { SearchStoriesProps, FilterHeaderRefs, TypeFilterState, OptionQuery } from './types';
 
-export const SearchStories: React.FC<SearchStoriesProps> = ({ query, resolve, onHide }) => {
+const SearchStories: React.FC<SearchStoriesProps> = ({ query, resolve, onHide }) => {
 
   const [optionFilter, setOptionFilter] = useState<TOptionFilterState>({
     author: query?.author || FILTER_OPTION_AUTHOR[0],
@@ -153,3 +153,5 @@ export const SearchStories: React.FC<SearchStoriesProps> = ({ query, resolve, on
   )
 
 }
+
+export default SearchStories;
