@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { wHeight, statusHeight } from '@/theme';
+import { wHeight, statusHeight, footerHeight } from '@/theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
     flexGrow: 1
   },
   page: {
-    height: wHeight + statusHeight - 190
+    minHeight: wHeight + (statusHeight - 190),
+    paddingBottom: footerHeight
   }
 });
 

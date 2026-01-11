@@ -7,8 +7,12 @@ import { useRouteNavigation } from '@/useHooks/useNavigation';
 import { useTranslateVersions } from '@/useQuery/useTranslateVersions';
 
 import HeaderStack from '@/component/HeaderStack';
+import StoryComment from '@/component/StoryComment';
 
+import Overview from './component/Overview';
+import RateVote from './component/RateVote';
 import StoryInfo from './component/StoryInfo';
+import Chapters, { ChaptersRefs } from './component/Chapters';
 import TabStory, { TabStoryRefs } from './component/TabStory';
 
 import styles from './styles';
@@ -23,9 +27,9 @@ const StoryDetail: React.FC = () => {
 
   const queryTranslateVersion = useTranslateVersions({ storyId: params?.story?.id });
 
-  const translateVersionId = (queryTranslateVersion?.data?.[0]?.id || null);
+  const translateVersionId = queryTranslateVersion?.data?.[0]?.id;
 
-  const chaptersRef = useRef(null);
+  const chaptersRef = useRef<ChaptersRefs>(null);
 
   const tabStoryRef = useRef<TabStoryRefs>(null);
 
@@ -34,13 +38,19 @@ const StoryDetail: React.FC = () => {
     const offsetY = event?.nativeEvent?.contentOffset?.y;
     const layoutHeight = event?.nativeEvent?.layoutMeasurement?.height;
     const contentHeight = (event?.nativeEvent?.contentSize?.height - paddingBottom);
-    if ((layoutHeight + offsetY) >= contentHeight) { }
+    if ((layoutHeight + offsetY) >= contentHeight) chaptersRef.current?.loadMore?.();
   }
 
   const _onChangeTab = (tabPageIndex: number) => {
     setActiveIndex(tabPageIndex);
     tabStoryRef.current?.onScroll?.(tabPageIndex);
   }
+
+  const memoOverview = useMemo(() => <Overview detail={queryStoryDetail?.data} />, [JSON.stringify(queryStoryDetail?.data)]);
+
+  const memoChapters = useMemo(() => <Chapters story={params?.story} translateVersionId={translateVersionId} ref={chaptersRef} />, [translateVersionId]);
+
+  const memoRateVote = useMemo(() => <RateVote story={params?.story} />, []);
 
   const memoTabStory = useMemo(() => <TabStory onChangeTab={_onChangeTab} ref={tabStoryRef} />, []);
 
@@ -54,10 +64,12 @@ const StoryDetail: React.FC = () => {
           {memoStoryInfo}
           {memoTabStory}
           <View style={styles.page}>
-
+            {(activeIndex === 0) && <Animated.View style={styles.view} entering={FadeInDown}>{memoOverview}</Animated.View>}
+            {(activeIndex === 1) && <Animated.View style={styles.view} entering={FadeInDown}>{memoChapters}</Animated.View>}
+            {(activeIndex === 2) && <Animated.View style={styles.view} entering={FadeInDown}>{memoRateVote}</Animated.View>}
           </View>
         </ScrollView>
-
+        {(activeIndex === 2) && <Animated.View style={styles.view} entering={FadeInDown}><StoryComment storyId={params?.story?.id} /></Animated.View>}
       </View>
     </View>
   )

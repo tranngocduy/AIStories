@@ -92,6 +92,18 @@ export const unLikePostRating = async (body: IRequest['LikeStoryRateVote']) => {
   return result;
 }
 
+export const updateStoryRating = async (body: IRequest['RatingStoryRateVote']) => {
+  const method = 'POST';
+  const result = await api(`${process.env.$app.BASE_API}/rating/`, method, body);
+  return result;
+}
+
+export const updateCommentRating = async (body: IRequest['CommentStoryRateVote']) => {
+  const method = 'POST';
+  const result = await api(`${process.env.$app.BASE_API}/rating/comment`, method, body);
+  return result;
+}
+
 export const logout = async () => {
   const method = 'POST';
   const result = await api(`${process.env.$app.BASE_API}/auth/logout`, method);

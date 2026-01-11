@@ -214,5 +214,18 @@ export interface IRequest {
   LikeStoryRateVote: {
     rating_id?: number;
     user_id?: number;
+  },
+
+  RatingStoryRateVote: {
+    story_id?: number | null;
+    user_id?: number | null;
+    score?: number | null;
+    content?: string | null;
+  };
+
+  CommentStoryRateVote: {
+    rating_id?: number | null;
+    content?: string | null;
+    user_id?: number | null;
   }
 }
