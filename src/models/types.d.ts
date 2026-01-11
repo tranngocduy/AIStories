@@ -151,6 +151,19 @@ export type TComment = {
   created_at: string;
 }
 
+export type TChapterContent = {
+  chapter_id: number;
+  chapter_number: number;
+  title: string;
+  content: string;
+  views: number;
+  is_paid: number;
+  price: number | null;
+  audio_url: string | null;
+  audio_duration: number | null;
+  slug: string;
+}
+
 export interface IResponse {
   GetUserInfo: TUserProfile;
 
@@ -161,6 +174,8 @@ export interface IResponse {
   GetTranslateVersions: TTranslateVersion[];
 
   GetStoryRateReviews: TComment[];
+
+  GetChapterContent: TChapterContent;
 
   StoriesDashboard: {
     hot_stories: TStory[];

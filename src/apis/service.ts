@@ -68,6 +68,12 @@ export const getStoryChapters = async (translateVersionId?: number, page?: numbe
   return result;
 }
 
+export const getChapterContent = async (chapterId?: number, translateVersionId?: number) => {
+  const method = 'GET';
+  const result = await api<IResponse['GetChapterContent']>(`${process.env.$app.BASE_API}/chapters/${translateVersionId}/${chapterId}`, method);
+  return result;
+}
+
 export const updateStoryMarked = async (body: { story_id?: number; user_id?: number; }) => {
   const method = 'POST';
   const result = await api(`${process.env.$app.BASE_API}/reading/bookmarks`, method, body);
