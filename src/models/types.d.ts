@@ -115,7 +115,7 @@ export interface IResponse {
   GetAllCategory: {
     items: TCategory[];
     metadata: TMetadata;
-  }
+  };
 
   ReadingBookmarks: TStoryMarked[];
 }

@@ -49,3 +49,9 @@ export const getReadingBookmarks = async () => {
   const result = await api<IResponse['ReadingBookmarks']>(`${process.env.$app.BASE_API}/reading/bookmarks`, method);
   return result;
 }
+
+export const logout = async () => {
+  const method = 'POST';
+  const result = await api(`${process.env.$app.BASE_API}/auth/logout`, method);
+  return result;
+}
