@@ -47,7 +47,7 @@ const StoryInfo: React.FC<StoryInfoProps> = ({ story, detail }) => {
 
   const _onPressStoryDetail = () => {
     const chapter = { ...(queryStoryChapters?.data?.[0] || {}), chapter_index: 0 };
-    if (!!chapter?.id && !!story && !!translateVersionId) stackNavigationRef.navigate('PageChapter', { story, chapter, translateVersionId });
+    if (!!chapter?.id && !!story) stackNavigationRef.navigate('PageChapter', { story, chapter });
   }
 
   const _onPressStorySpeech = () => {

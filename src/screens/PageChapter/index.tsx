@@ -28,8 +28,6 @@ const PageChapter: React.FC = () => {
 
   const chapterIndex = params?.chapter?.chapter_index;
 
-  const translateVersionId = params?.translateVersionId;
-
   const keyFrame = useMemo(() => dayjs().valueOf(), [chapterId]);
 
   const memoPageHeader = useMemo(() => <PageHeader title={title} />, [title]);

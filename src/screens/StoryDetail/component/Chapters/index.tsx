@@ -27,9 +27,7 @@ const Chapters = forwardRef<ChaptersRefs, ChaptersProps>(({ story, translateVers
 
   const isLoading = (!translateVersionId || !!queryStoryChapters?.isLoading);
 
-  const _onPressChapter = (chapter: TChapter) => {
-    if (!!chapter?.id && !!story && !!translateVersionId) navigate('PageChapter', { story, chapter, translateVersionId });
-  }
+  const _onPressChapter = (chapter: TChapter) => navigate('PageChapter', { story, chapter });
 
   const _loadMore = async () => {
     if (!!isLoadMoreRef.current && !!queryStoryChapters?.hasNextPage) {
