@@ -55,3 +55,9 @@ export const logout = async () => {
   const result = await api(`${process.env.$app.BASE_API}/auth/logout`, method);
   return result;
 }
+
+export const deleteUser = async () => {
+  const method = 'DELETE';
+  const result = await api(`${process.env.$app.BASE_API}/users/soft-delete-account`, method);
+  return result;
+}

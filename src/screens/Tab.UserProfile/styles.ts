@@ -83,6 +83,12 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     color: '#940000'
   },
+  titleDelete: {
+    ...fonts.default.normal700,
+    fontSize: 16,
+    lineHeight: 24,
+    color: '#940000'
+  },
   version: {
     ...fonts.default.normal500,
     fontSize: 14,

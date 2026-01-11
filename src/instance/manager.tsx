@@ -15,16 +15,16 @@ class ComponentManager<T> {
     this.compObj = null;
   }
 
-  show(props: T, callback?: any) {
+  show(props?: T, callback?: any) {
     Keyboard.dismiss();
 
     runAfterInteractions(() => {
       if (this.compObj) {
         this.hide(() => {
-          this.createComponentObject(props, callback);
+          this.createComponentObject((props || {} as T), callback);
         });
       } else {
-        this.createComponentObject(props, callback);
+        this.createComponentObject((props || {} as T), callback);
       }
     });
   }
