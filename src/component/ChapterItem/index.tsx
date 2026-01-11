@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import { View } from 'react-native';
 
-import { TChapter } from '@/models/types';
 import { IPlayCircleSVG } from '@/assets/svg';
+import type { TChapter } from '@/models/types';
 
 import TextBase from '@/component/TextBase';
 import TouchableView from '@/component/TouchableView';
