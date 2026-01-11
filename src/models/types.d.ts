@@ -124,6 +124,25 @@ export type TTagDetail = {
   id?: number;
 }
 
+export type TLikeStory = {
+  rating_id: number;
+  user_id: number;
+}
+
+export type TStoryRateVotes = {
+  story_id: number;
+  score: number;
+  content: string;
+  id: number;
+  user_id: number;
+  likes_count: number;
+  comments_count: number;
+  created_at: string;
+  user: TUser;
+  likes: TLikeStory[];
+  is_liked: boolean;
+}
+
 export interface IResponse {
   GetUserInfo: TUserProfile;
 
@@ -157,6 +176,11 @@ export interface IResponse {
   GetStoryChapters: {
     items: TChapter[];
     metadata: TMetadata;
+  };
+
+  GetStoryRateVotes: {
+    items: TStoryRateVotes[];
+    metadata: TMetadata;
   }
 }
 
@@ -165,11 +189,13 @@ export interface IRequest {
     email: string;
     password: string;
   };
+
   Register: {
     email: string;
     username: string;
     password: string
-  },
+  };
+
   StoriesSearchQuery: {
     keyword?: string;
     author_id?: number;
@@ -183,5 +209,10 @@ export interface IRequest {
     status?: string;
     category_ids?: number[];
     tag_ids?: number[]
+  };
+
+  LikeStoryRateVote: {
+    rating_id?: number;
+    user_id?: number;
   }
 }

@@ -74,6 +74,24 @@ export const updateStoryMarked = async (body: { story_id?: number; user_id?: num
   return result;
 }
 
+export const getStoryRateVotes = async (storyId?: number, page?: number, limit?: number) => {
+  const method = 'GET';
+  const result = await api<IResponse['GetStoryRateVotes']>(`${process.env.$app.BASE_API}/rating/get-all-ratings/${storyId}?page=${page}&limit=${limit}`, method);
+  return result;
+}
+
+export const likePostRating = async (body: IRequest['LikeStoryRateVote']) => {
+  const method = 'POST';
+  const result = await api(`${process.env.$app.BASE_API}/rating/like`, method, body);
+  return result;
+}
+
+export const unLikePostRating = async (body: IRequest['LikeStoryRateVote']) => {
+  const method = 'POST';
+  const result = await api(`${process.env.$app.BASE_API}/rating/unlike`, method, body);
+  return result;
+}
+
 export const logout = async () => {
   const method = 'POST';
   const result = await api(`${process.env.$app.BASE_API}/auth/logout`, method);

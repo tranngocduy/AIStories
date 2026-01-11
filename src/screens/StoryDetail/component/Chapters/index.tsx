@@ -11,7 +11,7 @@ import ProgressIcon from '@/component/ProgressIcon';
 
 import styles from './styles';
 
-type ChaptersProps = { story: TStory, translateVersionId: number };
+type ChaptersProps = { story: TStory, translateVersionId?: number };
 
 export type ChaptersRefs = { loadMore: Function };
 
