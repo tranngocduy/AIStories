@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, memo } from 'react';
 import { View, ScrollView, TextLayoutEvent, TextLayoutLine } from 'react-native';
 
 import { decimal } from '@/utils/decimal';
@@ -83,4 +83,4 @@ const Paragraphs: React.FC<ParagraphsProps> = ({ content }) => {
 
 }
 
-export default Paragraphs;
+export default memo(Paragraphs, (prevProps, nextProps) => JSON.stringify(prevProps) === JSON.stringify(nextProps));

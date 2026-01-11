@@ -11,11 +11,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     height: headerHeight,
+    paddingRight: 16,
     paddingLeft: 16,
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
     columnGap: 12,
     overflow: 'hidden'
+  },
+  titleView: {
+    flex: 1
   },
   title: {
     ...fonts.default.normal700,

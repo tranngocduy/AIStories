@@ -1,13 +1,12 @@
 import React, { useMemo } from 'react';
 import { View } from 'react-native';
-import Animated, { FadeInDown, FadeOutDown } from 'react-native-reanimated';
 
 import { dayjs } from '@/utils/timeTz';
 import { useThemePage } from '@/useHooks/useThemePage';
 import { useRouteNavigation } from '@/useHooks/useNavigation';
 
 import PageHeader from './component/PageHeader';
-import Paragraphs from './component/Paragraphs';
+import PageContent from './component/PageContent';
 import PageSetting from './component/PageSetting';
 
 import styles from './styles';
@@ -32,7 +31,7 @@ const PageChapter: React.FC = () => {
 
   const memoPageHeader = useMemo(() => <PageHeader title={title} />, [title]);
 
-  const memoParagraphs = useMemo(() => <Paragraphs content={content} />, [content]);
+  const memoPageContent = useMemo(() => <PageContent chapterId={chapterId} />, [chapterId]);
 
   const memoPageSetting = useMemo(() => <PageSetting story={story} chapterId={chapterId} chapterIndex={chapterIndex} />, [chapterId, chapterIndex]);
 
@@ -40,9 +39,7 @@ const PageChapter: React.FC = () => {
     <View style={[styles.container, { backgroundColor: background }]}>
       {memoPageHeader}
 
-      <Animated.View style={styles.view} entering={FadeInDown} exiting={FadeOutDown} key={keyFrame}>
-        {memoParagraphs}
-      </Animated.View>
+      {memoPageContent}
 
       {memoPageSetting}
     </View>

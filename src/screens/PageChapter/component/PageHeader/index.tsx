@@ -24,7 +24,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title }) => {
     <View style={styles.container}>
       <View style={[styles.view, { backgroundColor: background }]}>
         <TouchableView hitSlop={12} onPress={_onPressBack}><IBackStackSVG width={16} height={16} fill={color} /></TouchableView>
-        <TextBase style={[styles.title, { color }]}>{title}</TextBase>
+        <View style={styles.titleView}><TextBase style={[styles.title, { color }]} numberOfLines={2}>{title}</TextBase></View>
       </View>
     </View>
   )
