@@ -4,7 +4,7 @@ import { useQuery, QUERY_KEYS } from '@/useQuery/constants';
 const _loadData = async (storyId?: number) => {
   const result = await ServiceAPI.getStoryDetail(storyId);
 
-  return (result?.data || {});
+  return result?.data;
 }
 
 export const useStoryDetail = ({ storyId, enabled = true }: { storyId?: number, enabled?: boolean }) => {
