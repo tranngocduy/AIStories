@@ -65,9 +65,7 @@ const StoryInfo: React.FC<StoryInfoProps> = ({ story, detail }) => {
     <View style={styles.container}>
       <View style={styles.view}>
         <View style={styles.overView}>
-          <View>
-            <View style={styles.thumbnail}><StoryThumbnail item={story} thumbSize={110} /></View>
-          </View>
+          <View style={styles.thumbnail}><StoryThumbnail item={story} thumbSize={110} /></View>
 
           <View style={styles.detail}>
             <View style={styles.statusVote}>
@@ -75,9 +73,7 @@ const StoryInfo: React.FC<StoryInfoProps> = ({ story, detail }) => {
               {!!storyId && <StoryMark storyId={storyId} />}
             </View>
 
-            <View>
-              <TextBase style={styles.title}>{title}</TextBase>
-            </View>
+            <TextBase style={styles.title}>{title}</TextBase>
 
             <View style={styles.authorView}>
               {!author ?
