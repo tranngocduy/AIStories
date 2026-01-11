@@ -59,7 +59,7 @@ export type TStoryDetail = {
   author: TAuthor;
   status: string;
   categories: string[];
-  tags: string[];
+  tags: TTagDetail[];
   total_chapters: number;
   total_views: number;
   rating_score: number;
@@ -116,6 +116,12 @@ export type TChapter = {
   audio_url: string | null;
   audio_duration: number | null;
   chapter_index: number;
+}
+
+export type TTagDetail = {
+  name?: string;
+  slug?: string;
+  id?: number;
 }
 
 export interface IResponse {
