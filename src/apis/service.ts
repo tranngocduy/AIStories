@@ -92,6 +92,12 @@ export const unLikePostRating = async (body: IRequest['LikeStoryRateVote']) => {
   return result;
 }
 
+export const getStoryRateReviews = async (ratingId: number) => {
+  const method = 'GET';
+  const result = await api<IResponse['GetStoryRateReviews']>(`${process.env.$app.BASE_API}/rating/comment/${ratingId}`, method);
+  return result;
+}
+
 export const updateStoryRating = async (body: IRequest['RatingStoryRateVote']) => {
   const method = 'POST';
   const result = await api(`${process.env.$app.BASE_API}/rating/`, method, body);

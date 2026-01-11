@@ -143,6 +143,14 @@ export type TStoryRateVotes = {
   is_liked: boolean;
 }
 
+export type TComment = {
+  id: number;
+  user: TUserProfile;
+  content: string;
+  parent_id: number | null;
+  created_at: string;
+}
+
 export interface IResponse {
   GetUserInfo: TUserProfile;
 
@@ -151,6 +159,8 @@ export interface IResponse {
   ReadingBookmarks: TStoryMarked[];
 
   GetTranslateVersions: TTranslateVersion[];
+
+  GetStoryRateReviews: TComment[];
 
   StoriesDashboard: {
     hot_stories: TStory[];

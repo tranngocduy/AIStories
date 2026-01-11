@@ -15,6 +15,7 @@ import SavedStory from '@/screens/Tab.SavedStory';
 import UserProfile from '@/screens/Tab.UserProfile';
 
 import StoryDetail from '@/screens/StoryDetail';
+import StoryReview from '@/screens/StoryReview';
 
 import UserSignIn from '@/screens/UserSignIn';
 import UserSignUp from '@/screens/UserSignUp';
@@ -44,6 +45,7 @@ const AppStack = () => {
       <Stack.Screen name='AppTab' component={AppTab} />
 
       <Stack.Screen name='StoryDetail' component={StoryDetail} />
+      <Stack.Screen name='StoryReview' component={StoryReview} />
 
       <Stack.Screen name='UserSignIn' component={UserSignIn} />
       <Stack.Screen name='UserSignUp' component={UserSignUp} />
