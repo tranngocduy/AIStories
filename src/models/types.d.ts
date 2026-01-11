@@ -93,8 +93,25 @@ export type TStoryMarked = {
   user_id?: number;
 }
 
+export type TTranslateVersion = {
+  story_id: number;
+  name: string;
+  version_type: string;
+  created_at: string;
+  id: number;
+  description: string | null;
+  sqlite_path: string;
+  updated_at: string;
+}
+
 export interface IResponse {
   GetUserInfo: TUserProfile;
+
+  GetStoryDetail: TStoryDetail;
+
+  ReadingBookmarks: TStoryMarked[];
+
+  GetTranslateVersions: TTranslateVersion[];
 
   StoriesDashboard: {
     hot_stories: TStory[];
@@ -116,8 +133,6 @@ export interface IResponse {
     items: TCategory[];
     metadata: TMetadata;
   };
-
-  ReadingBookmarks: TStoryMarked[];
 }
 
 export interface IRequest {

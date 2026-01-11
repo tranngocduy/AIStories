@@ -13,6 +13,8 @@ import Dashboard from '@/screens/Tab.Dashboard';
 import SavedStory from '@/screens/Tab.SavedStory';
 import UserProfile from '@/screens/Tab.UserProfile';
 
+import StoryDetail from '@/screens/StoryDetail';
+
 import UserSignIn from '@/screens/UserSignIn';
 import UserSignUp from '@/screens/UserSignUp';
 
@@ -39,6 +41,8 @@ const AppStack = () => {
   return (
     <Stack.Navigator screenOptions={stackOptions}>
       <Stack.Screen name='AppTab' component={AppTab} />
+
+      <Stack.Screen name='StoryDetail' component={StoryDetail} />
 
       <Stack.Screen name='UserSignIn' component={UserSignIn} />
       <Stack.Screen name='UserSignUp' component={UserSignUp} />

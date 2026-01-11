@@ -50,6 +50,18 @@ export const getReadingBookmarks = async () => {
   return result;
 }
 
+export const getStoryDetail = async (storyId?: number) => {
+  const method = 'GET';
+  const result = await api<IResponse['GetStoryDetail']>(`${process.env.$app.BASE_API}/stories/${storyId}`, method);
+  return result;
+}
+
+export const getTranslateVersions = async (storyId?: number) => {
+  const method = 'GET';
+  const result = await api<IResponse['GetTranslateVersions']>(`${process.env.$app.BASE_API}/stories/${storyId}/translate-versions`, method);
+  return result;
+}
+
 export const logout = async () => {
   const method = 'POST';
   const result = await api(`${process.env.$app.BASE_API}/auth/logout`, method);
