@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { View, TextInput, TextInputProps } from 'react-native';
 
 import { IEyeOnSVG, IEyeOffSVG } from '@/assets/svg';
 
 import TextMsgError from '@/component/TextMsgError';
 import TouchableView from '@/component/TouchableView';
+import InputBorder, { InputBorderRefs } from '@/component/InputBorder';
 
 import styles from './styles';
 
@@ -12,58 +13,51 @@ type TextInputFormProps = { inputIcon?: React.JSX.Element, error?: string } & Te
 
 const TextInputForm: React.FC<TextInputFormProps> = ({ inputIcon, error, ...props }) => {
 
-  const border = { focus: '#000000', blur: '#F2F2F2', error: '#FF0000' };
-
   const [isSecureTextEntry, setSecureTextEntry] = useState(!!props.secureTextEntry);
-
-  const borderRef = useRef<View>(null);
-
-  const isFocusRef = useRef<boolean>(false);
 
   const textInputRef = useRef<TextInput>(null);
 
+  const inputBorderRefs = useRef<InputBorderRefs>(null);
+
   const _onSecure = () => setSecureTextEntry(!isSecureTextEntry);
 
-  const _onBlur = () => {
-    isFocusRef.current = false;
-    borderRef.current?.setNativeProps?.({ borderColor: !!error ? border.error : border.blur });
-  }
+  const _onBlur = () => inputBorderRefs.current?.onChangeStatus(false);
 
-  const _onFocus = () => {
-    isFocusRef.current = true;
-    borderRef.current?.setNativeProps?.({ borderColor: !!error ? border.error : !!isFocusRef.current ? border.focus : border.blur });
-  }
+  const _onFocus = () => inputBorderRefs.current?.onChangeStatus(true);
 
   const _onPressInput = () => textInputRef.current?.focus?.();
 
   const _onChangeText = (value: string) => props?.onChangeText?.(value);
 
-  useEffect(() => { borderRef.current?.setNativeProps?.({ borderColor: !!error ? border.error : !!isFocusRef.current ? border.focus : border.blur }); }, [error]);
-
   const memoTextMsgError = useMemo(() => <TextMsgError error={error} />, [error]);
+
+  const memoInputBorder = useMemo(() => <InputBorder isError={!!error} ref={inputBorderRefs} />, [error])
 
   return (
     <View>
       <TouchableView activeOpacity={1} style={styles.view} onPress={_onPressInput}>
-        <View style={styles.border} pointerEvents='none' ref={borderRef} />
+        {memoInputBorder}
 
         {!!inputIcon && <View style={styles.inputIconView}>{inputIcon}</View>}
 
         <TextInput
           style={styles.input}
 
-          cursorColor={'#000000'}
+          cursorColor='#000000'
+          selectionColor='#000000'
+          selectionHandleColor='#000000'
+          underlineColorAndroid='transparent'
+
           allowFontScaling={false}
           disableFullscreenUI={true}
-
           editable={props?.editable}
           maxLength={props?.maxLength}
+          secureTextEntry={isSecureTextEntry}
+
           keyboardType={props?.keyboardType || 'default'}
           autoCapitalize={props?.autoCapitalize || 'none'}
-
           placeholderTextColor='#A3A3A3'
           placeholder={props?.placeholder}
-          secureTextEntry={isSecureTextEntry}
 
           onBlur={_onBlur}
           onFocus={_onFocus}
