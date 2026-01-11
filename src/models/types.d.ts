@@ -104,6 +104,20 @@ export type TTranslateVersion = {
   updated_at: string;
 }
 
+export type TChapter = {
+  id: number;
+  chapter_number: number;
+  title: string;
+  content: string;
+  views: number;
+  is_paid: number;
+  price: number | null;
+  slug: string;
+  audio_url: string | null;
+  audio_duration: number | null;
+  chapter_index: number;
+}
+
 export interface IResponse {
   GetUserInfo: TUserProfile;
 
@@ -133,6 +147,11 @@ export interface IResponse {
     items: TCategory[];
     metadata: TMetadata;
   };
+
+  GetStoryChapters: {
+    items: TChapter[];
+    metadata: TMetadata;
+  }
 }
 
 export interface IRequest {

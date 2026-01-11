@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { View, FlatList } from 'react-native';
 
 import { NUM_COLUMNS } from '@/constants';
-import { useStoryMarked } from '@/useHooks/useStoryMarked';
+import { useStoryMarked } from '@/useQuery/useStoryMarked';
 import type { TStory } from '@/models/types';
 
 import TextBase from '@/component/TextBase';

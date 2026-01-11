@@ -1,5 +1,5 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useNavigation, useIsFocused, useRoute, RouteProp } from '@react-navigation/native';
+import { useNavigation, useIsFocused, useRoute, RouteProp, StackActions, CommonActions, createNavigationContainerRef } from '@react-navigation/native';
 
 import type { TStory, TChapter, TOptionFilterState } from '@/models/types';
 
@@ -8,6 +8,8 @@ type RootStackParamList = {
   UserSignUp: undefined,
   PageSetting: undefined,
   PageChapter: { story: TStory, chapter: TChapter },
+
+  StorySpeech: { story: TStory, translateVersionId: number, chapterIndex: number },
 
   StoryDetail: { story: TStory },
 
@@ -27,4 +29,22 @@ export const useStackNavigation = () => {
 export const useRouteNavigation = <T extends keyof RootStackParamList>(routeName: T) => {
   const route = useRoute<RouteProp<RootStackParamList, typeof routeName>>();
   return route;
+}
+
+export const navigationRef = createNavigationContainerRef<RootStackParamList>();
+
+export const stackNavigationRef = {
+  navigate: <T extends keyof RootStackParamList>(name: T, params?: RootStackParamList[T]) => {
+    navigationRef.dispatch(CommonActions.navigate(name, params));
+  },
+
+  replace: <T extends keyof RootStackParamList>(name: T, params?: RootStackParamList[T]) => {
+    navigationRef.dispatch(StackActions.replace(name, params));
+  },
+
+  popToTopBeforeNavigate: <T extends keyof RootStackParamList>(name: T, params?: RootStackParamList[T]) => {
+    const canPopToTop = !!navigationRef.getState()?.index;
+    if (!!canPopToTop) navigationRef.dispatch(StackActions.popToTop());
+    navigationRef.dispatch(CommonActions.navigate(name, params));
+  }
 }
