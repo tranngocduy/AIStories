@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF'
   },
   statusView: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-end',
     marginTop: 4,
