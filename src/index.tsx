@@ -4,8 +4,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { ViewToastInstance } from '@/instance';
 
-import { styleProps } from '@/theme';
-
 import AppNavigator from '@/routes';
 
 const App: React.FC = () => {
@@ -13,7 +11,7 @@ const App: React.FC = () => {
   const memoViewToastInstance = useMemo(() => <ViewToastInstance />, []);
 
   return (
-    <GestureHandlerRootView style={styleProps}>
+    <GestureHandlerRootView>
       {memoAppNavigator}
       {memoViewToastInstance}
     </GestureHandlerRootView>

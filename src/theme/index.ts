@@ -16,7 +16,6 @@ export const statusHeight = !isIOS ? ((StatusBar?.currentHeight || 32)) : !!isDy
 export const headerHeight = 52;
 export const footerHeight = !!isHasUIEdgeToEdge ? 24 : 16;
 export const tabbarFooterHeight = !!isHasUIEdgeToEdge ? 105 : 95;
-export const styleProps = { flex: 1, backgroundColor: '#FFFFFF' };
 
 export const fonts = {
   default: {
