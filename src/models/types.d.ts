@@ -88,7 +88,7 @@ export type TMetadata = {
 };
 
 export type TStoryMarked = {
-  story?: TStory;
+  story?: TStoryDetail;
   story_id?: number;
   user_id?: number;
 }
