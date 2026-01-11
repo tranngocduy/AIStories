@@ -43,3 +43,9 @@ export const getAllCategory = async (page?: number, limit?: number) => {
   const result = await api<IResponse['GetAllCategory']>(`${process.env.$app.BASE_API}/categories/?page=${page}&limit=${limit}`, method);
   return result;
 }
+
+export const getReadingBookmarks = async () => {
+  const method = 'GET';
+  const result = await api<IResponse['ReadingBookmarks']>(`${process.env.$app.BASE_API}/reading/bookmarks`, method);
+  return result;
+}

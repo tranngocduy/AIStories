@@ -87,6 +87,12 @@ export type TMetadata = {
   limit: number;
 };
 
+export type TStoryMarked = {
+  story?: TStory;
+  story_id?: number;
+  user_id?: number;
+}
+
 export interface IResponse {
   GetUserInfo: TUserProfile;
 
@@ -110,6 +116,8 @@ export interface IResponse {
     items: TCategory[];
     metadata: TMetadata;
   }
+
+  ReadingBookmarks: TStoryMarked[];
 }
 
 export interface IRequest {
