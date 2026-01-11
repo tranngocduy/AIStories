@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { ServiceAPI } from '@/apis';
 import { useIStore } from '@/store';
 import { IStoryMarkSVG } from '@/assets/svg';
-import { useStoryMarked } from '@/useHooks/useStoryMarked';
+import { useStoryMarked } from '@/useQuery/useStoryMarked';
 import { useStackNavigation } from '@/useHooks/useNavigation';
 
 import TouchableView from '@/component/TouchableView';
