@@ -37,7 +37,7 @@ const TabNavigator: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   }, []);
 
   const _renderItem = (label: string, source: ImageSourcePropType, isActive: boolean, onPress: () => void) => {
-    const tintColor = !!isActive ? '#417584' : '#A3A3A3';
+    const tintColor = !!isActive ? '#000000' : '#A3A3A3';
 
     return (
       <TouchableView style={styles.item} activeOpacity={1} onPress={onPress}>
