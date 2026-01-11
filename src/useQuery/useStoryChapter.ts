@@ -2,12 +2,12 @@ import { ServiceAPI } from '@/apis';
 import { useQuery, QUERY_KEYS } from '@/useQuery/constants';
 
 const _loadData = async (chapterId: number, chapterIndex: number, translateVersionId: number) => {
-  const nextIndex = Math.max(chapterIndex + 1, 2);
-  const prevIndex = Math.max(chapterIndex - 1, 1);
+  const pageNext = Math.max((chapterIndex + 1) + 1, 1);
+  const pagePrev = Math.max((chapterIndex + 1) - 1, 1);
 
   const apiCallers = [
-    ServiceAPI.getStoryChapters(translateVersionId, nextIndex, 1),
-    ServiceAPI.getStoryChapters(translateVersionId, prevIndex, 1)
+    ServiceAPI.getStoryChapters(translateVersionId, pageNext, 1),
+    ServiceAPI.getStoryChapters(translateVersionId, pagePrev, 1)
   ];
 
   const result = await Promise.all([...apiCallers]);
