@@ -7,7 +7,7 @@ type RootStackParamList = {
   UserSignIn: undefined,
   UserSignUp: undefined,
   PageSetting: undefined,
-  PageChapter: { story: TStory, chapter: TChapter },
+  PageChapter: { story: TStory, chapter: TChapter, translateVersionId: number },
 
   StoryReview: { review: TStoryRateVotes },
   StorySpeech: { story: TStory, translateVersionId: number, chapterIndex: number },
