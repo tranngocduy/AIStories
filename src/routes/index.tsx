@@ -1,11 +1,13 @@
 import React, { useEffect, useMemo } from 'react';
 import { StatusBar } from 'react-native';
 
+import { hide } from 'react-native-bootsplash';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { createBottomTabNavigator, BottomTabNavigationOptions, BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
+import { runAfterInteractions } from '@/utils/app';
 import { navigationRef } from '@/useHooks/useNavigation';
 import { QueryClientProvider, QueryClient, QUERY_OPTIONS } from '@/useQuery/constants';
 
@@ -65,6 +67,7 @@ const AppNavigator = () => {
 
   useEffect(() => {
     StatusBar.setBarStyle('dark-content');
+    runAfterInteractions(() => hide({ fade: true }));
   }, []);
 
   return (
