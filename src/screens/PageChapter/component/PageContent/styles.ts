@@ -6,6 +6,11 @@ const styles = StyleSheet.create({
   },
   view: {
     flex: 1
+  },
+  loading: {
+    ...StyleSheet.absoluteFill,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

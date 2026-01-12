@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { View } from 'react-native';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { useIStore } from '@/store';
 import { useGetChapterContent } from '@/useQuery/useGetChapterContent';
@@ -31,11 +32,8 @@ const PageContent: React.FC<PageContentProps> = ({ chapterId }) => {
 
   return (
     <View style={styles.container}>
-      {!!isLoading ?
-        <ProgressIcon />
-        :
-        <View style={styles.view}>{memoParagraphs}</View>
-      }
+      <View style={styles.view}>{memoParagraphs}</View>
+      {!!isLoading && <Animated.View style={styles.loading} entering={FadeIn} exiting={FadeOut} pointerEvents='none'><ProgressIcon /></Animated.View>}
     </View>
   )
 
