@@ -6,6 +6,7 @@ import android.view.View
 import android.view.Window
 import android.graphics.Color
 import android.view.WindowManager
+import com.zoontek.rnbootsplash.RNBootSplash
 import com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory
 
 import com.facebook.react.ReactActivity
@@ -34,6 +35,7 @@ class MainActivity : ReactActivity() {
    */
   override fun onCreate(savedInstanceState: Bundle?) {
     supportFragmentManager.fragmentFactory = RNScreensFragmentFactory()
+    RNBootSplash.init(this, R.style.BootTheme)
     super.onCreate(savedInstanceState)
 
     if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
