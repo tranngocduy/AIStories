@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { View } from 'react-native';
 
-import { dayjs } from '@/utils/timeTz';
 import { useThemePage } from '@/useHooks/useThemePage';
 import { useRouteNavigation } from '@/useHooks/useNavigation';
 
@@ -23,11 +22,7 @@ const PageChapter: React.FC = () => {
 
   const chapterId = params?.chapter?.id;
 
-  const content = params?.chapter?.content;
-
   const chapterIndex = params?.chapter?.chapter_index;
-
-  const keyFrame = useMemo(() => dayjs().valueOf(), [chapterId]);
 
   const memoPageHeader = useMemo(() => <PageHeader title={title} />, [title]);
 
