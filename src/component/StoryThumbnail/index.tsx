@@ -5,6 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import type { TStory } from '@/models/types';
 
 import TextBase from '@/component/TextBase';
+import ImageView from '@/component/ImageView';
 import StoryScore from '@/component/StoryScore';
 
 import styles from './styles';
@@ -17,14 +18,14 @@ const StoryThumbnail: React.FC<StoryThumbnailProps> = ({ item, thumbSize, isOver
 
   const start = { x: 0.5, y: 0 };
 
-  const imageUrl = item?.cover_image_url;
+  const uri = item?.cover_image_url;
 
   const category = item?.categories?.[0]?.name || '';
 
   return (
     <View style={[styles.container, { height: thumbSize }]}>
-      {!!imageUrl ?
-        <ImageBackground source={{ uri: imageUrl }} style={styles.thumbnail} resizeMode='stretch' />
+      {!!uri ?
+        <View style={styles.thumbnail}><ImageView source={{ uri }} resizeMode='stretch' /></View>
         :
         <View style={styles.emptyView}><TextBase style={styles.emptyLabel}>No Cover</TextBase></View>
       }
