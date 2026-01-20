@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { fonts, statusHeight, footerHeight } from '@/theme';
+import { fonts, statusHeight, tabbarFooterHeight } from '@/theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     paddingRight: 16,
     paddingLeft: 16,
-    paddingBottom: footerHeight,
+    paddingBottom: tabbarFooterHeight,
     rowGap: 10
   },
   wrapperStyle: {
