@@ -24,7 +24,7 @@ const TabNavigator: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
 
   const _onPressUserProfile = () => navigation.navigate('UserProfile');
 
-  useEffect(() => { sharedValue.value = withTiming(state.index, { duration: 150, easing: Easing.linear }) }, [state.index])
+  useEffect(() => { sharedValue.value = withTiming(state.index, { duration: 150, easing: Easing.ease }) }, [state.index]);
 
   const viewStyle = useAnimatedStyle(() => {
     const TAB_SIZE = styles.tabSize.width;
