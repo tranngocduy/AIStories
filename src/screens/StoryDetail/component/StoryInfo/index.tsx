@@ -57,7 +57,8 @@ const StoryInfo: React.FC<StoryInfoProps> = ({ story, detail }) => {
   const _onPressAuthor = () => {
     if (!!detail?.author?.name && !!detail?.author?.id) {
       const author = { label: detail?.author?.name, value: detail?.author?.id };
-      stackNavigationRef.popToTopBeforeNavigate('Library', { filter: { author, sort: null, votes: null, chapters: null, rating: null, status: null, category: null } });
+      const filter = { author, sort: null, votes: null, chapters: null, rating: null, status: null, category: null };
+      stackNavigationRef.popToTopBeforeNavigate('Library', { filter }, 300);
     }
   }
 

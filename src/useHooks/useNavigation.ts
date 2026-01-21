@@ -1,6 +1,7 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation, useIsFocused, useRoute, RouteProp, StackActions, CommonActions, createNavigationContainerRef } from '@react-navigation/native';
 
+import { runAfterInteractions } from '@/utils/app';
 import type { TStory, TChapter, TOptionFilterState, TStoryRateVotes } from '@/models/types';
 
 type RootStackParamList = {
@@ -43,9 +44,9 @@ export const stackNavigationRef = {
     navigationRef.dispatch(StackActions.replace(name, params));
   },
 
-  popToTopBeforeNavigate: <T extends keyof RootStackParamList>(name: T, params?: RootStackParamList[T]) => {
+  popToTopBeforeNavigate: <T extends keyof RootStackParamList>(name: T, params?: RootStackParamList[T], delay?: number) => {
     const canPopToTop = !!navigationRef.getState()?.index;
     if (!!canPopToTop) navigationRef.dispatch(StackActions.popToTop());
-    navigationRef.dispatch(CommonActions.navigate(name, params));
+    runAfterInteractions(() => navigationRef.dispatch(CommonActions.navigate(name, params)), delay);
   }
 }
