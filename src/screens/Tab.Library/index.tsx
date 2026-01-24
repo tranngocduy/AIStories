@@ -40,7 +40,7 @@ const Library: React.FC = () => {
 
   const totalFill = !(data?.length % NUM_COLUMNS) ? NUM_COLUMNS : (data?.length % NUM_COLUMNS);
 
-  const items = !querySearchStoriesByQuery?.isSuccess ? new Array(9).fill('') : [...data, ...(new Array(NUM_COLUMNS - totalFill).fill(''))];
+  const items = !querySearchStoriesByQuery?.isSuccess ? new Array(12).fill('') : [...data, ...(new Array(NUM_COLUMNS - totalFill).fill(''))];
 
   const isLoadMoreRef = useRef(true);
 
@@ -151,7 +151,7 @@ const Library: React.FC = () => {
           refreshControl={<ScrollRefresh onRefresh={_onRefresh} />}
 
           onEndReached={_onLoadMore}
-          onEndReachedThreshold={1}
+          onEndReachedThreshold={0.5}
         />
       </View>
     </View>
