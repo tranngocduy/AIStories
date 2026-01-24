@@ -24,7 +24,7 @@ const Authenticate: React.FC<AuthenticateProps> = ({ children }) => {
   const memoAuth = useMemo(() => (
     <View style={styles.authView}>
       <TextBase style={styles.authText}>Đăng nhập để truy cập toàn bộ dịch vụ và{'\n'}quản lý thông tin dễ dàng hơn.</TextBase>
-      <Button style={styles.authButton} label='Đăng nhập' onPress={_onPressSign} />
+      <View style={styles.authButton}><Button label='Đăng nhập' onPress={_onPressSign} /></View>
     </View>
   ), []);
 
@@ -37,7 +37,12 @@ const Authenticate: React.FC<AuthenticateProps> = ({ children }) => {
 
   if (!!isSigned && !!accessToken) return <View style={styles.view}>{children}</View>;
 
-  return <View style={styles.container}>{!accessToken && memoAuth}{!!accessToken && memoLoading}</View>;
+  return (
+    <View style={styles.container}>
+      {!accessToken && memoAuth}
+      {!!accessToken && memoLoading}
+    </View>
+  )
 
 }
 
