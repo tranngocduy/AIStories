@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 
 import { useIStore } from '@/store';
@@ -21,14 +21,23 @@ const Authenticate: React.FC<AuthenticateProps> = ({ children }) => {
 
   const _onPressSign = () => navigation.navigate('UserSignIn');
 
+  const memoAuth = useMemo(() => (
+    <View style={styles.authView}>
+      <TextBase style={styles.authText}>Đăng nhập để truy cập toàn bộ dịch vụ và{'\n'}quản lý thông tin dễ dàng hơn.</TextBase>
+      <Button style={styles.authButton} label='Đăng nhập' onPress={_onPressSign} />
+    </View>
+  ), []);
+
+  const memoLoading = useMemo(() => (
+    <View style={styles.loadingView}>
+      <ActivityIndicator size='small' />
+      <TextBase style={styles.loadingText}>Đang đăng nhập ...</TextBase>
+    </View>
+  ), []);
+
   if (!!isSigned && !!accessToken) return <View style={styles.view}>{children}</View>;
 
-  return (
-    <View style={styles.container}>
-      {!accessToken && <View style={styles.button}><Button label='Đăng nhập' onPress={_onPressSign} /></View>}
-      {!!accessToken && <View style={styles.loading}><ActivityIndicator size='small' /><TextBase style={styles.text}>Đang đăng nhập ...</TextBase></View>}
-    </View>
-  )
+  return <View style={styles.container}>{!accessToken && memoAuth}{!!accessToken && memoLoading}</View>;
 
 }
 

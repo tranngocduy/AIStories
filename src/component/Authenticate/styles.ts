@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { fonts } from '@/theme';
+import { fonts, wWidth } from '@/theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,20 +10,33 @@ const styles = StyleSheet.create({
   view: {
     flex: 1
   },
-  button: {
-    width: '50%'
+  authView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    rowGap: 24
   },
-  text: {
+  authText: {
     ...fonts.default.normal400,
     fontSize: 14,
     lineHeight: 21,
-    color: '#000000'
+    color: '#9AA3B2',
+    textAlign: 'center'
   },
-  loading: {
+  authButton: {
+    width: (wWidth * 0.5)
+  },
+  loadingView: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     columnGap: 12
+  },
+  loadingText: {
+    ...fonts.default.normal400,
+    fontSize: 14,
+    lineHeight: 21,
+    color: '#000000'
   }
 });
 
