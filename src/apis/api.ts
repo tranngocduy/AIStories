@@ -50,7 +50,7 @@ const _refreshToken = async (headers: IHeader, refresh_token: string) => {
   const url = `${process.env.$app.BASE_API}/auth/refresh-token`;
 
   const [_, result] = await _fetchData(url, method, headers, { refresh_token });
-  if (!!result?.access_token && !!result?.refresh_token) return result;
+  if (!!result?.data?.access_token && !!result?.data?.refresh_token) return result?.data;
 
   await userLogout();
 };
