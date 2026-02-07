@@ -8,8 +8,7 @@ const styles = StyleSheet.create({
     bottom: 0
   },
   view: {
-    height: 4,
-    backgroundColor: 'red'
+    height: 4
   }
 });
 
