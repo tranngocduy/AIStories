@@ -8,6 +8,7 @@ import type { TStory, TChapter } from '@/models/types';
 import EmptyList from '@/component/EmptyList';
 import ChapterItem from '@/component/ChapterItem';
 import ProgressIcon from '@/component/ProgressIcon';
+import ProgressMore from '@/component/ProgressMore';
 
 import styles from './styles';
 
@@ -46,6 +47,7 @@ const Chapters = forwardRef<ChaptersRefs, ChaptersProps>(({ story, translateVers
   return (
     <View style={styles.container}>
       {(!isLoading && !!data?.[0]) && data?.map(_renderItem)}
+      {!!queryStoryChapters?.hasNextPage && <ProgressMore />}
       {!!isLoading && <View style={styles.empty}><ProgressIcon /></View>}
       {(!isLoading && !data?.[0]) && <View style={styles.empty}><EmptyList /></View>}
     </View>

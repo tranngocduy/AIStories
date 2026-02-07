@@ -12,6 +12,7 @@ import type { TStory, TOptionFilterState } from '@/models/types';
 import TextBase from '@/component/TextBase';
 import StoryItem from '@/component/StoryItem';
 import EmptyList from '@/component/EmptyList';
+import ProgressMore from '@/component/ProgressMore';
 import ScrollRefresh from '@/component/ScrollRefresh';
 import TouchableView from '@/component/TouchableView';
 import StorySkeleton from '@/component/StorySkeleton';
@@ -112,7 +113,9 @@ const Library: React.FC = () => {
 
   useEffectAfterMount(() => { if (!!params?.filter) runAfterInteractions(_onFilter); }, [JSON.stringify(params?.filter)]);
 
-  const _viewsEmpty = useMemo(() => <EmptyList />, []);
+  const memoEmpty = useMemo(() => <EmptyList />, []);
+
+  const memoFooter = useMemo(() => !!querySearchStoriesByQuery?.hasNextPage ? <ProgressMore /> : null, [!!querySearchStoriesByQuery?.hasNextPage]);
 
   const _keyExtractor = (item: TStory, index: number) => `${item?.id || index}`;
 
@@ -147,7 +150,8 @@ const Library: React.FC = () => {
           contentContainerStyle={styles.scroll}
           columnWrapperStyle={styles.wrapperStyle}
 
-          ListEmptyComponent={_viewsEmpty}
+          ListEmptyComponent={memoEmpty}
+          ListFooterComponent={memoFooter}
           refreshControl={<ScrollRefresh onRefresh={_onRefresh} />}
 
           onEndReached={_onLoadMore}
