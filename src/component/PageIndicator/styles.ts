@@ -2,10 +2,14 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    position: 'absolute',
+    right: 0,
+    left: 0,
+    bottom: 0
   },
   view: {
-    flex: 1
+    height: 4,
+    backgroundColor: 'red'
   }
 });
 

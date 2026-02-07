@@ -1,12 +1,11 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { View } from 'react-native';
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { useIStore } from '@/store';
 import { useGetChapterContent } from '@/useQuery/useGetChapterContent';
 
 import Paragraphs from '@/component/Paragraphs';
-import ProgressIcon from '@/component/ProgressIcon';
+import PageIndicator, { PageIndicatorRefs } from '@/component/PageIndicator';
 
 import styles from './styles';
 
@@ -18,22 +17,36 @@ const PageContent: React.FC<PageContentProps> = ({ chapterId }) => {
 
   const queryGetChapterContent = useGetChapterContent({ chapterId, translateVersionId });
 
-  const isLoading = queryGetChapterContent?.isLoading;
-
   const contentRef = useRef<string>('');
+
+  const pageIndicatorRef = useRef<PageIndicatorRefs>(null);
 
   const content = queryGetChapterContent?.data?.content || contentRef.current || '';
 
-  useEffect(() => {
-    if (!!queryGetChapterContent?.data?.content) contentRef.current = queryGetChapterContent?.data?.content;
-  }, [queryGetChapterContent?.data?.content]);
+  const _onCacheContent = () => {
+    if (!queryGetChapterContent?.data?.content) return null;
+
+    contentRef.current = queryGetChapterContent?.data?.content;
+  }
+
+  const _onProgressChange = () => {
+    if (!!queryGetChapterContent?.isSuccess) pageIndicatorRef.current?.setPercent(1);
+
+    if (!!queryGetChapterContent?.isLoading) pageIndicatorRef.current?.setPercent(0.8);
+  }
+
+  useEffect(() => { _onCacheContent(); }, [queryGetChapterContent?.data?.content]);
+
+  useEffect(() => { _onProgressChange(); }, [JSON.stringify(queryGetChapterContent)]);
 
   const memoParagraphs = useMemo(() => <Paragraphs content={content} />, [content]);
+
+  const memoPageIndicator = useMemo(() => <PageIndicator ref={pageIndicatorRef} />, []);
 
   return (
     <View style={styles.container}>
       <View style={styles.view}>{memoParagraphs}</View>
-      {!!isLoading && <Animated.View style={styles.loading} entering={FadeIn} exiting={FadeOut} pointerEvents='none'><ProgressIcon /></Animated.View>}
+      {memoPageIndicator}
     </View>
   )
 
