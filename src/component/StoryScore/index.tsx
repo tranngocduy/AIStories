@@ -10,9 +10,7 @@ import styles from './styles';
 type StoryScoreProps = { score?: number, isHideScore?: boolean, backgroundColor?: string, color?: string }
 
 const StoryScore: React.FC<StoryScoreProps> = ({ score, isHideScore, backgroundColor = '#555555', color = '#FFFFFF' }) => {
-  const STAR_POINT = 2;
-
-  const stars = Math.min(((score || 0) / STAR_POINT), 5);
+  const stars = Math.min((score || 0), 5);
   const totalStar = (stars % 1) >= 0.5 ? Math.ceil(stars) : Math.floor(stars);
 
   const displayStar = new Array(totalStar).fill('');
