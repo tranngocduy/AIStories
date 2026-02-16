@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 
 import { useIStore } from '@/store';
+import { dayjs } from '@/utils/timeTz';
 import { useGetChapterContent } from '@/useQuery/useGetChapterContent';
 
 import Paragraphs from '@/component/Paragraphs';
@@ -39,13 +41,19 @@ const PageContent: React.FC<PageContentProps> = ({ chapterId }) => {
 
   useEffect(() => { _onProgressChange(); }, [JSON.stringify(queryGetChapterContent)]);
 
+  const keyFrame = useMemo(() => dayjs().valueOf(), [content]);
+
+  const entering = useMemo(() => FadeInDown.duration(300), []);
+
   const memoParagraphs = useMemo(() => <Paragraphs content={content} />, [content]);
 
   const memoPageIndicator = useMemo(() => <PageIndicator ref={pageIndicatorRef} />, []);
 
   return (
     <View style={styles.container}>
-      <View style={styles.view}>{memoParagraphs}</View>
+      <Animated.View style={styles.view} entering={entering} key={keyFrame}>
+        <View style={styles.view}>{memoParagraphs}</View>
+      </Animated.View>
       {memoPageIndicator}
     </View>
   )

@@ -1,4 +1,4 @@
-import React, { memo, forwardRef, useImperativeHandle } from 'react';
+import React, { useRef, memo, forwardRef, useImperativeHandle } from 'react';
 import { View } from 'react-native';
 import Animated, { withTiming, useSharedValue, useAnimatedStyle, interpolate, cancelAnimation } from 'react-native-reanimated';
 
@@ -15,22 +15,35 @@ const PageIndicator = forwardRef<PageIndicatorRefs, {}>((_, ref) => {
 
   const sharedValue = useSharedValue(0);
 
+  const indicatorRef = useRef<View>(null);
+
   const _onSetPercent = (percent: number) => {
     cancelAnimation(sharedValue);
 
+    const pointerEvents = (percent >= 1) ? 'none' : 'auto';
+
     sharedValue.value = withTiming(percent, { duration: 500 });
 
-    if (percent >= 1) runAfterInteractions(() => { sharedValue.value = 0; }, 600);
+    runAfterInteractions(() => {
+      if (percent >= 1) sharedValue.value = 0;
+
+      indicatorRef.current?.setNativeProps({ pointerEvents });
+
+    }, ((percent >= 1) ? 650 : 0));
   }
 
   useImperativeHandle(ref, () => ({ setPercent: _onSetPercent }));
 
-  const viewStyle = useAnimatedStyle(() => {
+  const loadingStyle = useAnimatedStyle(() => {
     const percent = interpolate(sharedValue.value, [0, 1], [0, 100]);
     return { width: `${percent}%` }
   }, []);
 
-  return <View style={styles.container} pointerEvents='none'><Animated.View style={[styles.view, viewStyle, { backgroundColor: color }]} /></View>;
+  return (
+    <View style={styles.container} pointerEvents='auto' ref={indicatorRef}>
+      <View style={styles.view}><Animated.View style={[styles.loading, loadingStyle, { backgroundColor: color }]} /></View>
+    </View>
+  );
 
 });
 
