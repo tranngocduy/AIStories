@@ -1,9 +1,10 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { View, Image, ImageSourcePropType } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 import Animated, { withTiming, useSharedValue, useAnimatedStyle, interpolate, Easing } from 'react-native-reanimated';
 
+import { useEffectAfterMount } from '@/useHooks/useEffectAfterMount';
 import { tabDashboardIMG, tabLibraryIMG, tabSavedStoryIMG, tabUserProfileIMG } from '@/assets/image';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
@@ -24,7 +25,7 @@ const TabNavigator: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
 
   const _onPressUserProfile = () => navigation.navigate('UserProfile');
 
-  useEffect(() => { sharedValue.value = withTiming(state.index, { duration: 150, easing: Easing.ease }) }, [state.index]);
+  useEffectAfterMount(() => { sharedValue.value = withTiming(state.index, { duration: 150, easing: Easing.ease }); }, [state.index]);
 
   const viewStyle = useAnimatedStyle(() => {
     const TAB_SIZE = styles.tabSize.width;

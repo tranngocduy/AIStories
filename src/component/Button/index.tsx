@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useMemo, forwardRef, useImperativeHandle } from 'react';
 import { ActivityIndicator, View, Keyboard, ViewStyle, TextStyle } from 'react-native';
 
+import { runAfterInteractions } from '@/utils/app';
+
 import TextBase from '@/component/TextBase';
 import TouchableView from '@/component/TouchableView';
 
@@ -22,13 +24,17 @@ const Button = forwardRef<ButtonRefs, ButtonProps>(({ label, style, labelStyle, 
   }
 
   const _startLoad = () => {
-    loadRef.current?.setNativeProps?.({ display: 'flex' });
-    viewRef.current?.setNativeProps?.({ pointerEvents: 'none' });
+    runAfterInteractions(() => {
+      loadRef.current?.setNativeProps?.({ display: 'flex' });
+      viewRef.current?.setNativeProps?.({ pointerEvents: 'none' });
+    });
   }
 
   const _stopLoad = () => {
-    loadRef.current?.setNativeProps?.({ display: 'none' });
-    viewRef.current?.setNativeProps?.({ pointerEvents: 'auto' });
+    runAfterInteractions(() => {
+      loadRef.current?.setNativeProps?.({ display: 'none' });
+      viewRef.current?.setNativeProps?.({ pointerEvents: 'auto' });
+    });
   }
 
   const _enabled = (status: boolean) => {

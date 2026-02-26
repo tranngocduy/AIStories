@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
+    maxWidth: '80%',
     zIndex: 1
   },
   categoryTag: {

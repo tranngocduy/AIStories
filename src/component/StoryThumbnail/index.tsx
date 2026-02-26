@@ -33,7 +33,7 @@ const StoryThumbnail: React.FC<StoryThumbnailProps> = ({ item, thumbSize, isOver
       {!!category &&
         <View style={styles.categoryView}>
           <LinearGradient style={styles.categoryTag} start={start} end={end} colors={['#333333', '#1A1A1A', '#000000', '#0D0D0D']} />
-          <View style={styles.categoryLabelView}><TextBase style={styles.categoryLabel}>{category}</TextBase></View>
+          <View style={styles.categoryLabelView}><TextBase style={styles.categoryLabel} numberOfLines={1} ellipsizeMode='tail'>{category}</TextBase></View>
         </View>
       }
 
